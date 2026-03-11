@@ -3,21 +3,89 @@ import type { Montacargas } from '../interfaces/montacargas';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Carrito from '../components/Carrito.astro'
 import MontacargasCarrucel from '../components/MontacargasCarrucel.astro';
+import CatalogoList from '../components/CatalogoList.astro';
 const respuesta = await fetch('http://localhost:4321/api/montacargas');
 const montacargas: Montacargas[] = await respuesta.json();
+
 
 ---
 <Layout>
 	<Header />
-	<h1>Catalogo</h1>
+	<Carrito/>
+	<section class="catalogo-hero">
+  <div class="catalogo-hero__noise"></div>
+  <div class="catalogo-hero__inner">
+    <p class="catalogo-hero__eyebrow">// Línea completa 2026</p>
+    <h1 class="catalogo-hero__title">Catálogo</h1>
+  </div>
+  <span class="corner corner--tl"></span>
+  <span class="corner corner--br"></span>
+</section>
 	<MontacargasCarrucel />
-	<ul>
-  {montacargas.map((m) => (
-    <li>
-      <strong>{m.modelo}</strong> — {m.capacidad} — ${m.precio_renta}
-    </li>
-  ))}
-</ul>
+	<CatalogoList />
 	<Footer />
 </Layout>
+
+<style>
+	.catalogo-hero {
+  position: relative;
+  padding: 3rem 2.5rem;
+  background: linear-gradient(175deg, var(--navy) 0%, var(--navy-mid) 100%);
+  overflow: hidden;
+  isolation: isolate;
+  border-bottom: 3px solid var(--yellow);
+}
+
+/* Grain sutil */
+.catalogo-hero__noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+.catalogo-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.catalogo-hero__eyebrow {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--yellow);
+  opacity: 0.8;
+  margin: 0;
+}
+
+.catalogo-hero__title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  line-height: 1;
+}
+
+/* Esquinitas industriales */
+.corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: rgba(245,166,35,0.4);
+  border-style: solid;
+}
+.corner--tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
+.corner--br { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
+</style><!--tlabaja tiene que tlabaja,tlabaja
+			calajo 🗣 -->

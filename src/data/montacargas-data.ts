@@ -6,6 +6,7 @@ export interface Montacargas {
   para:string;
   tipo: string;
   disponible: boolean;
+  detalles: string;
   precio_renta: number;
 }
 
@@ -13,11 +14,12 @@ export const datos: Montacargas[] = [
   {
     id: 1,
     imagen:"https://media.istockphoto.com/id/517818547/es/foto/carretilla-elevadora-aislado-sobre-fondo-blanco.jpg?s=612x612&w=0&k=20&c=F5hX-ym38pOQi-dGA8EvY64FvxQ7zHcqY8HGlU0tq-s=",
-    modelo: "Toyota 8FGU25",
+    modelo: "Nissan 8FGU25",
     capacidad: "2.5 toneladas",
     para:"renta",
     tipo: "Gas",
     disponible: true,
+    detalles: "Detalles del montacargas 4",
     precio_renta: 8500
   },
   {
@@ -25,9 +27,10 @@ export const datos: Montacargas[] = [
     imagen:"",
     modelo: "Toyota 8FGU25",
     capacidad: "2.5 toneladas",
-    para:"compra",
+    para:"venta",
     tipo: "Gas",
     disponible: true,
+    detalles: "Detalles del montacargas 4",
     precio_renta: 8500
   },
   {
@@ -38,6 +41,7 @@ export const datos: Montacargas[] = [
     para:"renta",
     tipo: "Gas",
     disponible: true,
+    detalles: "Detalles del montacargas 4",
     precio_renta: 8500
   },
   {
@@ -48,6 +52,7 @@ export const datos: Montacargas[] = [
     para:"renta",
     tipo: "Gas",
     disponible: true,
+    detalles: "Detalles del montacargas 4",
     precio_renta: 8500
   },
   {
@@ -58,6 +63,7 @@ export const datos: Montacargas[] = [
     para:"renta",
     tipo: "Gas",
     disponible: true,
+    detalles: "Detalles del montacargas 4",
     precio_renta: 8500
   },
   {
@@ -68,6 +74,7 @@ export const datos: Montacargas[] = [
     para:"renta",
     tipo: "Gas",
     disponible: true,
+    detalles: "Detalles del montacargas 5",
     precio_renta: 8500
   }
 ];

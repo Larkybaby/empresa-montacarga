@@ -33,7 +33,7 @@
           <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
         </svg>
       </div>
-      <h2 class="contador" data-target="10000">0<sup>+</sup></h2>
+      <h2 class="contador" data-target="1000">0<sup>+</sup></h2>
       <div class="stat-card__divider"></div>
       <p class="stat-card__label">Clientes<br>satisfechos</p>
     </div>
@@ -80,7 +80,6 @@
   /* ─── SECCIÓN ─── */
   .conocenos {
     position: relative;
-    width: 100%;
     overflow: hidden;
     background: linear-gradient(160deg, #0a1628 0%, #0d1f3c 55%, #0a1628 100%);
     padding: 5rem 2rem 7rem;
@@ -302,25 +301,36 @@
 document.addEventListener('DOMContentLoaded', () => {
   const contadores = document.querySelectorAll('.contador');
 
-  contadores.forEach(contador => {
-    const meta      = parseInt(contador.dataset.target);
-    const duracion  = 2000;
+  function animarContador(contador) {
+    const meta = parseInt(contador.dataset.target);
+    const duracion = 1000;
     const intervalo = 20;
-    const pasos     = duracion / intervalo;
+    const pasos = duracion / intervalo;
     const incremento = meta / pasos;
 
     let actual = 0;
+    contador.innerHTML = '0<sup>+</sup>';
 
     const timer = setInterval(() => {
       actual += incremento;
 
       if (actual >= meta) {
-        contador.innerHTML = meta + '<sup>+</sup>'; // mantiene el + como superíndice
+        contador.innerHTML = meta + '<sup>+</sup>';
         clearInterval(timer);
       } else {
         contador.innerHTML = Math.floor(actual) + '<sup>+</sup>';
       }
     }, intervalo);
-  });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animarContador(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  contadores.forEach(contador => observer.observe(contador));
 });
 </script>

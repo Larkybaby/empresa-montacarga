@@ -1,0 +1,293 @@
+---
+---
+<div class="carrito-fab" id="carritoFab">
+  🛒
+  <span class="carrito-badge" id="carritoBadge">0</span>
+</div>
+
+<!-- Panel del carrito -->
+<div class="carrito-panel" id="carritoPanel">
+  <div class="panel-header">
+    <span>🛒 Carrito</span>
+    <button class="panel-cerrar" id="panelCerrar">✕</button>
+  </div>
+  <ul class="panel-lista" id="panelLista">
+    <li class="panel-vacio">No hay productos aún</li>
+  </ul>
+  <div class="panel-total" id="panelTotal" style="display:none">
+    <span>Total:</span>
+    <span id="totalPrecio">$0</span>
+    <div class="panel-comprar">
+  <button class="btn-whatsapp" id="btnWhatsapp">
+    Encargar por WhatsApp
+  </button>
+</div>
+  </div>
+</div>
+
+<style>
+.panel-comprar {
+  padding: 0.8rem 1.2rem;
+  border-top: 1px solid rgba(245,166,35,0.1);
+  display: flex;
+  justify-content: center;
+}
+
+.btn-whatsapp {
+  width: fit-content;
+  padding: 0.75rem 1.5rem;
+  background: #25d366;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-whatsapp:hover {
+  background: #1ebe5d;
+  transform: translateY(-1px);
+}
+  .carrito-fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 999;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--yellow, #f5a623);
+    color: var(--navy, #0a1628);
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(245,166,35,0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .carrito-fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(245,166,35,0.7);
+  }
+  .carrito-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: var(--navy, #0a1628);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+  }
+
+  /* ── Panel ── */
+  .carrito-panel {
+    position: fixed;
+    bottom: 5.5rem;
+    right: 2rem;
+    z-index: 998;
+    width: 300px;
+    background: var(--navy, #0a1628);
+    border: 1px solid rgba(245,166,35,0.2);
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    overflow: hidden;
+
+    /* animación */
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .carrito-panel.abierto {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+  }
+
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    background: rgba(245,166,35,0.1);
+    border-bottom: 1px solid rgba(245,166,35,0.15);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .panel-cerrar {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .panel-cerrar:hover { color: white; }
+
+  .panel-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 260px;
+    overflow-y: auto;
+  }
+
+  .panel-vacio {
+    padding: 1.5rem 1.2rem;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  .panel-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.85rem;
+    gap: 0.5rem;
+  }
+
+  .panel-item-nombre {
+    flex: 1;
+    font-weight: 600;
+  }
+
+  .panel-item-precio {
+    color: var(--yellow, #f5a623);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .panel-item-quitar {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.3);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: color 0.2s;
+    padding: 0 0.2rem;
+  }
+  .panel-item-quitar:hover { color: #f87171; }
+
+ .panel-total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.2rem;
+  border-top: 1px solid rgba(245,166,35,0.2);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+  #totalPrecio { color: var(--yellow, #f5a623); }
+
+</style>
+
+<script>
+  const fab        = document.getElementById('carritoFab');
+  const panel      = document.getElementById('carritoPanel');
+  const cerrar     = document.getElementById('panelCerrar');
+  const lista      = document.getElementById('panelLista');
+  const badge      = document.getElementById('carritoBadge');
+  const totalEl    = document.getElementById('totalPrecio');
+  const panelTotal = document.getElementById('panelTotal');
+
+  // ── Cargar desde localStorage al iniciar ──
+  let carrito: { nombre: string; precio: number }[] = JSON.parse(
+    localStorage.getItem('carrito') ?? '[]'
+  );
+
+  function guardar() {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+  }
+
+  function renderCarrito() {
+    if (carrito.length === 0) {
+      lista.innerHTML = '<li class="panel-vacio">No hay productos aún</li>';
+      badge.classList.remove('visible');
+      panelTotal.style.display = 'none';
+      return;
+    }
+
+    lista.innerHTML = carrito.map((item, i) => `
+      <li class="panel-item">
+        <span class="panel-item-nombre">${item.nombre}</span>
+        <span class="panel-item-precio">$${item.precio}</span>
+        <button class="panel-item-quitar" data-index="${i}">✕</button>
+      </li>
+    `).join('');
+
+    lista.querySelectorAll('.panel-item-quitar').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const i = parseInt((e.target as HTMLElement).dataset.index ?? '0');
+        carrito.splice(i, 1);
+        guardar();
+        renderCarrito();
+      });
+    });
+
+    const total = carrito.reduce((sum, item) => sum + item.precio, 0);
+    totalEl.textContent = `$${total}`;
+    badge.textContent = String(carrito.length);
+    badge.classList.add('visible');
+    panelTotal.style.display = 'flex';
+  }
+
+  // Abrir / cerrar
+  fab.addEventListener('click', () => panel.classList.toggle('abierto'));
+  cerrar.addEventListener('click', () => panel.classList.remove('abierto'));
+
+  // Agregar producto
+  document.querySelectorAll('.btn-carrito').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const nombre = (btn as HTMLElement).dataset.nombre ?? 'Montacargas';
+      const precio = parseInt((btn as HTMLElement).dataset.precio ?? '0');
+      carrito.push({ nombre, precio });
+      guardar();
+      renderCarrito();
+      panel.classList.add('abierto');
+      
+    });
+  });
+  
+
+  // Renderizar al cargar la página
+  renderCarrito();
+
+  // Renderizar al cargar la página
+  renderCarrito();
+
+  // ── Botón WhatsApp ──
+  const btnWhatsapp = document.getElementById('btnWhatsapp');
+
+  btnWhatsapp.addEventListener('click', () => {
+    if (carrito.length === 0) return;
+
+    const productos = carrito
+      .map((item, i) => `${i + 1}. ${item.nombre} — $${item.precio}`)
+      .join('\n');
+
+    const total = carrito.reduce((sum, item) => sum + item.precio, 0);
+    const mensaje = `Hola, me gustaría encargar los siguientes productos:\n\n${productos}\n\nTotal: $${total}`;
+
+    const numero = '524741036525'; // ← tu número aquí
+    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`, '_blank');
+  });
+</script>

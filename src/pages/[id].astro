@@ -1,0 +1,400 @@
+---
+import type { Montacargas } from '../interfaces/montacargas';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Carrito from '../components/Carrito.astro';
+
+export async function getStaticPaths() {
+  const respuesta = await fetch('http://localhost:4321/api/montacargas');
+  const montacargas: Montacargas[] = await respuesta.json();
+  return montacargas.map((m) => ({
+    params: { id: String(m.id) },
+    props: { m },
+  }));
+}
+
+const { m } = Astro.props;
+---
+
+<Layout>
+  <Header />
+<Carrito/>
+<canvas id="prod-canvas"></canvas>
+
+  <div class="detalle-wrapper">
+    <a href="/Catalogo" class="back-button">← Catálogo</a>
+    <h1>Detalles del montacargas</h1>
+
+    <div class="detalle-card">
+
+      <!-- Imagen -->
+      <div class="detalle-imagen">
+        <img src={m.imagen} alt={m.modelo} />
+      </div>
+
+      <!-- Info central -->
+      <div class="detalle-info">
+        <h1>{m.modelo}</h1>
+        <span class="badge-para">{m.para}</span>
+
+        <ul class="specs-list">
+          <li><span class="spec-label">Capacidad</span><span class="spec-val">{m.capacidad}</span></li>
+          <li><span class="spec-label">Tipo</span><span class="spec-val">{m.tipo}</span></li>
+          <li><span class="spec-label">Disponible</span>
+            <span class={`spec-val ${m.disponible ? 'verde' : 'rojo'}`}>
+              {m.disponible ? 'Sí' : 'No'}
+            </span>
+          </li>
+          <li>
+            <span class="spec-label">Detalles:</span><span class="spec-val">{m.detalles}</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Precio + botones -->
+      <div class="detalle-acciones">
+        <div class="precio-box">
+          <span class="precio-label">Precio</span>
+          <span class="precio-val">${m.precio_renta}</span>
+          <span class="precio-periodo">/mxn</span>
+        </div>
+
+        <button class="btn-comprar">Comprar ahora</button>
+        <button 
+          class="btn-carrito"
+          data-nombre={m.modelo}
+          data-precio={m.precio_renta}
+        >
+          Agregar al carrito
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <Footer />
+</Layout>
+
+<style>
+  .detalle-wrapper {
+    max-width: 100%;
+    max-height: 2000px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* ── Back ── */
+  .back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+    padding: 0.45rem 1rem;
+    background: transparent;
+    color: var(--steel, #8a99b3);
+    border: 1px solid rgba(138,153,179,0.25);
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .back-button:hover {
+    color: var(--white);
+    border-color: rgba(245,166,35,0.4);
+    background: rgba(245,166,35,0.06);
+  }
+
+  /* ── Card 3 columnas ── */
+  .detalle-card {
+    display: grid;
+    grid-template-columns: 1.2fr 1.4fr 0.8fr;
+    gap: 0;
+    background: var(--navy, #0a1628);
+    border: 1px solid rgba(245,166,35,0.15);
+    border-radius: 16px;
+    overflow: hidden;
+    color: var(--white, #f0ece2);
+    min-height: 360px;
+  }
+
+  /* ── Imagen ── */
+  .detalle-imagen {
+    background: var(--navy, #0a1628);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.detalle-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-height: 320px;
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+  /* ── Info ── */
+  .detalle-info {
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    justify-content: center;
+    /* quita los border-left y border-right */
+}
+  .detalle-info h1 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    line-height: 1.1;
+    color: var(--white);
+  }
+
+  .badge-para {
+    display: inline-block;
+    background: linear-gradient(90deg, #f59e0b, #d97706);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    width: fit-content;
+  }
+
+  .specs-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(245,166,35,0.12);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .specs-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid rgba(245,166,35,0.08);
+  }
+  .specs-list li:last-child { border-bottom: none; }
+
+  .spec-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(240,236,226,0.45);
+  }
+  .spec-val {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .spec-val.verde { color: #4ade80; }
+  .spec-val.rojo  { color: #f87171; }
+
+  /* ── Acciones ── */
+  .detalle-acciones {
+    background: var(--yellow, #f5a623);
+    padding: 2rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .precio-box {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .precio-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(10,22,40,0.6);
+  }
+  .precio-val {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--navy, #0a1628);
+    line-height: 1;
+  }
+  .precio-periodo {
+    font-size: 0.75rem;
+    color: rgba(10,22,40,0.5);
+    font-weight: 600;
+  }
+
+  .btn-comprar {
+    width: 200px;
+    height: 40px;
+    padding: 0.7rem;
+    background: var(--navy, #0a1628);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-comprar:hover { 
+    background: #f7ff8a;
+    color: var(--navy, #0a1628);
+   }
+
+  .btn-carrito {
+    width: 200px;
+    height: 50px;
+    padding: 0.7rem;
+    background: white;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-carrito:hover {
+    background: #708ebc;
+    color: white;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 700px) {
+    .detalle-card {
+      grid-template-columns: 1fr;
+    }
+    .detalle-acciones {
+      border-top: 1px solid rgba(245,166,35,0.15);
+    }
+  }
+
+  /* ── Fondo animado ── */
+#prod-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+.detalle-wrapper { background: transparent; position: relative; z-index: 1; }
+h1 { color: #0e1e38; }
+.back-button { color: #0e1e38; border-color: rgba(14,30,56,0.2); }
+.back-button:hover { color: #0e1e38; }
+</style>
+
+
+<!-- FONDO DEIDAD JEJEJEJEJEJEAEMGAXALEYGMAYGMAEYGMAYCAY -->
+
+<script is:inline>
+(function () {
+  const canvas = document.getElementById('prod-canvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H, offset = 0;
+
+  const rand = (a, b) => a + Math.random() * (b - a);
+  let nodes;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    buildNodes();
+  }
+
+  function buildNodes() {
+    nodes = Array.from({ length: 50 }, () => ({
+      x:      rand(0, W),
+      y:      rand(0, H),
+      vx:     rand(-0.18, 0.18),
+      vy:     rand(-0.18, 0.18),
+      r:      rand(2, 4),
+      yellow: Math.random() < 0.12,
+    }));
+  }
+
+  function draw(t) {
+    ctx.clearRect(0, 0, W, H);
+
+    // fondo crema muy suave
+    ctx.fillStyle = '#f7f5ef';
+    ctx.fillRect(0, 0, W, H);
+
+    // líneas diagonales deslizantes
+    offset = (offset + 0.3) % 64;
+    ctx.save();
+    ctx.strokeStyle = 'rgba(14,30,56,0.04)';
+    ctx.lineWidth   = 1;
+    for (let x = -H + offset; x < W + H; x += 64) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x + H, H);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // conexiones entre nodos cercanos
+    const MAX = 140;
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i+1; j < nodes.length; j++) {
+        const a = nodes[i], b = nodes[j];
+        const dx = a.x-b.x, dy = a.y-b.y;
+        const d  = Math.sqrt(dx*dx+dy*dy);
+        if (d > MAX) continue;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.strokeStyle = (a.yellow||b.yellow)
+          ? `rgba(245,166,35,${(1-d/MAX)*0.35})`
+          : `rgba(14,30,56,${(1-d/MAX)*0.1})`;
+        ctx.lineWidth   = 0.8;
+        ctx.stroke();
+      }
+    }
+
+    // nodos
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0) n.x = W; if (n.x > W) n.x = 0;
+      if (n.y < 0) n.y = H; if (n.y > H) n.y = 0;
+
+      // glow
+      const glow = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 6);
+      glow.addColorStop(0, n.yellow ? 'rgba(245,166,35,0.3)' : 'rgba(14,30,56,0.12)');
+      glow.addColorStop(1, 'transparent');
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r * 6, 0, Math.PI * 2);
+      ctx.fillStyle = glow;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = n.yellow ? '#f5a623' : '#1b3f78';
+      ctx.globalAlpha = 0.7;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(draw);
+})();
+</script>

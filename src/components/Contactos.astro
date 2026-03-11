@@ -187,7 +187,7 @@
     .hero__scroll { display: none; }
   }
 </style>
-<!-- Sitio general (form y fondo vaya :v) -->
+<!-- Sitio general (form y fondo vaya :v pendejo) -->
 
 <section class="contacto-section">
   <canvas id="bg-canvas"></canvas>
@@ -226,7 +226,9 @@
           <textarea rows="4" placeholder="Cuéntanos más sobre tu proyecto..."></textarea>
         </div>
         <div class="field field--full">
-          <button class="btn-enviar">Enviar mensaje →</button>
+          <div class="field field--full">
+          <button class="btn-enviar" onclick="enviarWhatsapp()">Enviar mensaje →</button>
+        </div>  
         </div>
       </div>
     </div>
@@ -562,6 +564,34 @@
   por lo que document, window y el canvas están disponibles directamente.
   Si usas View Transitions, el evento 'astro:page-load' reemplaza a DOMContentLoaded.
 -->
+<script is:inline>
+function enviarWhatsapp() {
+  const nombre   = document.querySelector('input[placeholder="Tu nombre"]').value;
+  const apellido = document.querySelector('input[placeholder="Tu apellido"]').value;
+  const correo   = document.querySelector('input[placeholder="correo@ejemplo.com"]').value;
+  const telefono = document.querySelector('input[placeholder="+52 000 000 0000"]').value;
+  const asunto   = document.querySelector('input[placeholder="¿En qué podemos ayudarte?"]').value;
+  const mensaje  = document.querySelector('textarea').value;
+
+  if (!nombre || !mensaje) {
+    alert('Por favor llena al menos el nombre y el mensaje.');
+    return;
+  }
+
+  const texto = 
+`👤 *Nombre:* ${nombre} ${apellido}
+📧 *Correo:* ${correo}
+📞 *Teléfono:* ${telefono}
+📌 *Asunto:* ${asunto}
+💬 *Mensaje:* ${mensaje}`;
+
+  const numero = '524741036525'; // ← pon tu número aquí (con código de país, sin + ni espacios)
+  const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+  
+  window.open(url, '_blank');
+}
+</script>
+
 <script is:inline>
 (function () {
   const canvas = document.getElementById('bg-canvas');

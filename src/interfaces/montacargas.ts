@@ -6,5 +6,6 @@ export interface Montacargas {
   para:string
   tipo: string;
   disponible: boolean;
+  detalles: string;
   precio_renta: number;
 }

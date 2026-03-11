@@ -1,0 +1,221 @@
+---
+import type { Montacargas } from '../interfaces/montacargas';
+const respuesta = await fetch('http://localhost:4321/api/montacargas');
+const montacargas: Montacargas[] = await respuesta.json();
+---
+
+<section class="catalogo-lista" id="buscar" >
+  <div class="buscador" >
+    <input type="text" placeholder="Buscar montacargas..." id="searchInput" />
+  </div>
+
+  <div class='catalogo-types'>
+    <h2 class="filtro activo" data-filtro="todos">Todos los montacargas</h2>
+    <h2 class="filtro" data-filtro="renta">En Renta</h2>
+    <h2 class="filtro" data-filtro="venta">En Venta</h2>
+  </div>
+
+  <div class="catalogo-list" id="catalogoList">
+    {montacargas.map((m) => (
+      <div
+        class="catalogo-item"
+        data-modelo={m.modelo.toLowerCase()}
+        data-para={m.para.toLowerCase()}
+      >
+        <img src={m.imagen} alt={m.modelo} class="catalogo-img" />
+        <h3>{m.modelo}</h3>
+        <p class='para'>{m.para}</p>
+        <p>Capacidad: {m.capacidad}</p>
+        <p>${m.precio_renta}</p>
+        <div class="botones">
+          <a href={`../${m.id}`}>
+            <button class="boton--primary">Ver más</button>
+          </a>
+          <button 
+            class="btn-carrito boton-carrito"
+            data-nombre={m.modelo}
+            data-precio={String(m.precio_renta)}
+            >
+            Al carrito
+            </button>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .catalogo-lista {
+    padding: 40px;
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
+    color: var(--white);
+    font-family: 'DM Sans', 'Century Gothic', sans-serif;
+  }
+
+  .buscador {
+    margin-bottom: 20px;
+  }
+
+  .buscador input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .buscador input:focus {
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 0 8px rgba(255,255,255,0.5);
+  }
+
+  .para {
+    color: #f5a623;
+  }
+
+  /* imágenes uniformes */
+  .catalogo-img {
+    width: 100%;
+    height: 180px;               /* altura fija para todas */
+    object-fit: cover;           /* recorta si es necesario */
+    border-radius: 8px;
+    margin-bottom: 12px;
+    background: #ccc;            /* color de fondo cuando falte source */
+  }
+
+  .catalogo-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+  }
+
+  .catalogo-item {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: inset 0 -1px 3px rgba(255,255,255,0.1), inset 0 -2px 6px rgba(255,255,255,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    max-height: 450px;
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .catalogo-item:hover {
+    transform: translateY(-4px);
+    box-shadow: inset 0 -1px 3px rgba(255,255,255,0.15), inset 0 -2px 6px rgba(255,255,255,0.1),
+                inset -2px -2px 6px rgba(255,255,255,0.05), inset -4px -4px 12px rgba(255,255,255,0.03);
+  }
+
+  .catalogo-item.oculto {
+    display: none;
+  }
+
+  .catalogo-types {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 30px;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .catalogo-types h2 {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s ease, color 0.2s ease;
+  }
+
+  .catalogo-types h2:hover {
+    color: var(--yellow);
+    opacity: 0.8;
+  }
+
+  .catalogo-types h2.activo {
+    color: var(--yellow);
+    opacity: 1;
+    border-bottom: 2px solid var(--yellow);
+    padding-bottom: 4px;
+  }
+  .boton--primary {
+    background: var(--yellow);
+    color: var(--navy);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.3s ease, color 0.3s ease;
+    height: 40px;
+    weight: 50px;
+  }
+  .boton--primary:hover {
+    background: var(--white);
+    color: var(--navy);
+  }
+
+  .boton-carrito{
+    background: transparent;
+    color: var(--yellow);
+    border: 2px solid var(--yellow);
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    height: 40px;
+    weight: 50px;
+  }
+   .boton-carrito:hover {
+    background: var(--yellow);
+    color: var(--navy);
+    border-color: var(--yellow);
+  }
+
+  /* nuevos estilos para alinear botones */
+  .botones {
+    display: flex;
+    gap: 8px;
+    justify-content: center; /* centrar horizontalmente */
+    margin-top: auto; /* empuja todo el grupo hacia abajo */
+  }
+</style>
+
+<script>
+  const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+  const filtros = document.querySelectorAll<HTMLElement>('.filtro');
+  const items = document.querySelectorAll<HTMLElement>('.catalogo-item');
+
+  let filtroActual = 'todos';
+
+  function filtrar() {
+    const busqueda = searchInput.value.toLowerCase().trim();
+
+    items.forEach((item) => {
+      const modelo = item.dataset.modelo ?? '';
+      const para = item.dataset.para ?? '';
+
+      const coincideBusqueda = modelo.includes(busqueda);
+      const coincideFiltro = filtroActual === 'todos' || para === filtroActual;
+
+      if (coincideBusqueda && coincideFiltro) {
+        item.classList.remove('oculto');
+      } else {
+        item.classList.add('oculto');
+      }
+    });
+  }
+
+  // Listener del buscador
+  searchInput.addEventListener('input', filtrar);
+
+  // Listener de los filtros de categoría
+  filtros.forEach((filtro) => {
+    filtro.addEventListener('click', () => {
+      filtros.forEach((f) => f.classList.remove('activo'));
+      filtro.classList.add('activo');
+      filtroActual = filtro.dataset.filtro ?? 'todos';
+      filtrar();
+    });
+  });
+</script>
