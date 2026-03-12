@@ -60,7 +60,10 @@ const { m } = Astro.props;
           <span class="precio-periodo">/mxn</span>
         </div>
 
-        <button class="btn-comprar">Comprar ahora</button>
+        <button class="btn-comprar"
+        data-nombre={m.modelo}
+          data-precio={m.precio_renta}
+          >Comprar ahora</button>
         <button 
           class="btn-carrito"
           data-nombre={m.modelo}
@@ -397,4 +400,16 @@ h1 { color: #0e1e38; }
   resize();
   requestAnimationFrame(draw);
 })();
+
+document.querySelectorAll('.btn-comprar').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var nombre = btn.dataset.nombre || 'Producto';
+    var precio = btn.dataset.precio || '0';
+
+    var mensaje = 'Hola, me gustaría comprar:\n\n1. ' + nombre + ' — $' + precio;
+
+    var numero = '524741036525';
+    window.open('https://wa.me/' + numero + '?text=' + encodeURIComponent(mensaje), '_blank');
+  });
+});
 </script>
