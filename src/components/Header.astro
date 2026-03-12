@@ -1,11 +1,18 @@
 <div class="header">
-    <a href="/" class="logo">Logo Empresa</a>
+  <a href="/" class="logo">Logo Empresa</a>
 
-    <nav class="nav">
-        <a href="../Catalogo">Montacargas</a>
-        <a href="../Nosotros">Nosotros</a>
-        <a href="../Contacto" class='contacto'>Contactanos!</a>
-    </nav>
+  <!-- Botón hamburguesa -->
+  <button class="hamburguesa" id="hamburguesa" aria-label="Abrir menú">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav class="nav" id="nav">
+    <a href="../Catalogo">Montacargas</a>
+    <a href="../Nosotros">Nosotros</a>
+    <a href="../Contacto" class="contacto">Contactanos!</a>
+  </nav>
 </div>
 
 <style>
@@ -21,7 +28,6 @@
     --white: #FFFFFF;
   }
 
-  /* HEADER BASE */
   .header {
     display: flex;
     justify-content: space-between;
@@ -37,7 +43,6 @@
     transition: height 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
   }
 
-  /* Línea amarilla inferior sutil */
   .header::after {
     content: '';
     position: absolute;
@@ -48,16 +53,13 @@
     transition: opacity 0.3s ease;
   }
 
-  /* HEADER SCROLL */
   .header.scrolled {
     height: 60px;
     background: linear-gradient(90deg, var(--navy-deep) 0%, #1a2d47 100%);
     box-shadow: 0 1px 0 rgba(255,255,255,0.04), 0 8px 32px rgba(0,0,0,0.35);
   }
 
-  .header.scrolled::after {
-    opacity: 0.6;
-  }
+  .header.scrolled::after { opacity: 0.6; }
 
   /* LOGO */
   .logo {
@@ -70,9 +72,9 @@
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    z-index: 1001;
   }
 
-  /* Punto amarillo decorativo en el logo */
   .logo::before {
     content: '';
     display: inline-block;
@@ -104,7 +106,6 @@
     letter-spacing: 0.3px;
   }
 
-  /* Línea animada */
   .nav a::after {
     content: '';
     position: absolute;
@@ -118,24 +119,12 @@
     transition: width 0.25s ease;
   }
 
-  .nav a:hover {
-    color: var(--white);
-  }
+  .nav a:hover { color: var(--white); }
+  .nav a:hover::after { width: 100%; }
 
-  .nav a:hover::after {
-    width: 100%;
-  }
+  .nav a.active { color: var(--white); }
+  .nav a.active::after { width: 100%; }
 
-  /* LINK ACTIVO */
-  .nav a.active {
-    color: var(--white);
-  }
-
-  .nav a.active::after {
-    width: 100%;
-  }
-
-  /* BOTÓN CONTÁCTANOS */
   .nav a.contacto {
     background: var(--yellow);
     color: var(--navy);
@@ -156,7 +145,138 @@
     color: var(--navy);
   }
 
-  .nav a.contacto::after {
+  .nav a.contacto::after { display: none; }
+
+  /* ── HAMBURGUESA ── */
+  .hamburguesa {
     display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
   }
+
+  .hamburguesa span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Animación X al abrir */
+  .hamburguesa.abierto span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburguesa.abierto span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburguesa.abierto span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .header {
+      padding: 0 24px;
+      height: 70px;
+    }
+
+    .hamburguesa {
+      display: flex; /* mostrar botón */
+    }
+
+    .nav {
+      /* menú oculto por defecto */
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 0;
+      gap: 0.5rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      border-top: 1px solid rgba(255,255,255,0.06);
+
+      /* animación */
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .nav.abierto {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    .nav a {
+      margin-left: 0;
+      font-size: 1rem;
+      padding: 0.75rem 2rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    .nav a.contacto {
+      margin: 0.75rem 2rem 0;
+      width: calc(100% - 4rem);
+      text-align: center;
+    }
+  }
+  /* Asegura que en PC el nav siempre sea visible sin importar clases */
+@media (min-width: 769px) {
+  .nav {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: all !important;
+    position: static !important;
+    flex-direction: row !important;
+    padding: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+  }
+
+  .hamburguesa {
+    display: none !important;
+  }
+}
 </style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    var hamburguesa = document.getElementById('hamburguesa');
+    var nav = document.getElementById('nav');
+    var header = document.querySelector('.header');
+
+    // ── Hamburguesa ──
+    hamburguesa.addEventListener('click', function() {
+      hamburguesa.classList.toggle('abierto');
+      nav.classList.toggle('abierto');
+    });
+
+    nav.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        hamburguesa.classList.remove('abierto');
+        nav.classList.remove('abierto');
+      });
+    });
+
+    // ── Scroll ──
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 10) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  });
+</script>

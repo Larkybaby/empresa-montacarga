@@ -181,11 +181,52 @@
     50%       { opacity: 1;   transform: scaleY(1);   transform-origin: top; }
   }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    .hero { height: 85vh; }
-    .hero__scroll { display: none; }
+  /* ── RESPONSIVE HERO ── */
+@media (max-width: 768px) {
+  .hero {
+    height: 75vh;
+    min-height: 420px;
   }
+  .hero__content {
+    padding: 0 clamp(1.2rem, 5vw, 2.5rem);
+    max-width: 100%;
+  }
+  .hero__title {
+    font-size: clamp(2rem, 8vw, 3rem);
+    letter-spacing: -0.5px;
+  }
+  .hero__sub {
+    font-size: 0.9rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    height: 85vh;
+    min-height: 380px;
+  }
+  .hero__tag {
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+  }
+  .hero__title {
+    font-size: clamp(1.8rem, 9vw, 2.6rem);
+    margin-bottom: 0.75rem;
+  }
+  .hero__sub {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .hero__scroll { display: none; }
+}
+
+@media (max-width: 380px) {
+  .hero__title {
+    font-size: clamp(1.6rem, 10vw, 2.2rem);
+  }
+}
 </style>
 <!-- Sitio general (form y fondo vaya :v pendejo) -->
 
@@ -550,12 +591,150 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 820px) {
-    .contacto-wrapper { grid-template-columns: 1fr; }
-    .form-card { padding: 2rem 1.5rem; }
-    .form-grid { grid-template-columns: 1fr; }
+  /* ── RESPONSIVE CONTACTO ── */
+
+/* Tablet landscape */
+@media (max-width: 1024px) {
+  .contacto-wrapper {
+    grid-template-columns: 1fr 280px;
+    gap: 1.4rem;
   }
+  .form-card {
+    padding: 2.5rem 2.2rem 2.2rem;
+  }
+  .form-card h2 {
+    font-size: 2.1rem;
+  }
+}
+
+/* Tablet portrait */
+@media (max-width: 820px) {
+  .contacto-section {
+    padding: 4rem 1.5rem;
+    align-items: flex-start;
+  }
+  .contacto-wrapper {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .form-card {
+    padding: 2.2rem 2rem 2rem;
+  }
+  .form-card h2 {
+    font-size: 2rem;
+  }
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .info-card {
+    padding: 2rem 1.8rem;
+    /* En móvil la info queda debajo, mostramos en fila si cabe */
+  }
+  .contacto-extra {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .extra-item {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .horario-list {
+    flex-direction: row;
+    gap: 0;
+  }
+  .horario-item {
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+    padding: 0.5rem 0.75rem 0.5rem 0;
+    border-bottom: none;
+    border-right: 1px solid rgba(255,255,255,0.07);
+  }
+  .horario-item:last-child {
+    border-right: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .contacto-section {
+    padding: 3rem 1.2rem;
+  }
+  .form-card {
+    padding: 1.8rem 1.4rem 1.6rem;
+    border-radius: 12px;
+  }
+  .form-tag {
+    font-size: 0.62rem;
+  }
+  .form-card h2 {
+    font-size: clamp(1.5rem, 7vw, 1.9rem);
+    letter-spacing: -0.3px;
+  }
+  .form-sub {
+    font-size: 0.85rem;
+    margin-bottom: 1.6rem;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+  .field input,
+  .field textarea {
+    padding: 0.7rem 0.85rem;
+    font-size: 0.9rem;
+  }
+  .btn-enviar {
+    font-size: 0.9rem;
+    padding: 0.9rem;
+  }
+  .info-card {
+    padding: 1.8rem 1.4rem;
+    border-radius: 12px;
+  }
+  .info-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .contacto-extra {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .extra-item {
+    flex-direction: row;
+    gap: 0.9rem;
+  }
+  .horario-list {
+    flex-direction: column;
+  }
+  .horario-item {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    border-right: none;
+  }
+  .horario-item:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Mobile pequeño */
+@media (max-width: 380px) {
+  .form-card {
+    padding: 1.5rem 1.1rem;
+  }
+  .info-card {
+    padding: 1.5rem 1.1rem;
+  }
+  .form-card h2 {
+    font-size: clamp(1.3rem, 8vw, 1.6rem);
+  }
+}
 </style>
 
 <!-- ─── SCRIPT ──────────────────────────────────────────────────────────── -->

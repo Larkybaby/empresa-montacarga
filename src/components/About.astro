@@ -913,19 +913,196 @@ import Conocenos from '../components/Conocenos.astro';
   }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 960px) {
-    .qs__inner { grid-template-columns: 1fr; gap: 3rem; }
-    .hist       { grid-template-columns: 1fr; }
-    .hist__img-wrap { min-height: 300px; }
-    .hist__img { min-height: 300px; }
-    .hist__img-overlay { background: linear-gradient(to bottom, transparent 60%, var(--cream) 100%); }
-    .mvv__grid  { grid-template-columns: 1fr; }
-    .qs__float-card { bottom: 1rem; right: 1rem; }
+
+/* ── Tablet landscape (≤1100px) ── */
+@media (max-width: 1100px) {
+  .qs__inner {
+    gap: 4rem;
   }
-  @media (max-width: 600px) {
-    .qs__stats { flex-wrap: wrap; gap: 1.5rem; }
-    .hero__corner-badge { display: none; }
+  .mvv__grid {
+    grid-template-columns: repeat(2, 1fr);
   }
+  .mvv__card--featured {
+    grid-column: span 2;
+  }
+}
+
+/* ── Tablet portrait (≤900px) ── */
+@media (max-width: 900px) {
+  /* Hero */
+  .hero {
+    height: auto;
+    min-height: 340px;
+    padding: 5rem 0 2rem;
+  }
+  .hero__inner {
+    padding: 0 clamp(1.5rem, 5vw, 3rem);
+  }
+  .hero__title {
+    font-size: clamp(2.4rem, 8vw, 4.5rem);
+    letter-spacing: -1px;
+  }
+  .hero__corner-badge {
+    bottom: 2rem;
+    right: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  /* Quiénes Somos */
+  .qs {
+    padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 3rem);
+  }
+  .qs__inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .qs__img {
+    height: 340px;
+  }
+  .qs__float-card {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  .qs__dots {
+    bottom: -1rem;
+    left: -0.5rem;
+  }
+
+  /* Historia */
+  .hist {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .hist__img-wrap {
+    min-height: 280px;
+    max-height: 360px;
+  }
+  .hist__img {
+    min-height: 280px;
+    max-height: 360px;
+  }
+  .hist__img-overlay {
+    background: linear-gradient(to bottom, transparent 50%, var(--cream) 100%);
+  }
+  .hist__card {
+    padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 5vw, 3rem);
+  }
+
+  /* MVV */
+  .mvv {
+    padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 3rem);
+  }
+  .mvv__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .mvv__card--featured {
+    grid-column: span 1;
+  }
+}
+
+/* ── Mobile (≤600px) ── */
+@media (max-width: 600px) {
+  /* Hero */
+  .hero {
+    min-height: 300px;
+    padding: 4rem 0 1.5rem;
+  }
+  .hero__title {
+    font-size: clamp(2rem, 10vw, 3rem);
+    letter-spacing: -0.5px;
+  }
+  .hero__sub {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+  }
+  .hero__corner-badge {
+    display: none;
+  }
+  .hero__wave svg {
+    height: 36px;
+  }
+
+  /* Quiénes Somos */
+  .qs__img {
+    height: 260px;
+  }
+  .qs__img-outer {
+    padding-left: 1rem;
+  }
+  .qs__float-card {
+    padding: 0.9rem 1.2rem;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    border-radius: 10px;
+  }
+  .qs__float-num {
+    font-size: 1.7rem;
+  }
+  .qs__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 1rem;
+    align-items: start;
+  }
+  .qs__stat-div {
+    display: none;
+  }
+  .qs__stat:last-child {
+    grid-column: span 2;
+    text-align: center;
+  }
+
+  /* Historia */
+  .hist__img-wrap {
+    min-height: 220px;
+    max-height: 280px;
+  }
+  .hist__img {
+    min-height: 220px;
+    max-height: 280px;
+  }
+  .hist__card {
+    padding: 2rem 1.5rem;
+  }
+  .vtl {
+    padding-left: 1.2rem;
+  }
+
+  /* MVV */
+  .mvv__grid {
+    gap: 0.85rem;
+  }
+  .mvv__card {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+  .mvv__title {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  /* Sección Quiénes Somos título */
+  .qs__title {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+
+  /* Historia título */
+  .hist__title {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+}
+
+/* ── Mobile pequeño (≤380px) ── */
+@media (max-width: 380px) {
+  .qs__stats {
+    grid-template-columns: 1fr;
+  }
+  .qs__stat:last-child {
+    grid-column: span 1;
+    text-align: left;
+  }
+  .hero__title {
+    font-size: clamp(1.8rem, 11vw, 2.5rem);
+  }
+}
 </style>
 
 <!-- ══ SCRIPT ════════════════════════════════════════════════════════════ -->
