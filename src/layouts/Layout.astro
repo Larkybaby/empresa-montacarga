@@ -52,12 +52,13 @@
 
 body {
   min-height: 100vh;
-  overflow-x: hidden; /* ← overflow solo en body, no en html */
+  overflow-x: hidden;
   max-width: 100%;
   display: block;
   background: var(--navy);
   color: var(--white);
   font-family: var(--ff-body);
+  padding-top: 72px; /* ← agrega esto */
 }
 
       main {
@@ -137,6 +138,7 @@ body {
     </style>
   </head>
   <body>
+	<div style="height: 72px; flex-shrink: 0;"></div>
     <slot />
   </body>
 </html>
