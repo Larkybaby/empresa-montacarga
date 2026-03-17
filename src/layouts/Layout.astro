@@ -1,34 +1,143 @@
+---
+---
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Company name</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Company name</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+    <style>
+      /* ── Reset ── */
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* ── Tokens globales ── */
+      :root {
+        --navy:      #0e1e38;
+        --navy-mid:  #111827;
+        --navy2:     #162840;
+        --navy3:     #1d3356;
+        --navy-card: #131e2e;
+        --yellow:    #f5a623;
+        --yellow2:   #ffc14d;
+        --yellow-dim: rgba(245,166,35,0.15);
+        --white:     #ffffff;
+        --cream:     #f5f3ee;
+        --muted:     #7d8fa3;
+        --dark:      #060f1e;
+        --ease:      cubic-bezier(.22,.8,.36,1);
+        --border:    rgba(240,244,255,0.08);
+        --radius:    14px;
+        --ff-display: 'Syne', sans-serif;
+        --ff-body:    'DM Sans', sans-serif;
+      }
+
+      html {
+        overflow-x: hidden;
+        max-width: 100%;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        overflow-x: hidden;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        background: var(--navy);
+        color: var(--white);
+        font-family: var(--ff-body);
+      }
+
+      main {
+        flex: 1;
+      }
+
+      /* ── Utilidades compartidas (About, Catalogo, etc.) ── */
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: 'Epilogue', sans-serif;
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        padding: 0.3rem 0.85rem;
+        border-radius: 100px;
+        margin-bottom: 1.1rem;
+        background: var(--yellow);
+        color: var(--navy);
+      }
+      .chip--yellow {
+        background: rgba(245,166,35,0.15);
+        color: var(--yellow);
+        border: 1px solid rgba(245,166,35,0.3);
+      }
+      .accent-text { color: var(--yellow); }
+
+      .slash-bar {
+        width: 48px;
+        height: 4px;
+        background: var(--yellow);
+        margin-bottom: 1.4rem;
+        clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+        border-radius: 2px;
+      }
+      .slash-bar--dark { background: var(--navy); }
+
+      /* ── Scroll reveal ── */
+      .reveal, .reveal-left, .reveal-right {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+      }
+      .reveal-left  { transform: translateX(-50px); }
+      .reveal-right { transform: translateX(50px); }
+      .reveal--delay1 { transition-delay: 0.12s; }
+      .reveal--delay2 { transition-delay: 0.22s; }
+      .reveal--delay3 { transition-delay: 0.34s; }
+      .is-visible {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      /* ── Animaciones globales ── */
+      @keyframes spinSlow {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(24px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50%       { opacity: 0.4; transform: scale(0.7); }
+      }
+
+      /* ── Accesibilidad ── */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
-
-<style>
-	html,body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex: 1;
-}
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  overflow-x: hidden;
-  max-width: 100%;
-}
-</style>

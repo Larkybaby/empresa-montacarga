@@ -26,7 +26,6 @@ const montacargas: Montacargas[] = await respuesta.json();
                 <span class="mc-tag mc-tag-tipo">⚡ {m.tipo}</span>
               </div>
               <span class="mc-badge">{m.para}</span>
-              <p class="mc-precio">${m.precio_renta.toLocaleString()}<span>/mes</span></p>
               <a href={`../${m.id}`} style="text-decoration: none;">
                 <button class="mc-cta">Ver detalles →</button>
               </a>
@@ -55,6 +54,10 @@ const montacargas: Montacargas[] = await respuesta.json();
     color: white !important;
     font-family: 'Segoe UI', sans-serif !important;
     box-sizing: border-box !important;
+  overflow: hidden !important; /* ← agregar */
+  max-width: 100% !important;  /* ← agregar */
+  /* resto igual */
+}
   }
   #mc-root * {
     box-sizing: border-box !important;

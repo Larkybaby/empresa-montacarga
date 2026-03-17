@@ -3,7 +3,7 @@ import type { Montacargas } from '../interfaces/montacargas';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Carrito from '../components/Carrito.astro'
+//import Carrito from '../components/Carrito.astro'
 import MontacargasCarrucel from '../components/MontacargasCarrucel.astro';
 import CatalogoList from '../components/CatalogoList.astro';
 const respuesta = await fetch('http://localhost:4321/api/montacargas');
@@ -13,7 +13,6 @@ const montacargas: Montacargas[] = await respuesta.json();
 ---
 <Layout>
 	<Header />
-	<Carrito/>
 	<section class="catalogo-hero">
   <div class="catalogo-hero__noise"></div>
   <div class="catalogo-hero__inner">

@@ -1,80 +1,69 @@
 export interface Montacargas {
   id: number;
   imagen:string;
+  imagenes: string[];
   modelo: string;
   capacidad: string;
   para:string;
   tipo: string;
   disponible: boolean;
   detalles: string;
-  precio_renta: number;
+  
 }
 
 export const datos: Montacargas[] = [
   {
     id: 1,
-    imagen:"https://media.istockphoto.com/id/517818547/es/foto/carretilla-elevadora-aislado-sobre-fondo-blanco.jpg?s=612x612&w=0&k=20&c=F5hX-ym38pOQi-dGA8EvY64FvxQ7zHcqY8HGlU0tq-s=",
-    modelo: "Nissan 8FGU25",
+    imagen:"/Montacargas/CPD-30-1.JPEG",
+    imagenes:[],
+    modelo: "CPD 30",
     capacidad: "2.5 toneladas",
     para:"renta",
     tipo: "Gas",
     disponible: true,
     detalles: "Detalles del montacargas 4",
-    precio_renta: 8500
-  },
-  {
+    
+  },{
     id: 2,
-    imagen:"",
-    modelo: "Toyota 8FGU25",
-    capacidad: "2.5 toneladas",
-    para:"venta",
-    tipo: "Gas",
-    disponible: true,
-    detalles: "Detalles del montacargas 4",
-    precio_renta: 8500
-  },
-  {
-    id: 3,
-    imagen:"",
-    modelo: "Toyota 8FGU26",
+    imagen:"/Montacargas/FD-30.jpeg",
+    imagenes:[
+      "/Montacargas/FD-2.jpeg",
+    ],
+    modelo: "FD 30",
     capacidad: "2.5 toneladas",
     para:"renta",
     tipo: "Gas",
     disponible: true,
     detalles: "Detalles del montacargas 4",
-    precio_renta: 8500
-  },
-  {
+    
+  },{
     id: 3,
-    imagen:"",
-    modelo: "Toyota 8FGU26",
+    imagen:"/Montacargas/Naranja-1.jpeg",
+    imagenes:[
+      "/Montacargas/Naranja-2.jpeg",
+      "/Montacargas/Naranja-3.jpeg",
+      "/Montacargas/Naranja-4.jpeg",
+      "/Montacargas/Naranja-5.jpeg",
+      "/Montacargas/Naranja-6.jpeg",
+      "/Montacargas/Naranja-7.jpeg",
+    ],
+    modelo: "Montacargas Naranja",
     capacidad: "2.5 toneladas",
     para:"renta",
     tipo: "Gas",
     disponible: true,
     detalles: "Detalles del montacargas 4",
-    precio_renta: 8500
-  },
-  {
+    
+  },{
     id: 4,
-    imagen:"",
-    modelo: "Toyota 8FGU25",
+    imagen:"/Montacargas/25.jpeg",
+    imagenes:[],
+    modelo: "CPD 25",
     capacidad: "2.5 toneladas",
     para:"renta",
     tipo: "Gas",
     disponible: true,
     detalles: "Detalles del montacargas 4",
-    precio_renta: 8500
-  },
-  {
-    id: 5,
-    imagen:"",
-    modelo: "Toyota 8FGU27",
-    capacidad: "2.5 toneladas",
-    para:"renta",
-    tipo: "Gas",
-    disponible: true,
-    detalles: "Detalles del montacargas 5",
-    precio_renta: 8500
+    
   }
 ];
