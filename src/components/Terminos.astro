@@ -1,7 +1,4 @@
 ---
-// TerminosCondiciones.astro
-// 👉 Reemplaza las variables de abajo con los datos reales de tu empresa
-
 const empresa = "[Nombre de la Empresa]";
 const correo = "[correo@empresa.com]";
 const telefono = "[número de contacto]";
@@ -30,45 +27,67 @@ const secciones = [
   <title>Términos y Condiciones — {empresa}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- ░░░ HERO ░░░ -->
+  <!-- HERO -->
   <header class="hero">
-    <div class="hero__badge">Documento Legal</div>
-    <h1 class="hero__title">Términos y<br /><em>Condiciones</em></h1>
-    <p class="hero__meta">
-      Última actualización: <strong>2025</strong> &nbsp;·&nbsp; Versión <strong>1.0</strong>
-    </p>
-    <p class="hero__intro">
-      El acceso y uso de este sitio web implica la aceptación plena de los presentes
-      Términos y Condiciones. Por favor, léelos detenidamente antes de continuar.
-    </p>
+    <div class="hero__grid-overlay"></div>
+    <div class="hero__stripe"></div>
+
+    <div class="hero__inner">
+      <div class="hero__meta-row">
+        <span class="hero__tag">DOC-LEGAL</span>
+        <span class="hero__dot"></span>
+        <span class="hero__version">v1.0 · 2026</span>
+        <span class="hero__dot"></span>
+        <span class="hero__version">MX</span>
+      </div>
+
+      <div class="hero__title-block">
+        <span class="hero__pre">Términos y</span>
+        <h1 class="hero__title">CONDICIONES</h1>
+      </div>
+
+      <p class="hero__intro">
+        El acceso y uso de este sitio web implica la aceptación plena de los presentes
+        Términos y Condiciones. Por favor, léelos detenidamente antes de continuar.
+      </p>
+
+      <div class="hero__rule">
+        <span class="hero__rule-line"></span>
+        <span class="hero__rule-label">11 secciones · Última actualización 2026</span>
+      </div>
+    </div>
+
+    <!-- Número decorativo grande -->
+    <div class="hero__bg-num" aria-hidden="true">T&amp;C</div>
   </header>
 
   <div class="layout">
 
-    <!-- ░░░ ÍNDICE LATERAL ░░░ -->
+    <!-- TOC -->
     <aside class="toc">
-      <!-- Label visible solo en desktop -->
-      <p class="toc__label">Contenido</p>
-      <!-- Botón toggle visible solo en mobile/tablet -->
+      <p class="toc__label">// ÍNDICE</p>
       <button class="toc__toggle" id="tocToggle" aria-expanded="false" aria-controls="tocNav">
         <span>Índice de contenido</span>
-        <span class="toc__toggle-icon" id="tocIcon">▾</span>
+        <svg class="toc__toggle-icon" id="tocIcon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </button>
       <nav class="toc__nav" id="tocNav">
         {secciones.map((s) => (
           <a class="toc__link" href={`#seccion-${s.numero}`}>
             <span class="toc__num">{s.numero}</span>
-            <span>{s.titulo}</span>
+            <span class="toc__titulo">{s.titulo}</span>
+            <span class="toc__arrow">→</span>
           </a>
         ))}
       </nav>
     </aside>
 
-    <!-- ░░░ CONTENIDO PRINCIPAL ░░░ -->
+    <!-- MAIN -->
     <main class="content">
 
       <!-- 01 -->
@@ -76,6 +95,7 @@ const secciones = [
         <div class="section__header">
           <span class="section__num">01</span>
           <h2 class="section__title">Información General</h2>
+          <span class="section__tag">GENERAL</span>
         </div>
         <div class="section__body">
           <p>
@@ -104,6 +124,7 @@ const secciones = [
         <div class="section__header">
           <span class="section__num">02</span>
           <h2 class="section__title">Uso del Sitio Web</h2>
+          <span class="section__tag">USO</span>
         </div>
         <div class="section__body">
           <p>
@@ -131,6 +152,7 @@ const secciones = [
         <div class="section__header">
           <span class="section__num">03</span>
           <h2 class="section__title">Propiedad Intelectual</h2>
+          <span class="section__tag">IP</span>
         </div>
         <div class="section__body">
           <p>
@@ -158,6 +180,7 @@ const secciones = [
         <div class="section__header">
           <span class="section__num">04</span>
           <h2 class="section__title">Información de Productos y Servicios</h2>
+          <span class="section__tag">PROD</span>
         </div>
         <div class="section__body">
           <p>
@@ -186,6 +209,7 @@ const secciones = [
         <div class="section__header">
           <span class="section__num">05</span>
           <h2 class="section__title">Cotizaciones y Contratación</h2>
+          <span class="section__tag">CONT</span>
         </div>
         <div class="section__body">
           <p>
@@ -217,6 +241,7 @@ const secciones = [
         <div class="section__header">
           <span class="section__num">06</span>
           <h2 class="section__title">Limitación de Responsabilidad</h2>
+          <span class="section__tag">RESP</span>
         </div>
         <div class="section__body">
           <p>
@@ -243,6 +268,7 @@ const secciones = [
         <div class="section__header">
           <span class="section__num">07</span>
           <h2 class="section__title">Enlaces a Sitios de Terceros</h2>
+          <span class="section__tag">EXT</span>
         </div>
         <div class="section__body">
           <p>
@@ -267,6 +293,7 @@ const secciones = [
         <div class="section__header">
           <span class="section__num">08</span>
           <h2 class="section__title">Protección de Datos Personales</h2>
+          <span class="section__tag">DATOS</span>
         </div>
         <div class="section__body">
           <p>
@@ -296,6 +323,7 @@ const secciones = [
         <div class="section__header">
           <span class="section__num">09</span>
           <h2 class="section__title">Modificaciones a los Términos</h2>
+          <span class="section__tag">MOD</span>
         </div>
         <div class="section__body">
           <p>
@@ -318,6 +346,7 @@ const secciones = [
         <div class="section__header">
           <span class="section__num">10</span>
           <h2 class="section__title">Legislación Aplicable</h2>
+          <span class="section__tag">LEY</span>
         </div>
         <div class="section__body">
           <p>
@@ -336,6 +365,7 @@ const secciones = [
         <div class="section__header">
           <span class="section__num">11</span>
           <h2 class="section__title">Contacto</h2>
+          <span class="section__tag">CONT</span>
         </div>
         <div class="section__body">
           <p>
@@ -344,17 +374,17 @@ const secciones = [
           </p>
           <div class="contact-grid">
             <div class="contact-card">
-              <span class="contact-card__icon">✉</span>
+              <span class="contact-card__num">01</span>
               <span class="contact-card__label">Correo electrónico</span>
               <a href={`mailto:${correo}`} class="contact-card__value">{correo}</a>
             </div>
             <div class="contact-card">
-              <span class="contact-card__icon">☎</span>
+              <span class="contact-card__num">02</span>
               <span class="contact-card__label">Teléfono</span>
               <span class="contact-card__value">{telefono}</span>
             </div>
             <div class="contact-card">
-              <span class="contact-card__icon">⌖</span>
+              <span class="contact-card__num">03</span>
               <span class="contact-card__label">Dirección</span>
               <span class="contact-card__value">{direccion}</span>
             </div>
@@ -365,12 +395,15 @@ const secciones = [
     </main>
   </div>
 
-  <!-- ░░░ FOOTER ░░░ -->
+  <!-- FOOTER -->
   <footer class="footer">
-    <p>© {new Date().getFullYear()} {empresa} · Todos los derechos reservados</p>
+    <span class="footer__brand">{empresa}</span>
+    <span class="footer__sep">·</span>
+    <span>© {new Date().getFullYear()} · Todos los derechos reservados</span>
+    <span class="footer__sep">·</span>
+    <span class="footer__code">DOC-TC-MX-1.0</span>
   </footer>
 
-  <!-- Script acordeón TOC (solo activo en mobile/tablet) -->
   <script>
     const toggle = document.getElementById('tocToggle');
     const nav    = document.getElementById('tocNav');
@@ -383,7 +416,6 @@ const secciones = [
         toggle.setAttribute('aria-expanded', String(isOpen));
       });
 
-      // Al hacer click en un link, cerrar el acordeón en mobile
       nav.querySelectorAll('.toc__link').forEach(link => {
         link.addEventListener('click', () => {
           if (window.innerWidth < 900) {
@@ -394,241 +426,237 @@ const secciones = [
         });
       });
     }
+
+    // Active section highlight
+    const sections = document.querySelectorAll('.section');
+    const links = document.querySelectorAll('.toc__link');
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          const id = entry.target.id;
+          const active = document.querySelector(`.toc__link[href="#${id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    sections.forEach(s => obs.observe(s));
   </script>
 </body>
 </html>
 
 <style>
-  /* ── Variables ── */
   :root {
-    --c-bg: #0d0f14;
-    --c-surface: #13161d;
-    --c-border: #1f2330;
-    --c-accent: #e8a020;
-    --c-accent-dim: rgba(232, 160, 32, 0.12);
-    --c-text: #d4d8e2;
-    --c-text-muted: #6b7280;
-    --c-text-strong: #f0f2f7;
-    --c-warning: #c0392b;
-    --c-warning-dim: rgba(192, 57, 43, 0.10);
-    --c-info: #2980b9;
-    --c-info-dim: rgba(41, 128, 185, 0.10);
-    --ff-display: 'Syne', sans-serif;
-    --ff-body: 'DM Sans', sans-serif;
+    --bg:        #0b0c0f;
+    --surface:   #111318;
+    --surface2:  #16181f;
+    --border:    #1e2028;
+    --border2:   #2a2d38;
+    --yellow:    #f5a623;
+    --yellow-dim: rgba(245, 166, 35, 0.1);
+    --yellow-mid: rgba(245, 166, 35, 0.25);
+    --red:       #e05252;
+    --red-dim:   rgba(224, 82, 82, 0.08);
+    --blue:      #4a9eff;
+    --blue-dim:  rgba(74, 158, 255, 0.08);
+    --text:      #b8bcc8;
+    --text-dim:  #565b6e;
+    --text-hi:   #eceef4;
+    --ff-display: 'Barlow Condensed', sans-serif;
+    --ff-body:    'Barlow', sans-serif;
+    --ff-mono:    'JetBrains Mono', monospace;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   html {
     scroll-behavior: smooth;
-    background: var(--c-bg);
-    color: var(--c-text);
+    background: var(--bg);
+    color: var(--text);
     font-family: var(--ff-body);
     font-size: 16px;
     line-height: 1.7;
+    overflow-x: hidden;
   }
 
-  /* ── Hero ── */
+  /* ── HERO ── */
   .hero {
     position: relative;
-    padding: 5rem 2rem 4rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 6rem 3rem 4rem;
     overflow: hidden;
+    border-bottom: 1px solid var(--border2);
   }
 
-  .hero::before {
-    content: '';
+  /* Grid overlay */
+  .hero__grid-overlay {
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 80% 0%, rgba(232,160,32,0.07) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 0% 100%, rgba(41,128,185,0.05) 0%, transparent 70%);
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.4;
     pointer-events: none;
   }
 
-  .hero__badge {
-    display: inline-block;
-    font-family: var(--ff-display);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--c-accent);
-    border: 1px solid var(--c-accent);
-    padding: 0.3rem 0.8rem;
-    border-radius: 2px;
+  /* Yellow stripe top */
+  .hero__stripe {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--yellow) 0px,
+      var(--yellow) 24px,
+      transparent 24px,
+      transparent 48px
+    );
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  .hero__meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero__tag {
+    font-family: var(--ff-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--yellow);
+    background: var(--yellow-dim);
+    border: 1px solid var(--yellow-mid);
+    padding: 0.2rem 0.6rem;
+    letter-spacing: 0.08em;
+  }
+
+  .hero__dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--text-dim);
+  }
+
+  .hero__version {
+    font-family: var(--ff-mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .hero__title-block {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 1.5rem;
+    line-height: 1;
+  }
+
+  .hero__pre {
+    font-family: var(--ff-display);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 400;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   .hero__title {
     font-family: var(--ff-display);
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 800;
-    line-height: 1.05;
-    color: var(--c-text-strong);
-    margin-bottom: 1.2rem;
+    font-size: clamp(4rem, 12vw, 9rem);
+    font-weight: 900;
+    color: var(--text-hi);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    line-height: 0.9;
+    /* Outline effect */
+    -webkit-text-stroke: 1px rgba(245,166,35,0.2);
   }
-
-  .hero__title em {
-    font-style: normal;
-    color: var(--c-accent);
-  }
-
-  .hero__meta {
-    font-size: 0.82rem;
-    color: var(--c-text-muted);
-    letter-spacing: 0.04em;
-    margin-bottom: 1.2rem;
-  }
-
-  .hero__meta strong { color: var(--c-text); }
 
   .hero__intro {
-    max-width: 580px;
-    font-size: 1rem;
-    color: var(--c-text);
+    max-width: 520px;
+    font-size: 0.95rem;
     font-weight: 300;
+    color: var(--text);
     line-height: 1.8;
-    border-left: 2px solid var(--c-accent);
-    padding-left: 1.2rem;
+    border-left: 2px solid var(--yellow);
+    padding-left: 1rem;
+    margin-bottom: 2rem;
   }
 
-  /* ── Layout ── */
+  .hero__rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero__rule-line {
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--yellow);
+  }
+
+  .hero__rule-label {
+    font-family: var(--ff-mono);
+    font-size: 0.62rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Decorative background text */
+  .hero__bg-num {
+    position: absolute;
+    right: -2rem;
+    bottom: -1.5rem;
+    font-family: var(--ff-display);
+    font-size: clamp(8rem, 20vw, 18rem);
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(245,166,35,0.06);
+    letter-spacing: -0.05em;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+    line-height: 1;
+  }
+
+  /* ── LAYOUT ── */
   .layout {
     display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 2rem;
-    max-width: 1200px;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    max-width: 1160px;
     margin: 0 auto;
-    padding: 0 2rem 5rem;
+    padding: 0 3rem 5rem;
     align-items: start;
-  }
-
-  /* ── Responsive: Tablet ── */
-  @media (max-width: 900px) {
-    .hero {
-      padding: 3.5rem 1.5rem 3rem;
-    }
-
-    .layout {
-      grid-template-columns: 1fr;
-      padding: 0 1.5rem 4rem;
-      gap: 1.5rem;
-    }
-
-    .toc {
-      position: static;
-      order: -1;
-    }
-
-    .toc__label {
-      display: none;
-    }
-
-    .toc__toggle {
-      display: flex;
-    }
-
-    .toc__nav {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.35s ease, margin-top 0.2s ease;
-      margin-top: 0;
-    }
-
-    .toc__nav.open {
-      max-height: 800px;
-      margin-top: 0.8rem;
-    }
-  }
-
-  /* ── Responsive: Mobile ── */
-  @media (max-width: 600px) {
-    .hero {
-      padding: 2.5rem 1.2rem 2.5rem;
-    }
-
-    .hero__title {
-      font-size: clamp(2rem, 10vw, 2rem);
-    }
-
-    .hero__intro {
-      font-size: 0.9rem;
-    }
-
-    .layout {
-      padding: 0 1.2rem 3rem;
-      gap: 1.2rem;
-    }
-
-    .section__header {
-      padding: 1rem 1.2rem;
-      gap: 0.7rem;
-    }
-
-    .section__title {
-      font-size: 0.95rem;
-    }
-
-    .section__body {
-      padding: 1.2rem;
-      gap: 0.85rem;
-    }
-
-    .section__body p,
-    .section__body ul li {
-      font-size: 0.88rem;
-    }
-
-    .contact-grid {
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-    }
-
-    .toc {
-      padding: 1.2rem;
-    }
-
-    .toc__link {
-      font-size: 0.82rem;
-      padding: 0.45rem 0.5rem;
-    }
-  }
-
-  /* ── Responsive: Small mobile ── */
-  @media (max-width: 380px) {
-    .hero {
-      padding: 2rem 1rem 2rem;
-    }
-
-    .layout {
-      padding: 0 1rem 2.5rem;
-    }
-
-    .section__header {
-      padding: 0.9rem 1rem;
-    }
-
-    .section__body {
-      padding: 1rem;
-    }
-
-    .hero__badge {
-      font-size: 0.6rem;
-      padding: 0.25rem 0.7rem;
-    }
   }
 
   /* ── TOC ── */
   .toc {
     position: sticky;
     top: 2rem;
-    background: var(--c-surface);
-    border: 1px solid var(--c-border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    overflow: hidden;
+    padding: 2rem 1.5rem 2rem 0;
+    border-right: 1px solid var(--border);
+    margin-right: 2.5rem;
+  }
+
+  .toc__label {
+    font-family: var(--ff-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: var(--yellow);
+    letter-spacing: 0.15em;
+    margin-bottom: 1.2rem;
   }
 
   .toc__toggle {
@@ -639,219 +667,381 @@ const secciones = [
     width: 100%;
     background: none;
     border: none;
-    color: var(--c-text-muted);
-    font-family: var(--ff-display);
+    color: var(--text-dim);
+    font-family: var(--ff-mono);
     font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 0;
+    padding: 0.6rem 0;
   }
 
   .toc__toggle-icon {
-    font-size: 1.1rem;
-    color: var(--c-accent);
+    width: 16px; height: 16px;
+    color: var(--yellow);
     transition: transform 0.3s ease;
-    display: inline-block;
-    line-height: 1;
+    flex-shrink: 0;
   }
 
-  .toc__toggle-icon.open {
-    transform: rotate(180deg);
-  }
-
-  .toc__label {
-    font-family: var(--ff-display);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--c-text-muted);
-    margin-bottom: 1rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid var(--c-border);
-  }
+  .toc__toggle-icon.open { transform: rotate(180deg); }
 
   .toc__link {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    font-size: 0.8rem;
-    color: var(--c-text-muted);
+    gap: 0.5rem;
+    padding: 0.45rem 0.6rem;
+    margin-bottom: 0.1rem;
     text-decoration: none;
-    padding: 0.4rem 0.5rem;
-    border-radius: 4px;
-    transition: color 0.2s, background 0.2s;
-    line-height: 1.4;
+    border-left: 2px solid transparent;
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+    border-radius: 0 4px 4px 0;
   }
 
-  .toc__link:hover {
-    color: var(--c-accent);
-    background: var(--c-accent-dim);
+  .toc__link:hover,
+  .toc__link.active {
+    border-left-color: var(--yellow);
+    background: var(--yellow-dim);
   }
+
+  .toc__link:hover .toc__titulo,
+  .toc__link.active .toc__titulo { color: var(--text-hi); }
+
+  .toc__link:hover .toc__arrow,
+  .toc__link.active .toc__arrow { opacity: 1; color: var(--yellow); }
 
   .toc__num {
-    font-family: var(--ff-display);
+    font-family: var(--ff-mono);
+    font-size: 0.58rem;
+    color: var(--yellow);
+    opacity: 0.5;
+    min-width: 1.6rem;
+    flex-shrink: 0;
+  }
+
+  .toc__titulo {
+    font-family: var(--ff-body);
+    font-size: 0.77rem;
+    font-weight: 400;
+    color: var(--text-dim);
+    line-height: 1.3;
+    flex: 1;
+    transition: color 0.2s;
+  }
+
+  .toc__arrow {
     font-size: 0.65rem;
-    font-weight: 700;
-    color: var(--c-accent);
-    opacity: 0.6;
-    min-width: 1.8rem;
+    color: var(--text-dim);
+    opacity: 0;
+    transition: opacity 0.2s;
+    flex-shrink: 0;
   }
 
-  /* ── Content ── */
-  .content { min-width: 0; }
+  /* ── CONTENT ── */
+  .content {
+    min-width: 0;
+    padding-top: 2rem;
+  }
 
-  /* ── Section ── */
+  /* ── SECTION ── */
   .section {
-    margin-bottom: 3rem;
-    border: 1px solid var(--c-border);
-    border-radius: 10px;
+    scroll-margin-top: 5rem;
+    margin-bottom: 2px;
+    border: 1px solid var(--border);
+    border-radius: 0;
     overflow: hidden;
-    transition: border-color 0.3s;
+    transition: border-color 0.25s;
+    position: relative;
   }
 
-  .section:hover { border-color: rgba(232,160,32,0.3); }
+  .section::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--yellow);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .section:hover { border-color: var(--border2); }
+  .section:hover::before { opacity: 1; }
 
   .section__header {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1.5rem 2rem;
-    background: var(--c-surface);
-    border-bottom: 1px solid var(--c-border);
+    padding: 1rem 1.5rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    cursor: default;
   }
 
   .section__num {
-    font-family: var(--ff-display);
-    font-size: 0.75rem;
-    font-weight: 800;
-    color: var(--c-accent);
-    letter-spacing: 0.1em;
-    background: var(--c-accent-dim);
-    padding: 0.25rem 0.6rem;
-    border-radius: 3px;
+    font-family: var(--ff-mono);
+    font-size: 0.62rem;
+    font-weight: 500;
+    color: var(--yellow);
+    background: var(--yellow-dim);
+    border: 1px solid rgba(245,166,35,0.15);
+    padding: 0.2rem 0.5rem;
+    letter-spacing: 0.08em;
     flex-shrink: 0;
   }
 
   .section__title {
     font-family: var(--ff-display);
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    color: var(--c-text-strong);
+    color: var(--text-hi);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    flex: 1;
+  }
+
+  .section__tag {
+    font-family: var(--ff-mono);
+    font-size: 0.55rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    border: 1px solid var(--border2);
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    flex-shrink: 0;
   }
 
   .section__body {
-    padding: 1.8rem 2rem;
+    padding: 1.8rem 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    background: var(--bg);
   }
 
   .section__body p {
-    font-size: 0.95rem;
-    color: var(--c-text);
+    font-size: 0.9rem;
     font-weight: 300;
+    color: var(--text);
+    line-height: 1.8;
   }
 
-  .section__body strong { color: var(--c-text-strong); font-weight: 500; }
+  .section__body strong {
+    color: var(--text-hi);
+    font-weight: 500;
+  }
 
   .section__body ul {
     list-style: none;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding-left: 0.5rem;
+    gap: 0.4rem;
+    border-left: 1px solid var(--border2);
+    padding-left: 1.2rem;
+    margin-left: 0.2rem;
   }
 
   .section__body ul li {
-    font-size: 0.9rem;
-    color: var(--c-text);
+    font-size: 0.88rem;
     font-weight: 300;
-    padding-left: 1.4rem;
+    color: var(--text);
+    line-height: 1.7;
+    padding-left: 0.8rem;
     position: relative;
   }
 
   .section__body ul li::before {
-    content: '›';
+    content: '—';
     position: absolute;
-    left: 0;
-    color: var(--c-accent);
-    font-size: 1.1rem;
-    line-height: 1.4;
+    left: -0.6rem;
+    color: var(--yellow);
+    font-size: 0.7rem;
+    line-height: 1.9;
+    opacity: 0.6;
   }
 
-  /* ── Callouts ── */
+  /* ── CALLOUTS ── */
   .callout {
-    border-radius: 6px;
     padding: 1rem 1.2rem;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 300;
-    line-height: 1.7;
+    line-height: 1.75;
+    border-radius: 0;
+    position: relative;
   }
 
   .callout--info {
-    background: var(--c-info-dim);
-    border-left: 3px solid var(--c-info);
-    color: #90c8f0;
+    background: var(--blue-dim);
+    border-left: 2px solid var(--blue);
+    color: #90bde8;
   }
 
   .callout--warning {
-    background: var(--c-warning-dim);
-    border-left: 3px solid var(--c-warning);
-    color: #e8a090;
+    background: var(--red-dim);
+    border-left: 2px solid var(--red);
+    color: #e89090;
   }
 
-  /* ── Contact Grid ── */
+  /* ── CONTACT GRID ── */
   .contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2px;
     margin-top: 0.5rem;
   }
 
   .contact-card {
-    background: var(--c-surface);
-    border: 1px solid var(--c-border);
-    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
     padding: 1.2rem;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-    transition: border-color 0.2s;
+    gap: 0.35rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, background 0.2s;
   }
 
-  .contact-card:hover { border-color: var(--c-accent); }
+  .contact-card:hover {
+    border-color: var(--yellow-mid);
+    background: var(--surface2);
+  }
 
-  .contact-card__icon {
-    font-size: 1.2rem;
-    color: var(--c-accent);
-    line-height: 1;
+  .contact-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--yellow), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .contact-card:hover::after { opacity: 1; }
+
+  .contact-card__num {
+    font-family: var(--ff-mono);
+    font-size: 0.55rem;
+    color: var(--yellow);
+    opacity: 0.5;
+    letter-spacing: 0.1em;
   }
 
   .contact-card__label {
-    font-size: 0.7rem;
-    font-weight: 700;
+    font-family: var(--ff-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--c-text-muted);
+    color: var(--text-dim);
   }
 
   .contact-card__value {
-    font-size: 0.88rem;
-    color: var(--c-text-strong);
+    font-size: 0.85rem;
+    color: var(--text-hi);
     word-break: break-word;
     text-decoration: none;
+    font-weight: 400;
+    line-height: 1.4;
   }
 
-  a.contact-card__value:hover { color: var(--c-accent); text-decoration: underline; }
+  a.contact-card__value:hover {
+    color: var(--yellow);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 
-  /* ── Footer ── */
+  /* ── FOOTER ── */
   .footer {
-    text-align: center;
-    padding: 2rem;
-    border-top: 1px solid var(--c-border);
-    font-size: 0.8rem;
-    color: var(--c-text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--ff-mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+  }
+
+  .footer__brand { color: var(--yellow); }
+  .footer__sep   { color: var(--border2); }
+  .footer__code  { opacity: 0.4; }
+
+  /* ── RESPONSIVE: TABLET ── */
+  @media (max-width: 900px) {
+    .hero { padding: 4rem 1.5rem 3rem; }
+
+    .layout {
+      grid-template-columns: 1fr;
+      padding: 0 1.5rem 4rem;
+    }
+    
+    .section { scroll-margin-top: 28.5rem; }
+
+    .toc {
+      position: static;
+      order: -1;
+      padding: 1.5rem;
+      border-right: none;
+      border: 1px solid var(--border);
+      margin-right: 0;
+      margin-top: 1.5rem;
+    }
+
+    .toc__label { display: none; }
+    .toc__toggle { display: flex; }
+
+    .toc__nav {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease, margin-top 0.2s ease;
+      margin-top: 0;
+    }
+
+    .toc__nav.open {
+      max-height: 900px;
+      margin-top: 0.8rem;
+    }
+  }
+
+  /* ── RESPONSIVE: MOBILE ── */
+  @media (max-width: 600px) {
+    html { overflow-x: hidden; }
+
+    .hero {
+      padding: 3rem 1.2rem 2.5rem;
+    }
+
+    .hero__bg-num { display: none; }
+
+    .layout {
+      padding: 0 1rem 3rem;
+    }
+
+    .section__header {
+      padding: 0.85rem 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .section__tag { display: none; }
+
+    .section__title {
+      font-size: 1rem;
+    }
+
+    .section__body {
+      padding: 1.2rem 1rem;
+    }
+
+    .section__body p,
+    .section__body ul li {
+      font-size: 0.84rem;
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

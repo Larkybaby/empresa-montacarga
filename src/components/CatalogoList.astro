@@ -178,7 +178,7 @@ const montacargas: Montacargas[] = await respuesta.json();
     font-size: 0.92rem;
     font-family: inherit;
     transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
-  width: 600px; /* ← cámbialo a width: 100% */
+    width: 100%; /* ← cámbialo a width: 100% */
 }
   
 
@@ -430,11 +430,13 @@ const montacargas: Montacargas[] = await respuesta.json();
     .catalogo-lista { padding: 32px 20px 60px; }
     .catalogo-header { flex-direction: column; align-items: flex-start; }
     .buscador { flex: 1 1 100%; }
+    .buscador input { width: 100%; }
     .catalogo-list { grid-template-columns: 1fr 1fr; gap: 14px; }
   }
 
   @media (max-width: 420px) {
     .catalogo-list { grid-template-columns: 1fr; }
+    .buscador input { width: 100%; }
   }
 </style>
 

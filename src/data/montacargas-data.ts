@@ -14,8 +14,19 @@ export interface Montacargas {
 export const datos: Montacargas[] = [
   {
     id: 1,
-    imagen:"/Montacargas/CPD-30-1.JPEG",
-    imagenes:[],
+    imagen:"/Montacargas/CPD-30-1.png",
+    imagenes:[
+      "/Montacargas/CPD-2.png",
+      "/Montacargas/CPD-3.png",
+      "/Montacargas/MD2.png",
+      "/Montacargas/MD3.png",
+      "/Montacargas/MD4.png",
+      "/Montacargas/MD5.png",
+      "/Montacargas/MD6.png",
+      "/Montacargas/MD7.png",
+      "/Montacargas/MD8.png",
+      "/Montacargas/MD9.png",
+    ],
     modelo: "CPD 30",
     capacidad: "2.5 toneladas",
     para:"renta",
@@ -25,9 +36,20 @@ export const datos: Montacargas[] = [
     
   },{
     id: 2,
-    imagen:"/Montacargas/FD-30.jpeg",
+    imagen:"/Montacargas/FD-30.png",
     imagenes:[
-      "/Montacargas/FD-2.jpeg",
+      "/Montacargas/FD-2.png",
+      "/Montacargas/FD-3.png",
+      "/Montacargas/FD-4.png",
+      "/Montacargas/FD-5.png",
+      "/Montacargas/FD-6.png",
+      "/Montacargas/FD-7.png",
+      "/Montacargas/FD-8.png",
+       "/Montacargas/MD10.png",
+      "/Montacargas/MD11.png",
+      "/Montacargas/MD12.png",
+      "/Montacargas/MD13.png",
+      
     ],
     modelo: "FD 30",
     capacidad: "2.5 toneladas",
@@ -65,5 +87,29 @@ export const datos: Montacargas[] = [
     disponible: true,
     detalles: "Detalles del montacargas 4",
     
-  }
+  },/*
+  {
+    id: 5,
+    imagen:"/Montacargas/MD1.png",
+    imagenes:[
+      "/Montacargas/MD2.png",
+      "/Montacargas/MD3.png",
+      "/Montacargas/MD4.png",
+      "/Montacargas/MD5.png",
+      "/Montacargas/MD6.png",
+      "/Montacargas/MD7.png",
+      "/Montacargas/MD8.png",
+      "/Montacargas/MD9.png",
+      "/Montacargas/MD10.png",
+      "/Montacargas/MD11.png",
+      "/Montacargas/MD12.png",
+      "/Montacargas/MD13.png",
+    ],
+    modelo: "MD",
+    capacidad: " toneladas",
+    para:"venta",
+    tipo: "Gas",
+    disponible: true,
+    detalles: "Detalles del montacargas 5",
+  }*/
 ];

@@ -33,36 +33,82 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
 
     <div class="detalle-card">
 
-      <!-- ═══ COLUMNA IZQUIERDA: Galería ═══ -->
+      <!-- ═══ COLUMNA IZQUIERDA: Visor 360° ═══ -->
       <div class="galeria-col">
-        <!-- Miniaturas verticales a la izquierda -->
+
+        <!-- Miniaturas verticales con flechas -->
         {galeriaUnica.length > 1 && (
-          <div class="miniaturas">
-            {galeriaUnica.map((src, i) => (
-              <button
-                class={`miniatura ${i === 0 ? 'activa' : ''}`}
-                data-src={src}
-                data-index={i}
-                aria-label={`Ver imagen ${i + 1}`}
-              >
-                <img src={src} alt={`${m.modelo} vista ${i + 1}`} />
-              </button>
-            ))}
+          <div class="miniaturas-wrap">
+            <button class="miniaturas-arrow" id="arrow-up" aria-label="Subir">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                <path d="M2 7L5 3L8 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <div class="miniaturas" id="miniaturas-track">
+              {galeriaUnica.map((src, i) => (
+                <button
+                  class={`miniatura ${i === 0 ? 'activa' : ''}`}
+                  data-src={src}
+                  data-index={i}
+                  aria-label={`Ver imagen ${i + 1}`}
+                >
+                  <img src={src} alt={`${m.modelo} vista ${i + 1}`} />
+                </button>
+              ))}
+            </div>
+
+            <button class="miniaturas-arrow" id="arrow-down" aria-label="Bajar">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                <path d="M2 3L5 7L8 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
           </div>
         )}
 
-        <!-- Imagen principal a la derecha -->
-        <div class="img-principal-wrap">
-          <img
-            id="img-principal"
-            src={galeriaUnica[0]}
-            alt={m.modelo}
-            class="img-principal"
-          />
+        <!-- Visor 360° -->
+        <div class="img-principal-wrap" id="spin-wrap">
+
+          <!-- Todas las imágenes apiladas; JS muestra solo la activa -->
+          {galeriaUnica.map((src, i) => (
+            <img
+              class="spin-frame"
+              src={src}
+              alt={`${m.modelo} ángulo ${i + 1}`}
+              data-spin-index={i}
+              draggable="false"
+            />
+          ))}
+
+          <!-- Badge disponibilidad -->
           <div class="img-badge">
             <span class={`disponible-dot ${m.disponible ? 'verde' : 'rojo'}`}></span>
             {m.disponible ? 'Disponible' : 'No disponible'}
           </div>
+
+          <!-- Badge 360 -->
+          <div class="badge-360">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+              <path d="M12 4C8 4 4.5 5.5 2.5 8L1 6v5h5l-2-2c1.5-2 4-3 8-3 4.4 0 8 2.2 8 5s-3.6 5-8 5c-2.5 0-4.7-.8-6.2-2.1L4.2 15.4C6.1 17 8.9 18 12 18c5.5 0 10-3.1 10-7s-4.5-7-10-7z" fill="currentColor"/>
+            </svg>
+            360°
+          </div>
+
+          <!-- Barra de progreso -->
+          <div class="spin-progress-wrap">
+            <div class="spin-progress-bar" id="spin-progress"></div>
+          </div>
+
+          <!-- Botón pausa/play -->
+          <button class="spin-toggle" id="spin-toggle" aria-label="Pausar rotación">
+            <svg id="icon-pause" width="11" height="11" viewBox="0 0 12 12" fill="none">
+              <rect x="2" y="1" width="3" height="10" rx="1" fill="currentColor"/>
+              <rect x="7" y="1" width="3" height="10" rx="1" fill="currentColor"/>
+            </svg>
+            <svg id="icon-play" width="11" height="11" viewBox="0 0 12 12" fill="none" style="display:none">
+              <path d="M3 2l7 4-7 4V2z" fill="currentColor"/>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -212,7 +258,8 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
   ══════════════════════════════════════ */
   .galeria-col {
     background: #f0ede4;
-    display: flex; flex-direction: row;
+    display: flex;
+    flex-direction: row;
     gap: 0.75rem;
     padding: 1rem;
     min-width: 0;
@@ -227,8 +274,23 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
     background: white;
     flex: 1;
     min-width: 0;
-    min-height: 280px;
+    min-height: 340px;
     box-shadow: 0 4px 20px rgba(10,22,40,0.1);
+  }
+
+  /* Mostrar primer frame mientras JS no ha corrido aún */
+  .spin-frame:first-child {
+    opacity: 1;
+  }
+  .spin-frame:first-child ~ .spin-frame {
+    opacity: 0;
+  }
+  /* Una vez que JS toma control, .activa maneja la visibilidad */
+  .spin-frame.activa {
+    opacity: 1 !important;
+  }
+  .spin-wrap-ready .spin-frame:first-child:not(.activa) {
+    opacity: 0;
   }
 
   .img-principal {
@@ -256,32 +318,152 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
   }
   .disponible-dot.verde { background: var(--green); box-shadow: 0 0 6px var(--green); }
   .disponible-dot.rojo  { background: var(--red);   box-shadow: 0 0 6px var(--red);   }
+  /* ══════════════════════════════════════
+     VISOR 360°
+  ══════════════════════════════════════ */
+  .spin-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: contain;
+    padding: 8px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.12s ease;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  .spin-frame.activa { opacity: 1; }
 
-  /* Miniaturas */
+  .badge-360 {
+    position: absolute;
+    top: 0.6rem; right: 0.6rem;
+    display: flex; align-items: center; gap: 0.35rem;
+    background: rgba(10,22,40,0.75);
+    backdrop-filter: blur(8px);
+    color: var(--yellow);
+    font-size: 0.68rem; font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 0.28rem 0.65rem;
+    border-radius: 999px;
+  }
+
+  .spin-progress-wrap {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: rgba(10,22,40,0.12);
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+  }
+  .spin-progress-bar {
+    height: 100%;
+    background: var(--yellow);
+    width: 0%;
+    transition: width 0.15s linear;
+  }
+
+  .spin-toggle {
+    position: absolute;
+    bottom: 0.7rem; right: 0.7rem;
+    width: 28px; height: 28px;
+    background: rgba(10,22,40,0.65);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .spin-toggle:hover {
+    background: rgba(10,22,40,0.9);
+    transform: scale(1.1);
+  }
+
+
+  /* ══════════════════════════════════════
+     MINIATURAS — contenedor con flechas
+  ══════════════════════════════════════ */
+  .miniaturas-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    width: 60px;
+  }
+
+  /* Flechas: ocultas por defecto, JS las activa si hay más de MAX */
+  .miniaturas-arrow {
+    width: 60px;
+    height: 20px;
+    flex-shrink: 0;
+    background: rgba(10,22,40,0.07);
+    border: 1px solid rgba(10,22,40,0.1);
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--navy2);
+    transition: background 0.2s, border-color 0.2s;
+    /* ocultas hasta que JS las muestre */
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .miniaturas-arrow.visible {
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .miniaturas-arrow:hover {
+    background: rgba(10,22,40,0.15);
+    border-color: rgba(10,22,40,0.2);
+  }
+
+  /* El track de miniaturas */
   .miniaturas {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 6px;
+
+    /*
+      Altura fija para exactamente 5 miniaturas:
+      5 × 60px + 4 × 6px (gaps) = 324px
+      Cambia este valor si quieres más o menos visibles.
+    */
+    max-height: 324px;
+    height: 324px;
+
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    flex-shrink: 0;
+    scroll-behavior: smooth;
   }
   .miniaturas::-webkit-scrollbar { display: none; }
+
   .miniatura {
-    width: 56px;
-    height: 56px;
-    flex-shrink: 0;
-    border-radius: 8px; overflow: hidden;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;          /* nunca se encoge */
+    border-radius: 8px;
+    overflow: hidden;
     border: 2px solid transparent;
-    padding: 0; cursor: pointer;
+    padding: 0;
+    cursor: pointer;
     background: white;
+    box-sizing: border-box;
     transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   }
   .miniatura img {
-    width: 100%; height: 100%;
-    object-fit: contain; padding: 4px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 4px;
+    box-sizing: border-box;
+    display: block;
   }
   .miniatura:hover  { transform: scale(1.05); border-color: rgba(245,166,35,0.5); }
   .miniatura.activa { border-color: var(--yellow); box-shadow: 0 0 0 1px var(--yellow); }
@@ -544,28 +726,141 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
   requestAnimationFrame(draw);
 })();
 
-/* ── Galería interactiva ── */
-const imgPrincipal = document.getElementById('img-principal');
-document.querySelectorAll('.miniatura').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const src = btn.dataset.src;
-    // transición suave
-    imgPrincipal.style.opacity = '0';
-    imgPrincipal.style.transform = 'scale(0.96)';
-    setTimeout(() => {
-      imgPrincipal.src = src;
-      imgPrincipal.style.opacity = '1';
-      imgPrincipal.style.transform = 'scale(1)';
-    }, 180);
-    // actualizar miniatura activa
-    document.querySelectorAll('.miniatura').forEach(b => b.classList.remove('activa'));
-    btn.classList.add('activa');
+/* ── Galería / Visor 360° ── */
+(function () {
+  // Umbral: con >= SPIN_THRESHOLD imágenes se activa modo 360°
+  const SPIN_THRESHOLD = 8;
+
+  // Velocidades
+  const INTERVALO_SPIN    = 1000;   // ms por frame en modo 360°
+  const INTERVALO_GALERIA = 3000;  // ms por imagen en modo galería
+
+  const THUMB_SIZE  = 60;
+  const THUMB_GAP   = 6;
+  const MAX_VISIBLE = 5;
+
+  const frames     = Array.from(document.querySelectorAll('.spin-frame'));
+  const miniaturas = Array.from(document.querySelectorAll('.miniatura'));
+  const progress   = document.getElementById('spin-progress');
+  const toggleBtn  = document.getElementById('spin-toggle');
+  const iconPause  = document.getElementById('icon-pause');
+  const iconPlay   = document.getElementById('icon-play');
+  const badge360   = document.querySelector('.badge-360');
+  const track      = document.getElementById('miniaturas-track');
+  const total      = frames.length;
+
+  if (total < 2) {
+    // Solo 1 imagen: asegurarse que se muestre
+    if (frames[0]) frames[0].classList.add('activa');
+    return;
+  }
+
+  const modoSpin = total >= SPIN_THRESHOLD;
+  const INTERVALO = modoSpin ? INTERVALO_SPIN : INTERVALO_GALERIA;
+
+  // Ocultar badge 360° si no aplica el modo spin
+  if (!modoSpin && badge360) badge360.style.display = 'none';
+
+  let indice    = 0;
+  let timer     = null;
+  let corriendo = true;
+
+  function mostrarFrame(i) {
+    indice = ((i % total) + total) % total;
+
+    frames.forEach(f => f.classList.remove('activa'));
+    frames[indice].classList.add('activa');
+
+    miniaturas.forEach(b => b.classList.remove('activa'));
+    if (miniaturas[indice]) miniaturas[indice].classList.add('activa');
+
+    if (track && miniaturas[indice]) {
+      const scrollTarget = indice * (THUMB_SIZE + THUMB_GAP);
+      const centrado = scrollTarget - Math.floor(MAX_VISIBLE / 2) * (THUMB_SIZE + THUMB_GAP);
+      track.scrollTo({ top: Math.max(0, centrado), behavior: 'smooth' });
+    }
+
+    if (progress) {
+      progress.style.width = (((indice + 1) / total) * 100) + '%';
+    }
+  }
+
+  function iniciar() {
+    clearInterval(timer);
+    timer = setInterval(() => mostrarFrame(indice + 1), INTERVALO);
+    corriendo = true;
+    if (iconPause) iconPause.style.display = '';
+    if (iconPlay)  iconPlay.style.display  = 'none';
+  }
+
+  function pausar() {
+    clearInterval(timer);
+    corriendo = false;
+    if (iconPause) iconPause.style.display = 'none';
+    if (iconPlay)  iconPlay.style.display  = '';
+  }
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => corriendo ? pausar() : iniciar());
+  }
+
+  // En modo galería: pausar al hover sobre la galería
+  if (!modoSpin) {
+    const galeria = document.querySelector('.galeria-col');
+    if (galeria) {
+      galeria.addEventListener('mouseenter', pausar);
+      galeria.addEventListener('mouseleave', () => { if (!corriendo) iniciar(); });
+    }
+  }
+
+  miniaturas.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      mostrarFrame(i);
+      if (corriendo) { clearInterval(timer); iniciar(); }
+      else mostrarFrame(i);
+    });
   });
-});
-// Añadir transición al img principal
-if (imgPrincipal) {
-  imgPrincipal.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
-}
+
+  // FIX timing: esperar a que el DOM esté completamente pintado
+  // usando requestAnimationFrame + pequeño delay para Astro SSR
+  function arrancar() {
+    // Marcar el contenedor como controlado por JS
+    const wrap = document.getElementById('spin-wrap');
+    if (wrap) wrap.classList.add('spin-wrap-ready');
+    mostrarFrame(0);
+    iniciar();
+  }
+
+  if (document.readyState === 'complete') {
+    requestAnimationFrame(arrancar);
+  } else {
+    window.addEventListener('load', () => requestAnimationFrame(arrancar));
+  }
+})();
+
+/* ── Flechas de miniaturas ── */
+(function () {
+  const THUMB_SIZE  = 60;
+  const THUMB_GAP   = 6;
+  const MAX_VISIBLE = 5;
+
+  const track  = document.getElementById('miniaturas-track');
+  const arrowU = document.getElementById('arrow-up');
+  const arrowD = document.getElementById('arrow-down');
+
+  if (!track || !arrowU || !arrowD) return;
+
+  const total = track.querySelectorAll('.miniatura').length;
+
+  if (total > MAX_VISIBLE) {
+    arrowU.classList.add('visible');
+    arrowD.classList.add('visible');
+  }
+
+  const step = THUMB_SIZE + THUMB_GAP;
+  arrowU.addEventListener('click', () => track.scrollBy({ top: -step, behavior: 'smooth' }));
+  arrowD.addEventListener('click', () => track.scrollBy({ top:  step, behavior: 'smooth' }));
+})();
 
 /* ── WhatsApp ── */
 document.querySelectorAll('.btn-comprar').forEach(btn => {

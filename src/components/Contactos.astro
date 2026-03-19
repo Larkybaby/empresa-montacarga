@@ -34,14 +34,13 @@
   .hero {
     position: relative;
     width: 100%;
-    height: 70vh;           /* ← cambia a 100vh si quieres pantalla completa */
+    height: 70vh;
     min-height: 500px;
     display: flex;
     align-items: center;
     overflow: hidden;
   }
 
-  /* ── VIDEO ── */
   .hero__video {
     position: absolute;
     inset: 0;
@@ -52,10 +51,6 @@
     z-index: 0;
   }
 
-  /* ── OVERLAY ──
-     Gradiente diagonal: más oscuro abajo-izquierda (donde va el texto)
-     y un toque de color de marca arriba-derecha.
-     Ajusta los valores rgba para más/menos transparencia. */
   .hero__overlay {
     position: absolute;
     inset: 0;
@@ -69,7 +64,6 @@
     z-index: 1;
   }
 
-  /* ── CONTENT ── */
   .hero__content {
     position: relative;
     z-index: 2;
@@ -145,7 +139,6 @@
     transform: translateY(-2px);
   }
 
-  /* ── SCROLL INDICATOR ── */
   .hero__scroll {
     position: absolute;
     bottom: 2rem;
@@ -171,7 +164,6 @@
     animation: scrollPulse 1.8s ease-in-out infinite;
   }
 
-  /* ── ANIMATIONS ── */
   @keyframes heroFadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -181,53 +173,24 @@
     50%       { opacity: 1;   transform: scaleY(1);   transform-origin: top; }
   }
 
-  /* ── RESPONSIVE HERO ── */
-@media (max-width: 768px) {
-  .hero {
-    height: 75vh;
-    min-height: 420px;
+  @media (max-width: 768px) {
+    .hero { height: 75vh; min-height: 420px; }
+    .hero__content { padding: 0 clamp(1.2rem, 5vw, 2.5rem); max-width: 100%; }
+    .hero__title { font-size: clamp(2rem, 8vw, 3rem); letter-spacing: -0.5px; }
+    .hero__sub { font-size: 0.9rem; max-width: 100%; }
   }
-  .hero__content {
-    padding: 0 clamp(1.2rem, 5vw, 2.5rem);
-    max-width: 100%;
+  @media (max-width: 600px) {
+    .hero { height: 85vh; min-height: 380px; }
+    .hero__tag { font-size: 0.62rem; letter-spacing: 2px; }
+    .hero__title { font-size: clamp(1.8rem, 9vw, 2.6rem); margin-bottom: 0.75rem; }
+    .hero__sub { font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.5rem; }
+    .hero__scroll { display: none; }
   }
-  .hero__title {
-    font-size: clamp(2rem, 8vw, 3rem);
-    letter-spacing: -0.5px;
+  @media (max-width: 380px) {
+    .hero__title { font-size: clamp(1.6rem, 10vw, 2.2rem); }
   }
-  .hero__sub {
-    font-size: 0.9rem;
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 600px) {
-  .hero {
-    height: 85vh;
-    min-height: 380px;
-  }
-  .hero__tag {
-    font-size: 0.62rem;
-    letter-spacing: 2px;
-  }
-  .hero__title {
-    font-size: clamp(1.8rem, 9vw, 2.6rem);
-    margin-bottom: 0.75rem;
-  }
-  .hero__sub {
-    font-size: 0.85rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-  .hero__scroll { display: none; }
-}
-
-@media (max-width: 380px) {
-  .hero__title {
-    font-size: clamp(1.6rem, 10vw, 2.2rem);
-  }
-}
 </style>
+
 <!-- Sitio general (form y fondo vaya :v pendejo) -->
 
 <section class="contacto-section">
@@ -296,13 +259,6 @@
 
       <div class="contacto-extra">
         <div class="extra-item">
-          <div class="extra-icon-wrap">📍</div>
-          <div>
-            <div class="extra-label">Dirección</div>
-            <div class="extra-val">sepa la bola 54C<br />quien sabe</div>
-          </div>
-        </div>
-        <div class="extra-item">
           <div class="extra-icon-wrap">📞</div>
           <div>
             <div class="extra-label">Teléfono</div>
@@ -316,20 +272,47 @@
             <div class="extra-val">hola@empresa.com</div>
           </div>
         </div>
+        <div class="extra-item">
+          <div class="extra-icon-wrap">📍</div>
+          <div>
+            <div class="extra-label">Dirección</div>
+            <div class="extra-val">Rancho los Sauces, SN, Cam a Comanja KM 6, La Sauceda CP 47504<br />El Tepetate, Jalisco, México</div>
+          </div>
+        </div>
+
+        <!-- ── MAPA ── -->
+        <div class="mapa-wrap">
+          <iframe
+            class="mapa-iframe"
+            src="https://www.google.com/maps?q=946W%2B9W+Sabokar%2C+47528+Lagos+de+Moreno%2C+Jal.&output=embed"
+            width="100%"
+            height="190"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación del negocio"
+          ></iframe>
+          <a
+            class="mapa-cta"
+            href="https://www.google.com/maps/search/?api=1&query=946W%2B9W+Sabokar%2C+47528+Lagos+de+Moreno%2C+Jal."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" fill="currentColor"/>
+            </svg>
+            Abrir en Google Maps
+          </a>
+        </div>
+
       </div>
-    </div>
+    </div><!-- what is bro even doing -->
 
   </div>
 </section>
 
 <!-- ─── STYLES ──────────────────────────────────────────────────────────── -->
-<!--
-  is:global es necesario porque:
-  - Los estilos de Astro son scoped por defecto (añaden un hash al selector)
-  - El canvas (#bg-canvas) y algunos selectores anidados necesitan alcance global
-  - Si prefieres scoped, mueve el CSS a un archivo src/styles/contacto.css
-    e impórtalo en tu layout principal
--->
 <style is:global>
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
@@ -585,164 +568,107 @@
   }
   .extra-val { font-size: 0.88rem; color: var(--white); font-weight: 600; line-height: 1.4; }
 
+  /* ── MAPA ── */
+  .mapa-wrap {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(245,166,35,0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    /* Sin margin-top extra: el gap del padre (contacto-extra) ya lo separa */
+  }
+
+  .mapa-iframe {
+    display: block;
+    width: 100%;
+    height: 190px;
+    border: 0;
+    filter: saturate(0.8) contrast(1.05);
+  }
+
+  .mapa-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1rem;
+    background: rgba(245,166,35,0.1);
+    border-top: 1px solid rgba(245,166,35,0.18);
+    color: var(--yellow);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .mapa-cta:hover {
+    background: var(--yellow);
+    color: var(--navy);
+  }
+
   /* ── ANIMATIONS ── */
   @keyframes slideUp {
     from { opacity: 0; transform: translateY(28px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── RESPONSIVE CONTACTO ── */
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .contacto-wrapper { grid-template-columns: 1fr 280px; gap: 1.4rem; }
+    .form-card { padding: 2.5rem 2.2rem 2.2rem; }
+    .form-card h2 { font-size: 2.1rem; }
+  }
 
-/* Tablet landscape */
-@media (max-width: 1024px) {
-  .contacto-wrapper {
-    grid-template-columns: 1fr 280px;
-    gap: 1.4rem;
+  @media (max-width: 820px) {
+    .contacto-section { padding: 4rem 1.5rem; align-items: flex-start; }
+    .contacto-wrapper { grid-template-columns: 1fr; gap: 1.2rem; }
+    .form-card { padding: 2.2rem 2rem 2rem; }
+    .form-card h2 { font-size: 2rem; }
+    .form-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .info-card { padding: 2rem 1.8rem; }
+    .contacto-extra { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .extra-item { flex-direction: column; gap: 0.5rem; }
+    /* El mapa ocupa todo el ancho en grid de 3 columnas */
+    .mapa-wrap { grid-column: 1 / -1; }
+    .horario-list { flex-direction: row; gap: 0; }
+    .horario-item {
+      flex: 1; flex-direction: column; align-items: flex-start;
+      gap: 0.2rem; padding: 0.5rem 0.75rem 0.5rem 0;
+      border-bottom: none; border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .horario-item:last-child { border-right: none; }
   }
-  .form-card {
-    padding: 2.5rem 2.2rem 2.2rem;
-  }
-  .form-card h2 {
-    font-size: 2.1rem;
-  }
-}
 
-/* Tablet portrait */
-@media (max-width: 820px) {
-  .contacto-section {
-    padding: 4rem 1.5rem;
-    align-items: flex-start;
+  @media (max-width: 600px) {
+    .contacto-section { padding: 3rem 1.2rem; }
+    .form-card { padding: 1.8rem 1.4rem 1.6rem; border-radius: 12px; }
+    .form-tag { font-size: 0.62rem; }
+    .form-card h2 { font-size: clamp(1.5rem, 7vw, 1.9rem); letter-spacing: -0.3px; }
+    .form-sub { font-size: 0.85rem; margin-bottom: 1.6rem; }
+    .form-grid { grid-template-columns: 1fr; gap: 0.9rem; }
+    .field input, .field textarea { padding: 0.7rem 0.85rem; font-size: 0.9rem; }
+    .btn-enviar { font-size: 0.9rem; padding: 0.9rem; }
+    .info-card { padding: 1.8rem 1.4rem; border-radius: 12px; }
+    .info-card h3 { font-size: 1.2rem; margin-bottom: 1.2rem; }
+    .contacto-extra { grid-template-columns: 1fr; gap: 1rem; }
+    .mapa-wrap { grid-column: auto; }
+    .extra-item { flex-direction: row; gap: 0.9rem; }
+    .horario-list { flex-direction: column; }
+    .horario-item {
+      flex-direction: row; justify-content: space-between; align-items: center;
+      padding: 0.65rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); border-right: none;
+    }
+    .horario-item:last-child { border-bottom: none; }
   }
-  .contacto-wrapper {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-  .form-card {
-    padding: 2.2rem 2rem 2rem;
-  }
-  .form-card h2 {
-    font-size: 2rem;
-  }
-  .form-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-  .info-card {
-    padding: 2rem 1.8rem;
-    /* En móvil la info queda debajo, mostramos en fila si cabe */
-  }
-  .contacto-extra {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
-  .extra-item {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  .horario-list {
-    flex-direction: row;
-    gap: 0;
-  }
-  .horario-item {
-    flex: 1;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.2rem;
-    padding: 0.5rem 0.75rem 0.5rem 0;
-    border-bottom: none;
-    border-right: 1px solid rgba(255,255,255,0.07);
-  }
-  .horario-item:last-child {
-    border-right: none;
-  }
-}
 
-/* Mobile */
-@media (max-width: 600px) {
-  .contacto-section {
-    padding: 3rem 1.2rem;
+  @media (max-width: 380px) {
+    .form-card { padding: 1.5rem 1.1rem; }
+    .info-card { padding: 1.5rem 1.1rem; }
+    .form-card h2 { font-size: clamp(1.3rem, 8vw, 1.6rem); }
   }
-  .form-card {
-    padding: 1.8rem 1.4rem 1.6rem;
-    border-radius: 12px;
-  }
-  .form-tag {
-    font-size: 0.62rem;
-  }
-  .form-card h2 {
-    font-size: clamp(1.5rem, 7vw, 1.9rem);
-    letter-spacing: -0.3px;
-  }
-  .form-sub {
-    font-size: 0.85rem;
-    margin-bottom: 1.6rem;
-  }
-  .form-grid {
-    grid-template-columns: 1fr;
-    gap: 0.9rem;
-  }
-  .field input,
-  .field textarea {
-    padding: 0.7rem 0.85rem;
-    font-size: 0.9rem;
-  }
-  .btn-enviar {
-    font-size: 0.9rem;
-    padding: 0.9rem;
-  }
-  .info-card {
-    padding: 1.8rem 1.4rem;
-    border-radius: 12px;
-  }
-  .info-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 1.2rem;
-  }
-  .contacto-extra {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  .extra-item {
-    flex-direction: row;
-    gap: 0.9rem;
-  }
-  .horario-list {
-    flex-direction: column;
-  }
-  .horario-item {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.65rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    border-right: none;
-  }
-  .horario-item:last-child {
-    border-bottom: none;
-  }
-}
-
-/* Mobile pequeño */
-@media (max-width: 380px) {
-  .form-card {
-    padding: 1.5rem 1.1rem;
-  }
-  .info-card {
-    padding: 1.5rem 1.1rem;
-  }
-  .form-card h2 {
-    font-size: clamp(1.3rem, 8vw, 1.6rem);
-  }
-}
 </style>
 
 <!-- ─── SCRIPT ──────────────────────────────────────────────────────────── -->
-<!--
-  is:inline hace que Astro NO procese este script como módulo ES,
-  por lo que document, window y el canvas están disponibles directamente.
-  Si usas View Transitions, el evento 'astro:page-load' reemplaza a DOMContentLoaded.
--->
 <script is:inline>
 function enviarWhatsapp() {
   const nombre   = document.querySelector('input[placeholder="Tu nombre"]').value;
@@ -764,9 +690,8 @@ function enviarWhatsapp() {
 📌 *Asunto:* ${asunto}
 💬 *Mensaje:* ${mensaje}`;
 
-  const numero = '524741036525'; // ← pon tu número aquí (con código de país, sin + ni espacios)
+  const numero = '524741036525';
   const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
-  
   window.open(url, '_blank');
 }
 </script>
