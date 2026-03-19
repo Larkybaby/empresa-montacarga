@@ -1,5 +1,13 @@
 <header class="header" id="header">
-  <a href="/" class="logo">Logo Empresa</a>
+  <a href="/" class="logo">
+    <div class="logo-icon">
+      <img src="/Imagenes/logo-trans.png" alt="Logo Empresa">
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">SABOKAR</span>
+      <span class="logo-sub">Montacargas Industriales</span>
+    </div>
+  </a>
 
   <button class="hamburguesa" id="hamburguesa" aria-label="Abrir menú">
     <span></span>
@@ -14,85 +22,101 @@
   </nav>
 </header>
 
-<!--
-  ⚠️ IMPORTANTE: En tu Layout.astro agrega esto en el <body> o el wrapper principal:
-  style="padding-top: 72px;"
-
-  O en tu CSS global:
-  body { padding-top: 72px; }
-
-  Esto evita que el contenido quede tapado por el header fijo.
--->
-
 <style>
-  /* ── CAMBIO CLAVE: fixed en lugar de sticky ──
-     sticky falla cuando cualquier ancestro tiene overflow distinto de visible.
-     fixed siempre funciona porque se posiciona relativo al viewport.
-  */
   .header {
     display: flex;
-    position: fixed;        /* 👈 CAMBIO: sticky → fixed */
+    position: fixed;
     top: 0;
-    left: 0;                /* 👈 NUEVO: necesario con fixed */
-    right: 0;               /* 👈 NUEVO: necesario con fixed */
+    left: 0;
+    right: 0;
     z-index: 1000;
     justify-content: space-between;
     align-items: center;
     padding: 0 56px;
     height: 72px;
     font-family: 'DM Sans', 'Century Gothic', sans-serif;
-    background: linear-gradient(90deg, var(--navy) 0%, var(--navy-mid) 100%);
-    box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.2);
-    transition: box-shadow 0.3s ease;
+    background: var(--navy);
+    border-bottom: 2px solid var(--yellow);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
     will-change: transform;
     transform: translateZ(0);
     backface-visibility: hidden;
   }
 
-  .header::after {
+  /* acento lateral izquierdo */
+  .header::before {
     content: '';
     position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--yellow), transparent);
-    opacity: 0.4;
-    transition: opacity 0.3s ease;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--yellow);
+    opacity: 0.7;
   }
 
   .header.scrolled {
-    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    background: rgba(9, 20, 36, 0.98);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
   }
 
-  .header.scrolled::after { opacity: 0.7; }
-
-  /* LOGO */
+  /* ── LOGO ── */
   .logo {
-    font-size: 1.45rem;
-    font-weight: 700;
-    color: var(--white);
-    text-decoration: none;
-    letter-spacing: 0.5px;
-    transition: opacity 0.2s ease;
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--white);
     z-index: 1001;
+    transition: opacity 0.2s ease;
   }
 
-  .logo::before {
-    content: '';
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    background: var(--yellow);
-    border-radius: 50%;
+  .logo:hover { opacity: 0.85; }
+
+  .logo-icon {
+    width: 42px;
+    height: 42px;
+    background: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
-    animation: pulse 2s infinite;
+    transition: transform 0.2s ease;
+    overflow: hidden;
   }
 
-  .logo:hover { opacity: 0.8; }
+  .logo:hover .logo-icon { transform: scale(1.06); }
 
-  /* NAV */
+  .logo-icon img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    /*filter: brightness(0) invert(1);*/
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  .logo-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--white);
+  }
+
+  .logo-sub {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-top: 3px;
+  }
+
+  /* ── NAV ── */
   .nav {
     display: flex;
     align-items: center;
@@ -197,7 +221,7 @@
       padding: 2rem 0;
       gap: 0.5rem;
       box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-      border-top: 1px solid rgba(255,255,255,0.06);
+      border-top: 1px solid rgba(245,166,35,0.3);
       opacity: 0;
       transform: translateY(-8px);
       pointer-events: none;
@@ -241,10 +265,12 @@
 </style>
 
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
+  function initHeader() {
     var hamburguesa = document.getElementById('hamburguesa');
     var nav         = document.getElementById('nav');
     var header      = document.getElementById('header');
+
+    if (!hamburguesa || !nav || !header) return;
 
     hamburguesa.addEventListener('click', function () {
       hamburguesa.classList.toggle('abierto');
@@ -269,11 +295,13 @@
       }
     }, { passive: true });
 
-    var links = nav.querySelectorAll('a:not(.contacto)');
-    links.forEach(function (link) {
+    nav.querySelectorAll('a:not(.contacto)').forEach(function (link) {
       if (link.href === window.location.href) {
         link.classList.add('active');
       }
     });
-  });
+  }
+
+  document.addEventListener('DOMContentLoaded', initHeader);
+  document.addEventListener('astro:page-load', initHeader);
 </script>
