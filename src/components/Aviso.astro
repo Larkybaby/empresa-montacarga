@@ -1,7 +1,4 @@
 ---
-// AvisoPrivacidad.astro — Diseño moderno con gradientes
-// 👉 Reemplaza las variables con los datos reales de tu empresa
-
 const empresa   = "[Nombre de la Empresa]";
 const correo    = "[correo@empresa.com]";
 const telefono  = "[número de contacto]";
@@ -64,7 +61,12 @@ const secciones = [
       scroll-behavior: smooth;
     }
 
-    body { position: relative; min-height: 100vh; }
+    /* ← FIX CLAVE: overflow-x: clip en body, no hidden en html */
+    body {
+      position: relative;
+      min-height: 100vh;
+      overflow-x: clip;
+    }
 
     body::before {
       content: '';
@@ -187,10 +189,16 @@ const secciones = [
       align-items: start;
     }
 
-    /* ── TOC ── */
-    .toc {
+    /* ── TOC WRAPPER ── */
+    .toc-wrapper {
       position: sticky;
       top: 2rem;
+      align-self: start;
+      height: fit-content;
+    }
+
+    /* ── TOC ── */
+    .toc {
       border-radius: var(--r-lg);
       overflow: hidden;
       background: var(--surface);
@@ -275,7 +283,7 @@ const secciones = [
     }
 
     /* ── CONTENT ── */
-    .content { ;min-width: 0; }
+    .content { min-width: 0; }
 
     /* ── SECTION ── */
     .section {
@@ -397,8 +405,8 @@ const secciones = [
       background: var(--surface-2);
     }
 
-    .finalidad-card--primary  { border-color: rgba(59,130,246,.25); background: rgba(59,130,246,.06); }
-    .finalidad-card--secondary { border-color: rgba(139,92,246,.2); background: rgba(139,92,246,.05); }
+    .finalidad-card--primary   { border-color: rgba(59,130,246,.25); background: rgba(59,130,246,.06); }
+    .finalidad-card--secondary { border-color: rgba(139,92,246,.2);  background: rgba(139,92,246,.05); }
 
     .finalidad-card__title {
       font-size: .66rem; font-weight: 600; letter-spacing: .14em;
@@ -474,7 +482,10 @@ const secciones = [
       text-transform: uppercase; color: var(--text-muted);
     }
 
-    .contact-card__value { font-size: .84rem; color: var(--text-strong); text-decoration: none; word-break: break-word; line-height: 1.4; }
+    .contact-card__value {
+      font-size: .84rem; color: var(--text-strong);
+      text-decoration: none; word-break: break-word; line-height: 1.4;
+    }
 
     a.contact-card__value:hover {
       background: linear-gradient(90deg, var(--g1), var(--g2));
@@ -498,33 +509,61 @@ const secciones = [
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── RESPONSIVE tablet ── */
+    /* ── RESPONSIVE: TABLET ── */
     @media (max-width: 960px) {
-      .layout { grid-template-columns: 1fr; padding: 0 1.5rem 5rem; }
-      .toc { position: static; order: -1; }
+      .layout {
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem 5rem;
+      }
+
       .section { scroll-margin-top: 23rem; }
+
+      .toc-wrapper {
+        position: static;
+        order: -1;
+        height: auto;
+      }
+
+      .toc { position: static; }
+
       .toc__label  { display: none; }
       .toc__toggle { display: flex; }
-      .toc__nav    { max-height: 0; overflow: hidden; transition: max-height .35s ease; padding: 0 .6rem; }
-      .toc__nav.open { max-height: 600px; padding: .8rem .6rem; }
-      .arco-grid { grid-template-columns: repeat(2,1fr); }
+
+      .toc__nav {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .35s ease;
+        padding: 0 .6rem;
+      }
+
+      .toc__nav.open {
+        max-height: 600px;
+        padding: .8rem .6rem;
+      }
+
+      .arco-grid       { grid-template-columns: repeat(2, 1fr); }
       .finalidades-grid { grid-template-columns: 1fr; }
     }
 
-    /* ── RESPONSIVE mobile ── */
+    /* ── RESPONSIVE: MOBILE ── */
     @media (max-width: 600px) {
       .hero { padding: 3.5rem 1.2rem 3rem; }
       .hero__title { font-size: clamp(2.3rem, 11vw, 3.2rem); }
+
       .layout { padding: 0 1.2rem 4rem; gap: 1.2rem; }
+
       .section__header { padding: 1rem 1.3rem; }
       .section__body   { padding: 1.2rem 1.3rem; }
       .section__title  { font-size: .95rem; }
-      .section__body p, .section__body ul li { font-size: .88rem; }
+
+      .section__body p,
+      .section__body ul li { font-size: .88rem; }
+
       .contact-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 380px) {
-      .hero { padding: 2.5rem 1rem; }
+      .hero   { padding: 2.5rem 1rem; }
       .layout { padding: 0 1rem 3rem; }
       .section__body { padding: 1rem; }
       .arco-grid { grid-template-columns: 1fr 1fr; }
@@ -559,24 +598,28 @@ const secciones = [
 
   <div class="layout">
 
-    <aside class="toc">
-      <div class="toc__header">
-        <p class="toc__label">Contenido</p>
-        <button class="toc__toggle" id="tocToggle" aria-expanded="false" aria-controls="tocNav">
-          <span class="toc__toggle-text">Índice de contenido</span>
-          <span class="toc__toggle-icon" id="tocIcon">▾</span>
-        </button>
-      </div>
-      <nav class="toc__nav" id="tocNav">
-        {secciones.map((s) => (
-          <a class="toc__link" href={`#seccion-${s.numero}`}>
-            <span class="toc__num">{s.numero}</span>
-            <span>{s.titulo}</span>
-          </a>
-        ))}
-      </nav>
-    </aside>
+    <!-- TOC -->
+    <div class="toc-wrapper">
+      <aside class="toc">
+        <div class="toc__header">
+          <p class="toc__label">Contenido</p>
+          <button class="toc__toggle" id="tocToggle" aria-expanded="false" aria-controls="tocNav">
+            <span class="toc__toggle-text">Índice de contenido</span>
+            <span class="toc__toggle-icon" id="tocIcon">▾</span>
+          </button>
+        </div>
+        <nav class="toc__nav" id="tocNav">
+          {secciones.map((s) => (
+            <a class="toc__link" href={`#seccion-${s.numero}`}>
+              <span class="toc__num">{s.numero}</span>
+              <span>{s.titulo}</span>
+            </a>
+          ))}
+        </nav>
+      </aside>
+    </div>
 
+    <!-- MAIN -->
     <main class="content">
 
       <section id="seccion-01" class="section">
@@ -806,12 +849,14 @@ const secciones = [
     const toggle = document.getElementById('tocToggle');
     const nav    = document.getElementById('tocNav');
     const icon   = document.getElementById('tocIcon');
+
     if (toggle && nav && icon) {
       toggle.addEventListener('click', () => {
         const isOpen = nav.classList.toggle('open');
         icon.classList.toggle('open', isOpen);
         toggle.setAttribute('aria-expanded', String(isOpen));
       });
+
       nav.querySelectorAll('.toc__link').forEach(link => {
         link.addEventListener('click', () => {
           if (window.innerWidth < 960) {
@@ -822,6 +867,22 @@ const secciones = [
         });
       });
     }
+
+    // Active section highlight
+    const sections = document.querySelectorAll('.section');
+    const links    = document.querySelectorAll('.toc__link');
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.toc__link[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    sections.forEach(s => obs.observe(s));
   </script>
 
 </body>
