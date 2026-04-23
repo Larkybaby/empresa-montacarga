@@ -71,17 +71,31 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap');
 
+  /*
   :root {
-    --navy:   #0a1628;
-    --yellow: #f5a623;
-    --white:  #f0ece2;
-  }
+    --rojo:   #8B0D1E;
+    --cafe:   #6F4F37;
+    --carbon: #454545;
+    --blanco: #F0EDE8;
+  }*/
+
+  :root {
+  --vino: #8B0D1E;
+  --vino-hover: #a50f23;
+  --rojo: #d70f2a;
+  --crema: #070707;
+  --crema-2: #1b1a1a;
+  --cafe: #7A5C4E;
+  --negro: #e6dfdf;
+  --gris: #6b6b6b;
+  --blanco: #ffffff;
+}
 
   /* ─── SECCIÓN ─── */
   .conocenos {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(160deg, #0a1628 0%, #0d1f3c 55%, #0a1628 100%);
+    background: linear-gradient(160deg, var(--crema) 0%, var(--crema-2) 55%, var(--crema) 100%);
     padding: 5rem 2rem 7rem;
     display: flex;
     flex-direction: column;
@@ -89,22 +103,22 @@
     gap: 0;
   }
 
-  /* Textura punteada */
+  /* Textura punteada — ahora en rojo muy sutil */
   .conocenos::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(245,166,35,0.07) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(214, 192, 195, 0.08) 1px, transparent 1px);
     background-size: 28px 28px;
     pointer-events: none;
   }
 
-  /* Glow central */
+  /* Glow central en rojo */
   .conocenos::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(245,166,35,0.06) 0%, transparent 70%);
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(139,13,30,0.07) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -123,25 +137,25 @@
     font-weight: 700;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--yellow);
-    border: 1px solid rgba(245,166,35,0.3);
+    color: #ffffff;
+    border: 1px solid var(--vino);
     padding: 0.3rem 1rem;
     border-radius: 100px;
     margin-bottom: 0.9rem;
-    background: rgba(245,166,35,0.06);
+    background: #934b55;
   }
 
   .conocenos__heading {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(2.2rem, 5vw, 3.6rem);
     letter-spacing: 0.04em;
-    color: var(--white);
+    color: var(--blanco);
     line-height: 1;
   }
 
   .conocenos__heading em {
     font-style: normal;
-    color: var(--yellow);
+    color: var(--rojo);
   }
 
   /* ─── GRID ─── */
@@ -162,8 +176,8 @@
     max-width: 240px;
     padding: 2.2rem 1.6rem 2rem;
     border-radius: 18px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255, 255, 255, 0.078);
+    border: 1px solid rgba(255,255,255,0.08);
     backdrop-filter: blur(12px);
     display: flex;
     flex-direction: column;
@@ -190,11 +204,11 @@
 
   .stat-card:hover {
     transform: translateY(-8px);
-    border-color: rgba(245,166,35,0.45);
+    border-color: rgba(139,13,30,0.45);
     box-shadow:
-      0 0 0 1px rgba(245,166,35,0.15),
+      0 0 0 1px rgba(139,13,30,0.15),
       0 20px 50px rgba(0,0,0,0.35),
-      0 0 60px rgba(245,166,35,0.06);
+      0 0 60px rgba(139,13,30,0.07);
   }
 
   /* ─── ICONO ─── */
@@ -202,18 +216,18 @@
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    background: rgba(245,166,35,0.12);
-    border: 1px solid rgba(245,166,35,0.2);
+    background: rgba(139,13,30,0.12);
+    border: 1px solid rgba(139,13,30,0.25);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 0.6rem;
-    color: var(--yellow);
+    color: #ffffff;
     transition: background 0.3s ease, transform 0.3s ease;
   }
 
   .stat-card:hover .stat-card__icon {
-    background: rgba(245,166,35,0.2);
+    background: rgba(255, 0, 38, 0.221);
     transform: scale(1.08) rotate(-4deg);
   }
 
@@ -226,28 +240,28 @@
   .contador {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 4.5rem;
-    font-weight: 400; /* Bebas no tiene weight variable */
+    font-weight: 400;
     line-height: 1;
-    color: var(--white);
+    color: var(--blanco);
     letter-spacing: 0.02em;
     margin: 0;
     transition: color 0.3s ease;
   }
 
-  .stat-card:hover .contador { color: var(--yellow); }
+  .stat-card:hover .contador { color: #8B0D1E; }
 
   .contador sup {
     font-size: 2rem;
     vertical-align: super;
     line-height: 0;
-    color: var(--yellow);
+    color: #8B0D1E;
   }
 
   /* ─── DIVIDER ─── */
   .stat-card__divider {
     width: 32px;
     height: 2px;
-    background: linear-gradient(90deg, var(--yellow), transparent);
+    background: linear-gradient(90deg, #8B0D1E, transparent);
     border-radius: 2px;
     margin: 0.3rem 0;
     transition: width 0.3s ease;
@@ -260,7 +274,7 @@
     font-family: 'DM Sans', sans-serif;
     font-size: 0.8rem;
     font-weight: 500;
-    color: rgba(240,236,226,0.55);
+    color: rgba(255, 255, 255, 0.65);
     text-align: center;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -280,9 +294,9 @@
 
   .ondas svg { width: 100%; height: 100%; }
 
-  .ola-1 { fill: rgba(255,255,255,0.04); }
-  .ola-2 { fill: rgba(255,255,255,0.03); }
-  .ola-3 { fill: rgba(10,22,40,0.9); }
+  .ola-1 { fill: rgba(251, 246, 246, 0.05); }
+  .ola-2 { fill: rgba(205, 186, 172, 0.04); }
+  .ola-3 { fill: rgba(28, 28, 28, 0.92); }
 
   @keyframes moverOla {
     0%   { transform: translateX(0); }
@@ -290,37 +304,35 @@
   }
 
   /* ─── RESPONSIVE ─── */
-@media (max-width: 600px) {
-  .conocenos {
-    padding: 3.5rem 1.2rem 6rem; /* menos padding lateral */
-  }
+  @media (max-width: 600px) {
+    .conocenos {
+      padding: 3.5rem 1.2rem 6rem;
+    }
 
-  .stats-grid {
-    flex-direction: column;
-    align-items: stretch;   /* ← stretch en vez de center */
-    width: 100%;
-    gap: 1rem;
-  }
+    .stats-grid {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      gap: 1rem;
+    }
 
-  .stat-card {
-    max-width: 100%;
-    width: 100%;
-    min-width: unset;       /* ← quita el min-width de 200px que fuerza overflow */
-    box-sizing: border-box;
-  }
+    .stat-card {
+      max-width: 100%;
+      width: 100%;
+      min-width: unset;
+      box-sizing: border-box;
+    }
 
-  .conocenos__heading {
-    font-size: clamp(1.8rem, 8vw, 2.6rem); /* título más chico en móvil */
-  }
+    .conocenos__heading {
+      font-size: clamp(1.8rem, 8vw, 2.6rem);
+    }
 
-  /* Olas no se salen */
-  .ondas {
-    height: 70px;
+    .ondas {
+      height: 70px;
+    }
   }
-}
 </style>
 
-<!-- Tu mismo script, sin tocar la lógica -->
 <script is:inline>
 document.addEventListener('DOMContentLoaded', () => {
   const contadores = document.querySelectorAll('.contador');

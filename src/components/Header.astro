@@ -23,6 +23,22 @@
 </header>
 
 <style>
+    :root {
+    --navy:        #0e1e38;
+    --navy-mid:    #1b2f52;
+    --yellow:      #efb810;
+    --yellow-glow: rgba(245,166,35,0.35);
+    --white:       #ffffff;
+    --off-white:   #f6f5f0;
+    --muted:       #8a97ab;
+    --border:      #dde3ec;
+    --red: #8B0D1E;
+    --red-mid: #722a33;
+    --golden: #FFD700;
+    --gold-muted: #C2A15D;
+    --soft-black: #0E0E0E;
+  }
+
   .header {
     display: flex;
     position: fixed;
@@ -35,8 +51,8 @@
     padding: 0 56px;
     height: 72px;
     font-family: 'DM Sans', 'Century Gothic', sans-serif;
-    background: linear-gradient (90deg, #1B263B, #223A5E);
-    border-bottom: 2px solid var(--yellow);
+    background: linear-gradient (90deg, var(--cream), #e3cdd0);
+    border-bottom: 2px solid var(--cream);
     box-shadow: 0 8px 32px rgba(0,0,0,0.45);
     transition: background 0.3s ease, box-shadow 0.3s ease;
     will-change: transform;
@@ -50,12 +66,12 @@
     position: absolute;
     left: 0; top: 0; bottom: 0;
     width: 3px;
-    background: var(--yellow);
+    background: var(--red);
     opacity: 0.7;
   }
 
   .header.scrolled {
-    background: rgba(9, 20, 36, 0.98);
+    background: linear-gradient(90deg, var(--red) 5%, #d70f2a 100%);
     box-shadow: 0 8px 40px rgba(0,0,0,0.6);
   }
 
@@ -112,7 +128,7 @@
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--yellow);
+    color: #cdaeae;
     margin-top: 3px;
   }
 
@@ -127,7 +143,7 @@
     margin-left: 32px;
     font-size: 0.92rem;
     font-weight: 600;
-    color: var(--text-muted, #a8b4c4);
+    color: var(--text-muted, #efabab);
     text-decoration: none;
     transition: color 0.2s ease;
     position: relative;
@@ -143,7 +159,7 @@
     left: 50%;
     transform: translateX(-50%);
     bottom: -4px;
-    background: var(--yellow);
+    background: var(--cream);
     border-radius: 2px;
     transition: width 0.25s ease;
   }
@@ -154,8 +170,8 @@
   .nav a.active::after { width: 100%; }
 
   .nav a.contacto {
-    background: var(--yellow);
-    color: var(--navy);
+    background: var(--cream);
+    color: var(--red);
     padding: 8px 20px;
     border-radius: 6px;
     margin-left: 40px;
@@ -167,10 +183,10 @@
   }
 
   .nav a.contacto:hover {
-    background: #F4B400;
+    background: #e75b5b;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(255,214,10,0.35);
-    color: var(--navy);
+    color: var(--white);
   }
 
   .nav a.contacto::after { display: none; }
@@ -215,7 +231,7 @@
       top: 64px;
       left: 0;
       right: 0;
-      background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
+      background: linear-gradient(180deg, var(--red) 0%, var(--red-mid) 100%);
       flex-direction: column;
       align-items: center;
       padding: 2rem 0;

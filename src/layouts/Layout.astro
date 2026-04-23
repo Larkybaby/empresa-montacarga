@@ -1,14 +1,17 @@
 ---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="sabokar" content="Montacargas Sabokar, tu aliado en soluciones de manejo de materiales. Ofrecemos montacargas de alta calidad, servicio confiable y asesoramiento experto para optimizar tus operaciones logísticas." />
     <link rel="icon" type="image/PNG" href="/Imagenes/logo-trans.png" />
     <link rel="icon" href="/Imagenes/logo-trans.png" />
     <meta name="generator" content={Astro.generator} />
-    <title>SABOKAR Montacargas</title>
+    <title>Sabokar-Montacargas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
@@ -40,6 +43,9 @@
         --radius:    14px;
         --ff-display: 'Syne', sans-serif;
         --ff-body:    'DM Sans', sans-serif;
+        --red: #8B0D1E;
+        --red-mid: #d70f2a;
+        --golden: #FFD700;
       }
 
       html {
@@ -48,17 +54,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100vh;
-  overflow-x: hidden;
-  max-width: 100%;
-  display: block;
-  background: var(--navy);
-  color: var(--white);
-  font-family: var(--ff-body);
-  padding-top: 72px; /* ← agrega esto */
 }
 
 html, body {
@@ -70,9 +65,18 @@ html, body {
   box-sizing: border-box;
 }
 
-      main {
-  		width: 100%;
-	}
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #8B0D1E;
+}
+
+main {
+  flex: 1;
+   padding-top: 72px;
+  margin-top: 0; /* importante */
+}
 
       /* ── Utilidades compartidas (About, Catalogo, etc.) ── */
       .chip {
@@ -147,7 +151,11 @@ html, body {
     </style>
   </head>
   <body>
-	<div style="height: 72px; flex-shrink: 0;"></div>
+    <Header />
+  <main>
     <slot />
-  </body>
+  </main>
+
+  <Footer />
+</body>
 </html>

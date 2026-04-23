@@ -6,10 +6,7 @@ import Conocenos from '../components/Conocenos.astro';
 <section class="hero" id="about-hero">
   <div class="hero__parallax" id="hero-parallax"
        style="background-image:url('/Imagenes/About-us.jpeg')"></div>
-  </div>
   <div class="hero__overlay"></div>
-
-  <!-- grain texture -->
   <div class="hero__grain" aria-hidden="true"></div>
 
   <div class="hero__inner">
@@ -27,7 +24,6 @@ import Conocenos from '../components/Conocenos.astro';
     </p>
   </div>
 
-  <!-- floating corner badge -->
   <div class="hero__corner-badge reveal reveal--delay3">
     <svg class="hero__corner-ring" viewBox="0 0 100 100">
       <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4 6"/>
@@ -35,21 +31,20 @@ import Conocenos from '../components/Conocenos.astro';
     <span class="hero__corner-text">Scroll<br/>↓</span>
   </div>
 
-  <!-- bottom wave -->
   <div class="hero__wave" aria-hidden="true">
     <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
-      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#0e1e38"/>
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#141010"/>
     </svg>
   </div>
 </section>
+
 <!-- QUIÉNES SOMOS -->
 <section class="qs">
   <div class="qs__inner">
 
-    <!-- image col -->
     <div class="qs__visual reveal-left">
       <div class="qs__img-outer">
-        <div class="qs__img-track"></div><!-- decorative vertical track -->
+        <div class="qs__img-track"></div>
         <div class="qs__img-wrap">
           <img
             src="https://media.istockphoto.com/id/1916729901/es/foto/%C3%A9xito-de-la-reuni%C3%B3n-dos-personas-de-negocios-d%C3%A1ndose-la-mano-de-pie-afuera.jpg?s=612x612&w=0&k=20&c=j9CZRDV77eq-_YZL4vRcE3BiB2DZd_3tNM9eO5YAIyE="
@@ -57,13 +52,11 @@ import Conocenos from '../components/Conocenos.astro';
           />
           <div class="qs__img-shine"></div>
         </div>
-        <!-- floating card -->
         <div class="qs__float-card">
           <span class="qs__float-num">10<sup>+</sup></span>
           <span class="qs__float-label">Años de<br/>experiencia</span>
         </div>
       </div>
-      <!-- dots grid -->
       <div class="qs__dots" aria-hidden="true">
         <svg viewBox="0 0 120 120">
           <pattern id="dot-pat" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse">
@@ -74,7 +67,6 @@ import Conocenos from '../components/Conocenos.astro';
       </div>
     </div>
 
-    <!-- text col -->
     <div class="qs__text reveal-right">
       <span class="chip">Quiénes somos</span>
       <h2 class="qs__title">
@@ -83,8 +75,9 @@ import Conocenos from '../components/Conocenos.astro';
       </h2>
       <div class="slash-bar"></div>
       <p class="qs__body">
-        Somos una empresa de montacargas especializada en brindar montacargas
-        xdxdxd jeje ya luego texto serio socio
+        Somos una empresa especializada en montacargas, dedicada a 
+        ofrecer soluciones eficientes, seguras y confiables para el manejo y 
+        traslado de carga en distintos sectores industriales.
       </p>
 
       <div class="qs__stats">
@@ -107,68 +100,11 @@ import Conocenos from '../components/Conocenos.astro';
 
   </div>
 </section>
+
 <Conocenos/>
-
-<!-- ══ HISTORIA — full-bleed image + text overlap ════════════════════════ -->
-<!-- <section class="hist">
-
-  <div class="hist__img-wrap reveal">
-    <img
-      src="/Imagenes/About-us.jpeg"
-      alt="Historia" class="hist__img"
-    />
-    <div class="hist__img-overlay"></div>
-    <div class="hist__img-label">Nuestras instalaciones</div>
-  </div>
-  <div class="hist__card reveal-right">
-    <span class="chip chip--yellow">Nuestra historia</span>
-    <h2 class="hist__title">
-      De taller a referente<br/>nacional
-    </h2>
-    <div class="slash-bar slash-bar--dark"></div>
-    <p class="hist__body">
-      Fundada no c cuando ya maria nos confirma los datos si o no
-      me pashe me pashe
-    </p>
-
-    <div class="vtl">
-      <div class="vtl__track"></div>
-      <div class="vtl__item">
-        <div class="vtl__dot"></div>
-        <div>
-          <strong>fecha</strong>
-          <span>Fundación de la empresa</span>
-        </div>
-      </div>
-      <div class="vtl__item">
-        <div class="vtl__dot"></div>
-        <div>
-          <strong>otra fecha</strong>
-          <span>otro dato importante</span>
-        </div>
-      </div>
-      <div class="vtl__item">
-        <div class="vtl__dot"></div>
-        <div>
-          <strong>fecha random</strong>
-          <span>dato importante de nuevo :v</span>
-        </div>
-      </div>
-      <div class="vtl__item vtl__item--active">
-        <div class="vtl__dot vtl__dot--active"></div>
-        <div>
-          <strong>Hoy</strong>
-          <span>Dato god</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</section>-->
 
 <!-- MISIÓN · VISIÓN · VALORES -->
 <section class="mvv">
-  <!-- background pattern -->
   <div class="mvv__bg-hex" aria-hidden="true"></div>
 
   <div class="mvv__header reveal">
@@ -181,7 +117,6 @@ import Conocenos from '../components/Conocenos.astro';
     <div class="mvv__card reveal reveal--delay1">
       <div class="mvv__card-glow"></div>
       <div class="mvv__icon">
-        <!-- target icon -->
         <svg viewBox="0 0 48 48" fill="none">
           <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/>
           <circle cx="24" cy="24" r="12" stroke="currentColor" stroke-width="2"/>
@@ -194,16 +129,15 @@ import Conocenos from '../components/Conocenos.astro';
       </div>
       <div class="mvv__card-num">01</div>
       <h3>Misión</h3>
-      <p>Imposible</p>
+      <p>Impulsar la industria con ingeniería de precisión, garantizando eficiencia y durabilidad suprema en cada pieza de acero que entregamos.</p>
       <div class="mvv__card-footer">
         <span class="mvv__card-tag">Quiénes somos</span>
       </div>
     </div>
 
     <div class="mvv__card mvv__card--featured reveal reveal--delay2">
-      <div class="mvv__card-glow mvv__card-glow--yellow"></div>
+      <div class="mvv__card-glow mvv__card-glow--red"></div>
       <div class="mvv__icon">
-        <!-- eye icon -->
         <svg viewBox="0 0 48 48" fill="none">
           <path d="M4 24C4 24 12 10 24 10C36 10 44 24 44 24C44 24 36 38 24 38C12 38 4 24 4 24Z"
                 stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
@@ -213,16 +147,15 @@ import Conocenos from '../components/Conocenos.astro';
       </div>
       <div class="mvv__card-num">02</div>
       <h3>Visión</h3>
-      <p>Ver xd</p>
+      <p>Consolidarnos como el referente de excelencia en diseño industrial, donde la innovación y la maestría técnica se funden en cada proyecto.</p>
       <div class="mvv__card-footer">
-        <span class="mvv__card-tag mvv__card-tag--yellow">Hacia el futuro</span>
+        <span class="mvv__card-tag mvv__card-tag--red">Hacia el futuro</span>
       </div>
     </div>
 
     <div class="mvv__card reveal reveal--delay3">
       <div class="mvv__card-glow"></div>
       <div class="mvv__icon">
-        <!-- star icon -->
         <svg viewBox="0 0 48 48" fill="none">
           <path d="M24 5L28.8 17.6H42.4L31.8 25.4L35.6 38L24 30.2L12.4 38L16.2 25.4L5.6 17.6H19.2L24 5Z"
                 stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
@@ -245,22 +178,72 @@ import Conocenos from '../components/Conocenos.astro';
   </div>
 </section>
 
+<section class="cta">
+  <div class="cta__inner_reveal">
+    <h2 class="cta__title">¿Listo para trabajar junto a nosotros?</h2>
+    <h1 class="cta__heading">Cuentanos sobre <br>tu proxima <em>operacion</em></h1>
+    <h3 class="medio">En Sabokar nos enorgullecemos de ofrecer <br>soluciones innovadoras y de calidad para cada uno de nuestros clientes.</h3>
+    <div class="cta__buttons">
+      <button class="btn-cotizacion" onclick="window.location.href='/Contacto'"><h2>Solicita tu cotizacion</h2></button>
+      <button onclick="window.location.href='/Catalogo'"><h2>Ver catalogo</h2></button>
+    </div>
+    <div class="cromada">
+      <p><em class="mvv__val-arrow">→</em> RESPUESTA EN 24 HORAS</p>
+      <p><em class="mvv__val-arrow">→</em> SIN COMPROMISO</p>
+      <p><em class="mvv__val-arrow">→</em> ASESORIA GRATUITA</p>
+    </div>
+  </div>
+</section>
+
 <!-- ══ STYLES ════════════════════════════════════════════════════════════ -->
 <style is:global>
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300;1,700&display=swap');
 
   /* ── tokens ── */
   :root {
-    --navy:    #0e1e38;
-    --navy2:   #162840;
-    --navy3:   #1d3356;
-    --yellow:  #f5a623;
-    --yellow2: #ffc14d;
-    --white:   #ffffff;
-    --cream:   #f5f3ee;
-    --muted:   #7d8fa3;
-    --dark:    #060f1e;
-    --ease:    cubic-bezier(.22,.8,.36,1);
+    /* Paleta cálida carbón — base */
+    --bg-base:       #141010;   /* fondo más oscuro (body, wave) */
+    --bg-section:    #1c1714;   /* secciones oscuras principales */
+    --bg-card:       #2c2825;   /* tarjetas y superficies */
+    --bg-card-inner: #3a2e2a;   /* interior de tarjetas anidadas */
+    --bg-lifted:     #332720;   /* hover / superficies levantadas */
+
+    /* Rojo marca */
+    --red:           #8B0D1E;
+    --red-mid:       #722a33;
+    --red-soft:      #c8102e;
+    --red-glow:      rgba(139,13,30,0.15);
+
+    /* Textos */
+    --white:         #f0ece8;   /* blanco cálido, no puro */
+    --muted:         #9a8e87;   /* texto secundario */
+    --faint:         rgba(240,230,220,0.28);
+
+    /* Bordes */
+    --border:        rgba(139,13,30,0.18);
+    --border-hover:  rgba(139,13,30,0.45);
+    --border-subtle: rgba(240,220,200,0.07);
+
+    /* Acento (antes golden/yellow, ahora rojo cálido) */
+    --accent:        #8B0D1E;
+    --accent-light:  #c8102e;
+
+    /* Legacy aliases para no romper refs existentes */
+    --navy:          #141010;
+    --navy2:         #1c1714;
+    --navy3:         #2c2825;
+    --yellow:        #8B0D1E;
+    --yellow2:       #c8102e;
+    --cream:         #f0ece8;
+    --dark:          #0a0807;
+    --ease:          cubic-bezier(.22,.8,.36,1);
+    --black:         #0a0807;
+    --gold-muted:    #9a7060;
+    --soft-black:    #141010;
+    --brand-red:     #8B0D1E;
+    --brand-red-dark:#5e0912;
+    --brand-red-soft:#c8102e;
+    --grey:          #1c1714;
   }
 
   /* ── shared utilities ── */
@@ -276,25 +259,26 @@ import Conocenos from '../components/Conocenos.astro';
     padding: 0.3rem 0.85rem;
     border-radius: 100px;
     margin-bottom: 1.1rem;
-    background: var(--yellow);
-    color: var(--navy);
+    background: rgba(139,13,30,0.15);
+    color: #e07070;
+    border: 1px solid rgba(139,13,30,0.3);
   }
-  .chip--yellow {
-    background: rgba(245,166,35,0.15);
-    color: var(--yellow);
-    border: 1px solid rgba(245,166,35,0.3);
+  .chip--red {
+    background: rgba(139,13,30,0.12);
+    color: #d06060;
+    border: 1px solid rgba(139,13,30,0.25);
   }
-  .accent-text { color: var(--yellow); }
+  .accent-text { color: var(--red-soft); }
 
   .slash-bar {
     width: 48px;
     height: 4px;
-    background: var(--yellow);
+    background: var(--red);
     margin-bottom: 1.4rem;
     clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
     border-radius: 2px;
   }
-  .slash-bar--dark { background: var(--navy); }
+  .slash-bar--dark { background: var(--red-mid); }
 
   /* ── scroll reveal ── */
   .reveal, .reveal-left, .reveal-right {
@@ -307,7 +291,6 @@ import Conocenos from '../components/Conocenos.astro';
   .reveal--delay1 { transition-delay: 0.12s; }
   .reveal--delay2 { transition-delay: 0.22s; }
   .reveal--delay3 { transition-delay: 0.34s; }
-
   .is-visible {
     opacity: 1 !important;
     transform: none !important;
@@ -337,18 +320,17 @@ import Conocenos from '../components/Conocenos.astro';
     inset: 0;
     background:
       linear-gradient(120deg,
-        rgba(6,15,30,0.92) 0%,
-        rgba(6,15,30,0.65) 55%,
-        rgba(6,15,30,0.3)  100%);
+        rgba(10,8,7,0.93) 0%,
+        rgba(20,16,12,0.68) 55%,
+        rgba(20,16,12,0.32) 100%);
     z-index: 1;
   }
 
-  /* SVG grain texture overlay */
   .hero__grain {
     position: absolute;
     inset: 0;
     z-index: 2;
-    opacity: 0.04;
+    opacity: 0.045;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 200px;
     pointer-events: none;
@@ -369,13 +351,13 @@ import Conocenos from '../components/Conocenos.astro';
     font-weight: 500;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
-    margin-bottom: 1.4rem;
+    color: rgba(240,220,200,0.38);
+    margin-bottom: 0.25rem;
   }
   .hero__line {
     flex: 0 0 32px;
     height: 1px;
-    background: rgba(255,255,255,0.25);
+    background: rgba(240,200,180,0.2);
   }
 
   .hero__title {
@@ -386,33 +368,33 @@ import Conocenos from '../components/Conocenos.astro';
     line-height: 1.0;
     letter-spacing: -2px;
     margin-bottom: 1rem;
+    margin-top: 1.5rem;
   }
   .hero__title em {
     font-style: normal;
-    color: var(--yellow);
+    color: var(--red-soft);
     position: relative;
   }
-  /* underline squiggle */
   .hero__title em::after {
     content: '';
     position: absolute;
-    bottom: -6px;
+    bottom: 2px;
     left: 0; right: 0;
     height: 4px;
-    background: var(--yellow);
+    background: var(--red);
     clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
-    opacity: 0.5;
+    opacity: 0.4;
   }
 
   .hero__sub {
+    padding-top: 10px;
     font-family: 'Epilogue', sans-serif;
     font-size: 0.8rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.38);
+    color: rgba(240,220,200,0.32);
   }
 
-  /* rotating badge */
   .hero__corner-badge {
     position: absolute;
     bottom: 3.5rem;
@@ -425,20 +407,19 @@ import Conocenos from '../components/Conocenos.astro';
   .hero__corner-ring {
     position: absolute;
     inset: 0;
-    color: rgba(245,166,35,0.5);
+    color: rgba(139,13,30,0.55);
     animation: spinSlow 12s linear infinite;
   }
   .hero__corner-text {
     font-family: 'Epilogue', sans-serif;
     font-size: 0.65rem;
     font-weight: 600;
-    color: rgba(255,255,255,0.5);
+    color: rgba(240,220,200,0.45);
     text-align: center;
     letter-spacing: 1px;
     line-height: 1.5;
   }
 
-  /* wave divider */
   .hero__wave {
     position: absolute;
     bottom: -1px; left: 0; right: 0;
@@ -449,7 +430,7 @@ import Conocenos from '../components/Conocenos.astro';
 
   /* ══ QUIÉNES SOMOS ══════════════════════════════════════════════════════ */
   .qs {
-    background: var(--navy);
+    background: var(--bg-section);
     padding: clamp(5rem, 10vw, 9rem) clamp(2rem, 8vw, 9rem);
   }
   .qs__inner {
@@ -461,9 +442,7 @@ import Conocenos from '../components/Conocenos.astro';
     margin: 0 auto;
   }
 
-  /* visual side */
   .qs__visual { position: relative; }
-
   .qs__img-outer {
     position: relative;
     padding-left: 2rem;
@@ -472,13 +451,14 @@ import Conocenos from '../components/Conocenos.astro';
     position: absolute;
     left: 0; top: 10%; bottom: 10%;
     width: 2px;
-    background: linear-gradient(to bottom, transparent, var(--yellow), transparent);
-    opacity: 0.5;
+    background: linear-gradient(to bottom, transparent, var(--red), transparent);
+    opacity: 0.45;
   }
   .qs__img-wrap {
     position: relative;
     overflow: hidden;
     border-radius: 14px;
+    border: 1px solid var(--border);
   }
   .qs__img {
     width: 100%;
@@ -486,33 +466,31 @@ import Conocenos from '../components/Conocenos.astro';
     object-fit: cover;
     display: block;
     transition: transform 0.6s var(--ease), filter 0.4s;
-    filter: brightness(0.88) contrast(1.05) saturate(0.9);
+    filter: brightness(0.85) contrast(1.05) saturate(0.85);
   }
   .qs__img-wrap:hover .qs__img {
     transform: scale(1.04);
-    filter: brightness(0.95) contrast(1.05) saturate(1);
+    filter: brightness(0.92) contrast(1.05) saturate(0.95);
   }
-  /* shine sweep on hover */
   .qs__img-shine {
     position: absolute;
     inset: 0;
-    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.12) 50%, transparent 70%);
+    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
     transform: translateX(-100%);
     transition: transform 0.7s ease;
     pointer-events: none;
   }
   .qs__img-wrap:hover .qs__img-shine { transform: translateX(100%); }
 
-  /* floating stat card */
   .qs__float-card {
     position: absolute;
     bottom: -1.8rem;
     right: -1.8rem;
-    background: var(--yellow);
-    color: var(--navy);
+    background: var(--red);
+    color: var(--white);
     border-radius: 14px;
     padding: 1.2rem 1.6rem;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(139,13,30,0.4);
     text-align: center;
     z-index: 2;
   }
@@ -522,6 +500,7 @@ import Conocenos from '../components/Conocenos.astro';
     font-size: 2.2rem;
     font-weight: 800;
     line-height: 1;
+    color: var(--white);
   }
   .qs__float-num sup { font-size: 1rem; vertical-align: super; }
   .qs__float-label {
@@ -530,21 +509,20 @@ import Conocenos from '../components/Conocenos.astro';
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    opacity: 0.7;
+    opacity: 0.75;
     line-height: 1.3;
+    color: var(--white);
   }
 
-  /* dots accent */
   .qs__dots {
     position: absolute;
     bottom: -2rem;
     left: -1.5rem;
     width: 120px; height: 120px;
-    color: rgba(245,166,35,0.2);
+    color: rgba(139,13,30,0.18);
     z-index: 0;
   }
 
-  /* text side */
   .qs__title {
     font-family: 'Syne', sans-serif;
     font-size: clamp(1.9rem, 3.2vw, 2.8rem);
@@ -563,13 +541,12 @@ import Conocenos from '../components/Conocenos.astro';
     margin-bottom: 2.5rem;
   }
 
-  /* stats */
   .qs__stats {
     display: flex;
     align-items: center;
     gap: 2rem;
     padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid var(--border-subtle);
   }
   .qs__stat { text-align: left; }
   .qs__stat-num {
@@ -577,13 +554,13 @@ import Conocenos from '../components/Conocenos.astro';
     font-family: 'Syne', sans-serif;
     font-size: 2.4rem;
     font-weight: 800;
-    color: var(--yellow);
+    color: var(--red-soft);
     line-height: 1;
   }
   .qs__stat-suffix {
     font-family: 'Syne', sans-serif;
     font-size: 1.4rem;
-    color: var(--yellow);
+    color: var(--red-soft);
     vertical-align: super;
     margin-left: 1px;
   }
@@ -600,145 +577,35 @@ import Conocenos from '../components/Conocenos.astro';
   .qs__stat-div {
     width: 1px;
     height: 48px;
-    background: rgba(255,255,255,0.1);
+    background: var(--border-subtle);
     flex-shrink: 0;
   }
-
-  /* ══ HISTORIA ════════════════════════════════════════════════════════════ */
-  .hist {
-    background: var(--cream);
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 600px;
-  }
-
-  .hist__img-wrap {
-    position: relative;
-    overflow: hidden;
-  }
-  .hist__img {
-    width: 100%;
-    height: 100%;
-    min-height: 500px;
-    object-fit: cover;
-    display: block;
-    filter: saturate(0.7) brightness(0.85);
-    transition: filter 0.5s;
-  }
-  .hist__img-wrap:hover .hist__img {
-    filter: saturate(1) brightness(0.9);
-  }
-  .hist__img-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, transparent 60%, var(--cream) 100%);
-    pointer-events: none;
-  }
-  .hist__img-label {
-    position: absolute;
-    bottom: 1.5rem; left: 1.5rem;
-    font-family: 'Epilogue', sans-serif;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
-    background: rgba(0,0,0,0.35);
-    backdrop-filter: blur(4px);
-    padding: 0.3rem 0.8rem;
-    border-radius: 4px;
-  }
-
-  /* overlapping card */
-  .hist__card {
-    padding: clamp(3rem, 6vw, 6rem) clamp(2rem, 5vw, 5rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-  }
-  .hist__title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.9rem, 3vw, 2.8rem);
-    font-weight: 800;
-    color: var(--navy);
-    line-height: 1.1;
-    letter-spacing: -0.5px;
-    margin-bottom: 0.8rem;
-  }
-  .hist__body {
-    font-family: 'Epilogue', sans-serif;
-    font-size: 0.97rem;
-    font-weight: 300;
-    color: #5a6a7e;
-    line-height: 1.85;
-    margin-bottom: 2.2rem;
-  }
-
-  /* vertical timeline */
-  .vtl { position: relative; padding-left: 1.5rem; }
-  .vtl__track {
-    position: absolute;
-    left: 5px; top: 8px; bottom: 8px;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--yellow), rgba(245,166,35,0.1));
-  }
-  .vtl__item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 0.55rem 0;
-    position: relative;
-    transition: transform 0.2s;
-  }
-  .vtl__item:hover { transform: translateX(4px); }
-  .vtl__dot {
-    width: 11px; height: 11px;
-    border-radius: 50%;
-    background: var(--cream);
-    border: 2px solid rgba(245,166,35,0.4);
-    flex-shrink: 0;
-    margin-top: 3px;
-    transition: background 0.2s, border-color 0.2s, transform 0.2s;
-  }
-  .vtl__dot--active,
-  .vtl__item:hover .vtl__dot {
-    background: var(--yellow);
-    border-color: var(--yellow);
-    transform: scale(1.25);
-    box-shadow: 0 0 0 4px rgba(245,166,35,0.2);
-  }
-  .vtl__item strong {
-    display: block;
-    font-family: 'Syne', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--navy);
-  }
-  .vtl__item span {
-    font-family: 'Epilogue', sans-serif;
-    font-size: 0.83rem;
-    color: #8a97ab;
-  }
-  .vtl__item--active strong { color: var(--yellow); }
 
   /* ══ MVV ══════════════════════════════════════════════════════════════════ */
   .mvv {
-    background: var(--navy);
+    background: var(--bg-base);
     padding: clamp(5rem, 10vw, 9rem) clamp(2rem, 8vw, 9rem);
     position: relative;
     overflow: hidden;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
   }
 
-  /* hex pattern background */
   .mvv__bg-hex {
     position: absolute;
     inset: 0;
-    opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V17L28 1l28 16v33z' fill='none' stroke='%23fff' stroke-width='1'/%3E%3Cpath d='M28 100L0 84V51l28-16 28 16v33z' fill='none' stroke='%23fff' stroke-width='1'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='https://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V17L28 1l28 16v33z' fill='none' stroke='%23fff' stroke-width='1'/%3E%3Cpath d='M28 100L0 84V51l28-16 28 16v33z' fill='none' stroke='%23fff' stroke-width='1'/%3E%3C/svg%3E");
     background-size: 56px 100px;
+    pointer-events: none;
+  }
+
+  /* warm glow behind MVV section */
+  .mvv::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(139,13,30,0.06) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -768,46 +635,41 @@ import Conocenos from '../components/Conocenos.astro';
   }
 
   .mvv__card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.07);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 20px;
     padding: 2.5rem 2rem 2rem;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 0;
     transition: transform 0.3s var(--ease), border-color 0.3s, box-shadow 0.3s;
     cursor: default;
   }
   .mvv__card:hover {
     transform: translateY(-8px);
-    border-color: rgba(245,166,35,0.25);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    border-color: var(--border-hover);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(139,13,30,0.2);
   }
 
-  /* glow blob */
   .mvv__card-glow {
     position: absolute;
     width: 200px; height: 200px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
     top: -60px; right: -60px;
     pointer-events: none;
-    transition: opacity 0.3s;
   }
-  .mvv__card-glow--yellow {
-    background: radial-gradient(circle, rgba(245,166,35,0.15) 0%, transparent 70%);
+  .mvv__card-glow--red {
+    background: radial-gradient(circle, rgba(139,13,30,0.2) 0%, transparent 70%);
   }
-  .mvv__card:hover .mvv__card-glow { opacity: 1.5; }
 
-  /* top accent line animation */
   .mvv__card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
-    background: var(--yellow);
+    background: var(--red);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s var(--ease);
@@ -815,16 +677,15 @@ import Conocenos from '../components/Conocenos.astro';
   }
   .mvv__card:hover::before { transform: scaleX(1); }
 
-  /* featured card */
   .mvv__card--featured {
-    background: linear-gradient(145deg, rgba(245,166,35,0.12) 0%, rgba(245,166,35,0.04) 100%);
-    border-color: rgba(245,166,35,0.2);
+    background: linear-gradient(145deg, rgba(139,13,30,0.14) 0%, var(--bg-card) 100%);
+    border-color: rgba(139,13,30,0.3);
   }
   .mvv__card--featured::before { transform: scaleX(1); }
 
   .mvv__icon {
     width: 44px; height: 44px;
-    color: var(--yellow);
+    color: var(--red-soft);
     margin-bottom: 1.6rem;
     transition: transform 0.3s var(--ease);
   }
@@ -836,12 +697,12 @@ import Conocenos from '../components/Conocenos.astro';
     font-family: 'Syne', sans-serif;
     font-size: 3.5rem;
     font-weight: 800;
-    color: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.03);
     line-height: 1;
     pointer-events: none;
     transition: color 0.3s;
   }
-  .mvv__card:hover .mvv__card-num { color: rgba(255,255,255,0.07); }
+  .mvv__card:hover .mvv__card-num { color: rgba(255,255,255,0.065); }
 
   .mvv__card h3 {
     font-family: 'Syne', sans-serif;
@@ -859,7 +720,6 @@ import Conocenos from '../components/Conocenos.astro';
     flex: 1;
   }
 
-  /* valores list */
   .mvv__values {
     list-style: none; padding: 0;
     display: flex; flex-direction: column;
@@ -874,15 +734,16 @@ import Conocenos from '../components/Conocenos.astro';
     align-items: center;
     gap: 0.65rem;
     padding: 0.55rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid var(--border-subtle);
     transition: color 0.2s, padding-left 0.2s;
     cursor: default;
   }
   .mvv__values li:last-child { border-bottom: none; }
   .mvv__values li:hover { color: var(--white); padding-left: 4px; }
   .mvv__val-arrow {
-    color: var(--yellow);
+    color: var(--red-soft);
     font-size: 0.75rem;
+    font-style: normal;
     transition: transform 0.2s;
   }
   .mvv__values li:hover .mvv__val-arrow { transform: translateX(4px); }
@@ -890,7 +751,7 @@ import Conocenos from '../components/Conocenos.astro';
   .mvv__card-footer {
     margin-top: 1.8rem;
     padding-top: 1.2rem;
-    border-top: 1px solid rgba(255,255,255,0.07);
+    border-top: 1px solid var(--border-subtle);
   }
   .mvv__card-tag {
     font-family: 'Epilogue', sans-serif;
@@ -898,9 +759,153 @@ import Conocenos from '../components/Conocenos.astro';
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(240,220,200,0.18);
   }
-  .mvv__card-tag--yellow { color: rgba(245,166,35,0.6); }
+  .mvv__card-tag--red { color: rgba(200,16,46,0.55); }
+
+  /* ══ CTA ══════════════════════════════════════════════════════════════════ */
+  .cta {
+    text-align: center;
+    padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 3rem);
+    background-color: var(--bg-card);
+    background-image:
+      linear-gradient(rgba(255,220,180,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,220,180,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border-top: 1px solid var(--border-subtle);
+    position: relative;
+    overflow: hidden;
+  }
+  /* red glow bottom */
+  .cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 60% at 50% 100%, rgba(139,13,30,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta__inner_reveal { position: relative; z-index: 1; }
+
+  .cta__title {
+    display: inline-block;
+    font-family: 'Epilogue', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #d06060;
+    border: 1px solid rgba(139,13,30,0.3);
+    padding: 0.3rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    background: rgba(139,13,30,0.08);
+  }
+
+  .cta__heading {
+    font-family: 'Bebas Neue', 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    letter-spacing: 0.04em;
+    color: var(--white);
+    line-height: 1.05;
+    margin: 0 auto 1rem;
+  }
+  .cta__heading em {
+    font-style: normal;
+    color: var(--red-soft);
+  }
+
+  .medio {
+    font-family: 'Epilogue', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    color: var(--muted);
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+    line-height: 1.6;
+    margin: 0 auto 2.5rem;
+    max-width: 540px;
+    display: block;
+  }
+
+  .cta__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .cta__inner_reveal button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.85rem 2rem;
+    font-family: 'Epilogue', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.18s;
+    width: auto;
+    min-width: 200px;
+    height: 50px;
+    white-space: nowrap;
+  }
+
+  .btn-cotizacion {
+    background: var(--red) !important;
+    color: var(--white) !important;
+    border: 2px solid var(--red) !important;
+    box-shadow: 0 0 20px rgba(139,13,30,0.3) !important;
+  }
+  .btn-cotizacion:hover {
+    background: var(--red-soft) !important;
+    border-color: var(--red-soft) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 0 32px rgba(139,13,30,0.5) !important;
+  }
+
+  .cta__inner_reveal button:not(.btn-cotizacion) {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(240,220,200,0.18);
+  }
+  .cta__inner_reveal button:not(.btn-cotizacion):hover {
+    background: rgba(240,220,200,0.05);
+    border-color: rgba(240,220,200,0.38);
+    transform: translateY(-3px);
+  }
+
+  .cta__inner_reveal button h2 {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    color: inherit;
+    margin: 0; padding: 0;
+    line-height: 1;
+  }
+
+  .cromada {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem 2rem;
+    padding-top: 1.25rem;
+  }
+  .cromada p {
+    margin: 0;
+    font-family: 'Epilogue', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(240,220,200,0.3);
+  }
 
   /* ── ANIMATIONS ── */
   @keyframes spinSlow {
@@ -909,203 +914,60 @@ import Conocenos from '../components/Conocenos.astro';
   }
 
   /* ── RESPONSIVE ── */
-
-/* ── Tablet landscape (≤1100px) ── */
-@media (max-width: 1100px) {
-  .qs__inner {
-    gap: 4rem;
-  }
-  .mvv__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .mvv__card--featured {
-    grid-column: span 2;
-  }
-}
-
-/* ── Tablet portrait (≤900px) ── */
-@media (max-width: 900px) {
-  /* Hero */
-  .hero {
-    height: auto;
-    min-height: 340px;
-    padding: 5rem 0 2rem;
-  }
-  .hero__inner {
-    padding: 0 clamp(1.5rem, 5vw, 3rem);
-  }
-  .hero__title {
-    font-size: clamp(2.4rem, 8vw, 4.5rem);
-    letter-spacing: -1px;
-  }
-  .hero__corner-badge {
-    bottom: 2rem;
-    right: clamp(1.5rem, 4vw, 3rem);
+  @media (max-width: 1100px) {
+    .qs__inner { gap: 4rem; }
+    .mvv__grid { grid-template-columns: repeat(2, 1fr); }
+    .mvv__card--featured { grid-column: span 2; }
   }
 
-  /* Quiénes Somos */
-  .qs {
-    padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 3rem);
-  }
-  .qs__inner {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  .qs__img {
-    height: 340px;
-  }
-  .qs__float-card {
-    bottom: 1rem;
-    right: 1rem;
-  }
-  .qs__dots {
-    bottom: -1rem;
-    left: -0.5rem;
+  @media (max-width: 900px) {
+    .hero { height: auto; min-height: 340px; padding: 5rem 0 2rem; }
+    .hero__inner { padding: 0 clamp(1.5rem, 5vw, 3rem); }
+    .hero__title { font-size: clamp(2.4rem, 8vw, 4.5rem); letter-spacing: -1px; }
+    .hero__corner-badge { bottom: 2rem; right: clamp(1.5rem, 4vw, 3rem); }
+    .qs { padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 3rem); }
+    .qs__inner { grid-template-columns: 1fr; gap: 3rem; }
+    .qs__img { height: 340px; }
+    .qs__float-card { bottom: 1rem; right: 1rem; }
+    .mvv { padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 3rem); }
+    .mvv__grid { grid-template-columns: 1fr; gap: 1rem; }
+    .mvv__card--featured { grid-column: span 1; }
   }
 
-  /* Historia */
-  .hist {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
-  .hist__img-wrap {
-    min-height: 280px;
-    max-height: 360px;
-  }
-  .hist__img {
-    min-height: 280px;
-    max-height: 360px;
-  }
-  .hist__img-overlay {
-    background: linear-gradient(to bottom, transparent 50%, var(--cream) 100%);
-  }
-  .hist__card {
-    padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 5vw, 3rem);
-  }
-
-  /* MVV */
-  .mvv {
-    padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 3rem);
-  }
-  .mvv__grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  .mvv__card--featured {
-    grid-column: span 1;
-  }
-}
-
-/* ── Mobile (≤600px) ── */
-@media (max-width: 600px) {
-  /* Hero */
-  .hero {
-    min-height: 300px;
-    padding: 4rem 0 1.5rem;
-  }
-  .hero__title {
-    font-size: clamp(2rem, 10vw, 3rem);
-    letter-spacing: -0.5px;
-  }
-  .hero__sub {
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-  }
-  .hero__corner-badge {
-    display: none;
-  }
-  .hero__wave svg {
-    height: 36px;
+  @media (max-width: 600px) {
+    .hero { min-height: 300px; padding: 4rem 0 1.5rem; }
+    .hero__title { font-size: clamp(2rem, 10vw, 3rem); letter-spacing: -0.5px; }
+    .hero__sub { font-size: 0.7rem; letter-spacing: 2px; }
+    .hero__corner-badge { display: none; }
+    .hero__wave svg { height: 36px; }
+    .qs__img { height: 260px; }
+    .qs__img-outer { padding-left: 1rem; }
+    .qs__float-card { padding: 0.9rem 1.2rem; bottom: 0.75rem; right: 0.75rem; border-radius: 10px; }
+    .qs__float-num { font-size: 1.7rem; }
+    .qs__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 1rem; align-items: start; }
+    .qs__stat-div { display: none; }
+    .qs__stat:last-child { grid-column: span 2; text-align: center; }
+    .mvv__grid { gap: 0.85rem; }
+    .mvv__card { padding: 2rem 1.5rem 1.5rem; }
+    .mvv__title { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+    .qs__title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+    .cta__heading { font-size: clamp(2.4rem, 12vw, 3.5rem); }
+    .medio { font-size: 0.9rem; }
+    .cta__inner_reveal button { min-width: 160px; width: 100%; max-width: 320px; }
+    .cta__buttons { flex-direction: column; align-items: center; }
+    .cromada { flex-direction: column; align-items: center; gap: 0.6rem; }
   }
 
-  /* Quiénes Somos */
-  .qs__img {
-    height: 260px;
+  @media (max-width: 380px) {
+    .cta__heading { font-size: clamp(2rem, 13vw, 2.8rem); }
   }
-  .qs__img-outer {
-    padding-left: 1rem;
-  }
-  .qs__float-card {
-    padding: 0.9rem 1.2rem;
-    bottom: 0.75rem;
-    right: 0.75rem;
-    border-radius: 10px;
-  }
-  .qs__float-num {
-    font-size: 1.7rem;
-  }
-  .qs__stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem 1rem;
-    align-items: start;
-  }
-  .qs__stat-div {
-    display: none;
-  }
-  .qs__stat:last-child {
-    grid-column: span 2;
-    text-align: center;
-  }
-
-  /* Historia */
-  .hist__img-wrap {
-    min-height: 220px;
-    max-height: 280px;
-  }
-  .hist__img {
-    min-height: 220px;
-    max-height: 280px;
-  }
-  .hist__card {
-    padding: 2rem 1.5rem;
-  }
-  .vtl {
-    padding-left: 1.2rem;
-  }
-
-  /* MVV */
-  .mvv__grid {
-    gap: 0.85rem;
-  }
-  .mvv__card {
-    padding: 2rem 1.5rem 1.5rem;
-  }
-  .mvv__title {
-    font-size: clamp(1.8rem, 8vw, 2.5rem);
-  }
-
-  /* Sección Quiénes Somos título */
-  .qs__title {
-    font-size: clamp(1.6rem, 7vw, 2.2rem);
-  }
-
-  /* Historia título */
-  .hist__title {
-    font-size: clamp(1.6rem, 7vw, 2.2rem);
-  }
-}
-
-/* ── Mobile pequeño (≤380px) ── */
-@media (max-width: 380px) {
-  .qs__stats {
-    grid-template-columns: 1fr;
-  }
-  .qs__stat:last-child {
-    grid-column: span 1;
-    text-align: left;
-  }
-  .hero__title {
-    font-size: clamp(1.8rem, 11vw, 2.5rem);
-  }
-}
 </style>
 
 <!-- ══ SCRIPT ════════════════════════════════════════════════════════════ -->
 <script is:inline>
 (function () {
 
-  /* ── Scroll reveal ──────────────────────────────────────────────────── */
+  /* ── Scroll reveal ── */
   const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -1117,16 +979,15 @@ import Conocenos from '../components/Conocenos.astro';
   }, { threshold: 0.15 });
   revealEls.forEach(el => revealObs.observe(el));
 
-  /* ── Parallax hero ─────────────────────────────────────────────────── */
+  /* ── Parallax hero ── */
   const parallax = document.getElementById('hero-parallax');
   if (parallax) {
     window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      parallax.style.transform = `translateY(${y * 0.35}px)`;
+      parallax.style.transform = `translateY(${window.scrollY * 0.35}px)`;
     }, { passive: true });
   }
 
-  /* ── Count-up numbers ──────────────────────────────────────────────── */
+  /* ── Count-up numbers ── */
   const counters = document.querySelectorAll('.qs__stat-num[data-target]');
   const countObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {

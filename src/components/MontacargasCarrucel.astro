@@ -3,10 +3,9 @@ import type { Montacargas } from '../interfaces/montacargas';
 const respuesta = await fetch('http://localhost:4321/api/montacargas');
 const montacargas: Montacargas[] = await respuesta.json();
 ---
-
-<section id="mc-root">
+<section id="mc-root" class="fondo-diagonal fondo-particulas">
   <div class="mc-header">
-    <h2>Montacargas <span class="mc-dorado">disponibles</span></h2>
+    <h1>Montacargas <span class="mc-acento">disponibles</span></h1>
   </div>
 
   <div class="mc-outer">
@@ -43,85 +42,84 @@ const montacargas: Montacargas[] = await respuesta.json();
       <button class="mc-dot" data-dot={String(i)}></button>
     ))}
   </div>
-   <a href="../Catalogo/#buscar" style="text-decoration: none;"><button class="bttn-cat">Ver catalogo</button></a>
-</section>
 
+  <a href="../Catalogo/#buscar" style="text-decoration: none;">
+    <button class="bttn-cat">Ver catálogo</button>
+  </a>
+<canvas id="sparks"></canvas>
+</section>
+<div class="separador-ola">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#0c0c0c"/>
+  </svg>
+</div>
 <style is:global>
 
-  #mc-root {
+ #mc-root {
     padding: 4rem 2rem !important;
-    background: #0a1628 !important;
-    color: white !important;
-    font-family: 'Segoe UI', sans-serif !important;
+    /*background: #4d4c5a !important;*/
+     color: rgba(161, 53, 53, 0.408) !important; 
+    font-family: 'DM Sans', 'Century Gothic', sans-serif !important;
     box-sizing: border-box !important;
-  overflow: hidden !important; /* ← agregar */
-  max-width: 100% !important;  /* ← agregar */
-  /* resto igual */
-}
+    overflow: hidden !important;
+    max-width: 100% !important;
+    color: #0c0c0c;
   }
+
   #mc-root * {
     box-sizing: border-box !important;
   }
+
+  /* ── HEADER ── */
   #mc-root .mc-header {
     text-align: center !important;
-    margin-bottom: 3rem !important;
-  }
-  #mc-root .mc-etiqueta {
-    display: inline-block !important;
-    font-size: 0.7rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.2em !important;
-    color: #f59e0b !important;
-    border: 1px solid rgba(245,158,11,0.4) !important;
-    border-radius: 999px !important;
-    padding: 0.3rem 1rem !important;
-    margin-bottom: 1rem !important;
-    background: rgba(245,158,11,0.08) !important;
-  }
-  #mc-root .mc-header h2 {
-    font-size: 2.2rem !important;
-    font-weight: 800 !important;
-    margin: 0 !important;
-    color: white !important;
-    letter-spacing: -0.02em !important;
-  }
-  #mc-root .mc-dorado {
-    color: #f59e0b !important;
+    margin-bottom: 0.5rem !important;
   }
 
-  /* Contenedor externo: botones + clip alineados */
+  #mc-root .mc-header h1 {
+    font-size: 3rem !important;
+    font-weight: 800 !important;
+    margin: 0 !important;
+    color: rgb(249, 246, 246) !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  #mc-root .mc-acento {
+    color: #8B0D1E !important;
+  }
+
+  /* ── LAYOUT ── */
   #mc-root .mc-outer {
     position: relative !important;
     width: 100% !important;
     max-width: 900px !important;
-    margin: 0 auto !important;    /* ← centra el bloque */
+    margin: 0 auto !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-}
-  /* Este div hace el fade en los bordes SIN afectar los botones */
+  }
+
   #mc-root .mc-clip {
     position: relative !important;
-    width: 100% !important;       /* ← ocupa el ancho del padre */
+    width: 100% !important;
     height: 480px !important;
     overflow: hidden !important;
     -webkit-mask-image: linear-gradient(
       to right,
       transparent 0%,
-      black 15%,
-      black 85%,
+      rgb(253, 238, 238) 15%,
+      rgb(249, 241, 241) 85%,
       transparent 100%
     ) !important;
     mask-image: linear-gradient(
       to right,
       transparent 0%,
-      black 15%,
-      black 85%,
+      rgb(239, 229, 229) 15%,
+      rgb(239, 229, 229) 85%,
       transparent 100%
     ) !important;
-}
+  }
 
-  /* Stage ocupa todo el clip y permite overflow para las cards laterales */
   #mc-root .mc-stage {
     position: absolute !important;
     top: 0 !important;
@@ -131,14 +129,15 @@ const montacargas: Montacargas[] = await respuesta.json();
     overflow: visible !important;
   }
 
+  /* ── CARD ── */
   #mc-root .mc-card {
     position: absolute !important;
     width: 260px !important;
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
-    background: linear-gradient(145deg, #1a3a6b 0%, #112952 100%) !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
+    background: linear-gradient(145deg, #3d2020 0%, #2a1515 100%) !important;
+    border: 1px solid rgba(139, 13, 30, 0.25) !important;
     border-radius: 20px !important;
     overflow: hidden !important;
     cursor: pointer !important;
@@ -147,85 +146,93 @@ const montacargas: Montacargas[] = await respuesta.json();
       opacity   0.55s ease,
       box-shadow 0.55s ease !important;
   }
+
   #mc-root .mc-card-img {
     width: 100% !important;
     height: 150px !important;
-    background: linear-gradient(135deg, #e8eef5, #d0dce8) !important;
+    background: linear-gradient(135deg, #e8e0dc, #d4c8c2) !important;
     overflow: hidden !important;
   }
+
   #mc-root .mc-card-img img {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
     display: block !important;
   }
+
   #mc-root .mc-card-body {
     padding: 1.1rem 1.3rem 1.3rem !important;
   }
+
   #mc-root .mc-card-body h3 {
     font-size: 1.05rem !important;
     font-weight: 800 !important;
     margin: 0 0 0.7rem 0 !important;
     color: white !important;
   }
+
+  /* ── TAGS ── */
   #mc-root .mc-tags {
     display: flex !important;
     gap: 0.4rem !important;
     flex-wrap: wrap !important;
     margin-bottom: 0.5rem !important;
   }
+
   #mc-root .mc-tag {
     font-size: 0.72rem !important;
-    background: rgba(255,255,255,0.08) !important;
-    border: 1px solid rgba(255,255,255,0.12) !important;
+    background: rgba(255,255,255,0.07) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
     border-radius: 999px !important;
     padding: 0.2rem 0.6rem !important;
-    color: rgba(255,255,255,0.8) !important;
+    color: rgba(255,255,255,0.75) !important;
   }
+
   #mc-root .mc-tag-tipo {
-    color: #f59e0b !important;
-    border-color: rgba(245,158,11,0.3) !important;
-    background: rgba(245,158,11,0.08) !important;
+    color: #c2b09a !important;
+    border-color: rgba(111, 79, 55, 0.4) !important;
+    background: rgba(111, 79, 55, 0.12) !important;
   }
+
+  /* ── BADGE ── */
   #mc-root .mc-badge {
     display: inline-block !important;
     font-size: 0.68rem !important;
     font-weight: 700 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.1em !important;
-    color: #60a5fa !important;
+    color: #c2b5ac !important;
     margin-bottom: 0.7rem !important;
   }
-  #mc-root .mc-precio {
-    font-size: 1.5rem !important;
-    font-weight: 900 !important;
-    color: #f59e0b !important;
-    margin: 0 0 0.9rem 0 !important;
-    line-height: 1 !important;
-  }
-  #mc-root .mc-precio span {
-    font-size: 0.85rem !important;
-    font-weight: 500 !important;
-    color: rgba(255,255,255,0.5) !important;
-  }
+
+  /* ── CTA CARD ── */
   #mc-root .mc-cta {
     width: 100% !important;
-    background: linear-gradient(90deg, #f59e0b, #d97706) !important;
+    background: #8B0D1E !important;
     border: none !important;
     border-radius: 10px !important;
-    color: #0a1628 !important;
+    color: #ffffff !important;
     font-size: 0.82rem !important;
     font-weight: 800 !important;
     padding: 0.55rem 1rem !important;
     cursor: pointer !important;
     display: block !important;
+    transition: background 0.2s ease, transform 0.15s ease !important;
   }
- #mc-root .mc-btn {
+
+  #mc-root .mc-cta:hover {
+    background: #a50f23 !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* ── BOTONES NAV ── */
+  #mc-root .mc-btn {
     position: absolute !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    background: rgba(255,255,255,0.07) !important;
-    border: 1px solid rgba(255,255,255,0.12) !important;
+    background: rgba(139, 13, 30, 0.12) !important;
+    border: 1px solid rgba(139, 13, 30, 0.3) !important;
     color: white !important;
     font-size: 1.1rem !important;
     width: 46px !important;
@@ -233,67 +240,179 @@ const montacargas: Montacargas[] = await respuesta.json();
     border-radius: 50% !important;
     cursor: pointer !important;
     z-index: 30 !important;
-    transition: background 0.2s !important;
-}
-  #mc-root .mc-btn:hover {
-    background: rgba(245,158,11,0.2) !important;
-    border-color: rgba(245,158,11,0.5) !important;
-    color: #f59e0b !important;
+    transition: background 0.2s, border-color 0.2s, color 0.2s !important;
   }
+
+  #mc-root .mc-btn:hover {
+    background: rgba(139, 13, 30, 0.35) !important;
+    border-color: rgba(139, 13, 30, 0.7) !important;
+    color: #ffffff !important;
+  }
+
+  #mc-root #btnIzq {
+    left: 8px !important;
+  }
+
+  #mc-root #btnDer {
+    right: 8px !important;
+  }
+
+  /* ── DOTS ── */
   #mc-root .mc-dots {
     display: flex !important;
     justify-content: center !important;
     gap: 0.5rem !important;
-    margin-top: 1.5rem !important;
   }
+
   #mc-root .mc-dot {
     width: 8px !important;
     height: 8px !important;
     border-radius: 50% !important;
     border: none !important;
-    background: rgba(255,255,255,0.2) !important;
+    background: rgba(255,255,255,0.15) !important;
     cursor: pointer !important;
     padding: 0 !important;
     transition: background 0.3s, width 0.3s !important;
   }
+
   #mc-root .mc-dot.activo {
-    background: #f59e0b !important;
+    background: #8B0D1E !important;
     width: 24px !important;
     border-radius: 4px !important;
   }
-  #mc-root #btnIzq {
-    left: 8px !important;
-}
 
-#mc-root #btnDer {
-    right: 8px !important;
-}
-
-.bttn-cat {
+  /* ── BOTÓN CATÁLOGO ── */
+  .bttn-cat {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
     margin: 1.5rem auto 0 auto !important;
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    background: #8B0D1E !important;
     height: 44px !important;
     width: 160px !important;
-    border-radius: 22px !important;
-    border: none !important;
+    border-radius: 8px !important;
+    border: 2px solid rgba(139, 13, 30, 0.5) !important;
     text-decoration: none !important;
     color: white !important;
-    font-weight: 600 !important;
-    font-size: 0.95rem !important;
-    letter-spacing: 0.03em !important;
-    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4) !important;
-    transition: all 0.3s ease !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 4px 15px rgba(139, 13, 30, 0.35) !important;
+    transition: all 0.25s ease !important;
     cursor: pointer !important;
+  }
+
+  .bttn-cat:hover {
+    background: #a50f23 !important;
+    box-shadow: 0 6px 20px rgba(139, 13, 30, 0.55) !important;
+    transform: translateY(-2px) !important;
+  }
+  /*-Fondo-*/
+  /*
+  .fondo-grilla {
+  background-color: #0d0d0d;
+  background-image:
+    linear-gradient(rgba(180, 20, 20, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180, 20, 20, 0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridshift 6s linear infinite;
+  position: relative;
 }
 
-.bttn-cat:hover {
-    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
-    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6) !important;
-    transform: translateY(-2px) !important;
+.fondo-grilla::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 30%, rgba(0, 0, 0, 0.7) 100%);
+  pointer-events: none;
 }
+
+@keyframes gridshift {
+  0%   { background-position: 0 0, 0 0; }
+  100% { background-position: 40px 40px, 40px 40px; }
+}*/
+
+/*fondo-particulas*/
+
+#sparks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Asegúrate que tu contenido quede encima */
+.fondo-particulas > *:not(canvas) {
+  position: relative;
+  z-index: 1;
+}
+/*fondo-diagonal*/
+.fondo-diagonal {
+  background-color: #111111e7;
+  position: relative;
+  overflow: hidden;
+}
+
+.fondo-diagonal::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: repeating-linear-gradient(
+    60deg,
+    transparent,
+    transparent 18px,
+    rgba(180, 20, 20, 0.08) 18px,
+    rgba(180, 20, 20, 0.08) 20px
+  );
+  animation: diagmove 4s linear infinite;
+  pointer-events: none;
+}
+
+.fondo-diagonal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(180, 20, 20, 0.3) 0%, transparent 70%);
+  animation: pulse 3s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* Tu contenido debe ir con z-index para quedar encima */
+.fondo-diagonal > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes diagmove {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(40px); }
+}
+
+@keyframes pulse {
+  0%   { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/*separador-ola*/
+.separador-ola {
+  display: block;
+  width: 100%;
+  margin-top: -2px;
+  line-height: 0;
+  z-index: 2;
+  position: relative;
+}
+
+.separador-ola svg {
+  width: 100%;
+  height: 20px;
+  display: block;
+}
+
+
 </style>
 
 <script is:inline>
@@ -340,7 +459,7 @@ const montacargas: Montacargas[] = await respuesta.json();
       card.style.setProperty(
         'box-shadow',
         cfg.zIndex === 10
-          ? '0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(245,158,11,0.2)'
+          ? '0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(139,13,30,0.35)'
           : '0 8px 24px rgba(0,0,0,0.4)',
         'important'
       );
@@ -370,4 +489,49 @@ const montacargas: Montacargas[] = await respuesta.json();
   update();
   startAuto();
 })();
+
+const canvas = document.getElementById('sparks');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+const particles = Array.from({ length: 50 }, () => ({
+  x: Math.random() * canvas.width,
+  y: canvas.height + Math.random() * 40,
+  r: Math.random() * 2 + 0.5,
+  speed: Math.random() * 0.6 + 0.3,
+  opacity: Math.random(),
+  color: Math.random() > 0.5 ? '#cc2200' : '#ff6622'
+}));
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach(p => {
+    p.y -= p.speed;
+    p.opacity -= 0.003;
+
+    if (p.y < -5 || p.opacity <= 0) {
+      p.y = canvas.height + 5;
+      p.x = Math.random() * canvas.width;
+      p.opacity = Math.random() * 0.7 + 0.3;
+    }
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.globalAlpha = p.opacity;
+    ctx.fill();
+  });
+
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(animate);
+}
+
+animate();
 </script>

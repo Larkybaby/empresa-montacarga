@@ -4,7 +4,7 @@
 
 <div class="Footer">
     <div class="copyright">
-    <h4>®Sabokar 2026 Todos los derechos reservados</h4>
+    <h4>®2026 Sabokar. Todos los derechos reservados.</h4>
     </div>
     <div class=links>
     <a href="/Terminos-y-Condiciones">Terminos y Condiciones</a>
@@ -13,8 +13,21 @@
 </div>
 
 <style>
+    :root {
+    --navy:        #0e1e38;
+    --navy-mid:    #1b2f52;
+    --yellow:      #efb810;
+    --yellow-glow: rgba(245,166,35,0.35);
+    --white:       #ffffff;
+    --off-white:   #f6f5f0;
+    --muted:       #8a97ab;
+    --border:      #dde3ec;
+    --red:         #8B0D1E;
+    --red-mid:     #970014;
+    --golden:      #ffffff;
+  }
 .Footer{
-    background: linear-gradient(90deg, #1B263B, #223A5E);
+    background: linear-gradient(90deg, var(--red), var(--red-mid));
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     color: white;
     text-align: center;
@@ -55,7 +68,7 @@
     left: 50%;
     transform: translateX(-50%);
     bottom: -4px;
-    background: var(--yellow);
+    background: var(--golden);
     border-radius: 2px;
     transition: width 0.25s ease;
 }

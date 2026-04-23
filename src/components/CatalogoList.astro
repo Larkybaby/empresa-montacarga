@@ -6,11 +6,17 @@ const montacargas: Montacargas[] = await respuesta.json();
 
 <section class="catalogo-lista" id="buscar">
 
+  <!-- Borde superior decorativo -->
+  <div class="top-border-deco" aria-hidden="true">
+    <div class="top-border-shimmer"></div>
+  </div>
+
   <!-- Header con buscador -->
   <div class="catalogo-header">
     <div class="header-text">
       <span class="label-top">Nuestro Inventario</span>
       <h1 class="titulo-seccion">Catálogo de <em>Montacargas</em></h1>
+      <div class="header-divider" aria-hidden="true"></div>
     </div>
     <div class="buscador">
       <div class="buscador-inner">
@@ -18,7 +24,7 @@ const montacargas: Montacargas[] = await respuesta.json();
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
         <input type="text" placeholder="Buscar por modelo..." id="searchInput" autocomplete="off" />
-        <button class="clear-btn" id="clearBtn" aria-label="Limpiar búsqueda">
+        <button class="clear-btn" id="clearBtn" aria-label="Limpiar busqueda">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M18 6 6 18M6 6l12 12"/>
           </svg>
@@ -52,20 +58,25 @@ const montacargas: Montacargas[] = await respuesta.json();
       >
         <div class="img-wrapper">
           <img src={m.imagen} alt={m.modelo} class="catalogo-img" loading="lazy" />
+          <div class="img-overlay" aria-hidden="true"></div>
           <span class={`badge badge--${m.para.toLowerCase()}`}>{m.para}</span>
         </div>
         <div class="card-body">
           <h3 class="card-modelo">{m.modelo}</h3>
           <div class="card-meta">
             <span class="meta-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
+              </svg>
               {m.capacidad}
             </span>
           </div>
           <div class="botones">
             <a href={`../${m.id}`} class="btn-ver">
               Ver detalles
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
             </a>
             <a
               class="btn-whatsapp"
@@ -74,7 +85,6 @@ const montacargas: Montacargas[] = await respuesta.json();
               rel="noopener noreferrer"
               aria-label={`Contactar por WhatsApp ${m.modelo}`}
             >
-              <!-- Ícono WhatsApp SVG oficial -->
               <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
               </svg>
@@ -86,13 +96,13 @@ const montacargas: Montacargas[] = await respuesta.json();
     ))}
   </div>
 
-  <!-- Estado vacío -->
+  <!-- Estado vacio -->
   <div class="empty-state" id="emptyState" style="display:none">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
       <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M8 11h6M11 8v6"/>
     </svg>
     <p>No se encontraron montacargas</p>
-    <span>Intenta con otro término o categoría</span>
+    <span>Intenta con otro termino o categoria</span>
   </div>
 
 </section>
@@ -100,21 +110,135 @@ const montacargas: Montacargas[] = await respuesta.json();
 <style>
   /* ── Variables ─────────────────────────────── */
   .catalogo-lista {
-    --navy:       #0b1120;
-    --navy-mid:   #111827;
-    --navy-card:  #131e2e;
-    --yellow:     #f5a623;
-    --yellow-dim: rgba(245,166,35,0.15);
-    --white:      #f0f4ff;
-    --muted:      rgba(240,244,255,0.45);
-    --border:     rgba(240,244,255,0.08);
-    --radius:     14px;
+    --rojo:        #8b0d1e;
+    --rojo-hover:  #a81025;
+    --rojo-dim:    rgba(139, 13, 30, 0.15);
+    --rojo-glow:   rgba(139, 13, 30, 0.35);
+    --cafe:        #6F4F37;
+    --cafe-dim:    rgba(111, 79, 55, 0.20);
+    --carbon:      #454545;
+    --carbon-dark: #252525;
+    --carbon-mid:  #2e2e2e;
+    --carbon-card: #333333;
+    --blanco:      #FFFFFF;
+    --muted:       rgba(255, 255, 255, 0.45);
+    --border:      rgba(255, 255, 255, 0.08);
+    --radius:      14px;
 
-    padding: 56px 40px 80px;
-    background: var(--navy);
-    color: var(--white);
+    position: relative;
+    padding: 0 40px 80px;
+    color: var(--blanco);
     font-family: 'DM Sans', 'Century Gothic', sans-serif;
     min-height: 100vh;
+    overflow: hidden;
+
+    /* Fondo base carbon */
+    background-color: var(--carbon-dark);
+
+    /* Gradientes de atmosfera: rojo esquina superior izq + cafe diagonal inferior der */
+    background-image:
+      radial-gradient(ellipse 70% 45% at 0% 0%,   rgba(139,13,30,0.18)  0%, transparent 65%),
+      radial-gradient(ellipse 55% 40% at 100% 100%, rgba(111,79,55,0.14) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%,  rgba(69,69,69,0.10)  0%, transparent 70%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  /* Vigneta para enfocar el contenido */
+  .catalogo-lista::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse 90% 90% at 50% 50%, transparent 50%, rgba(0,0,0,0.35) 100%);
+    z-index: 0;
+  }
+
+  /* Todo el contenido por encima del vignete */
+  .top-border-deco,
+  .catalogo-header,
+  .catalogo-types,
+  .catalogo-list,
+  .empty-state {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ══════════════════════════════════════════════
+     BORDE SUPERIOR DECORATIVO
+  ══════════════════════════════════════════════ */
+  .top-border-deco {
+    position: relative;
+    width: 100%;
+    height: 6px;
+    margin-bottom: 56px;
+    overflow: visible;
+  }
+
+  /* Linea principal: gradiente rojo → cafe → rojo */
+  .top-border-deco::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(
+      90deg,
+      transparent       0%,
+      rgba(139,13,30,0.6) 5%,
+      #8b0d1e           20%,
+      #a81025           38%,
+      #6F4F37           52%,
+      #8b0d1e           68%,
+      #a81025           82%,
+      rgba(139,13,30,0.6) 95%,
+      transparent       100%
+    );
+  }
+
+  /* Linea fina superior: brillo de lujo */
+  .top-border-deco::after {
+    content: '';
+    position: absolute;
+    top: -1px; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255,255,255,0.08) 15%,
+      rgba(255,180,160,0.35) 35%,
+      rgba(255,220,200,0.55) 50%,
+      rgba(255,180,160,0.35) 65%,
+      rgba(255,255,255,0.08) 85%,
+      transparent 100%
+    );
+  }
+
+  /* Glow rojo difuso bajo el borde */
+  .top-border-shimmer {
+    position: absolute;
+    top: 4px; left: 10%; right: 10%;
+    height: 28px;
+    background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(139,13,30,0.55) 0%, transparent 80%);
+    filter: blur(6px);
+  }
+
+  /* Shimmer animado que recorre el borde */
+  .top-border-shimmer::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -20%;
+    width: 40%;
+    height: 6px;
+    background: linear-gradient(90deg, transparent, rgba(255,180,150,0.6), transparent);
+    animation: shimmer-pass 3.5s ease-in-out infinite;
+    filter: blur(2px);
+  }
+
+  @keyframes shimmer-pass {
+    0%   { left: -40%; opacity: 0; }
+    15%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { left: 130%; opacity: 0; }
   }
 
   /* ── Header ────────────────────────────────── */
@@ -127,26 +251,52 @@ const montacargas: Montacargas[] = await respuesta.json();
     flex-wrap: wrap;
   }
 
+  .header-text { position: relative; }
+
   .label-top {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--yellow);
-    margin-bottom: 6px;
+    color: var(--rojo);
+    margin-bottom: 8px;
+  }
+
+  /* Linea decorativa antes del label */
+  .label-top::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--rojo), var(--cafe));
+    border-radius: 2px;
+    flex-shrink: 0;
   }
 
   .titulo-seccion {
     font-size: clamp(1.6rem, 3vw, 2.4rem);
     font-weight: 800;
     line-height: 1.1;
-    margin: 0;
+    margin: 0 0 16px;
+    color: var(--blanco);
   }
 
   .titulo-seccion em {
     font-style: normal;
-    color: var(--yellow);
+    color: var(--rojo);
+  }
+
+  /* Divisor bajo el titulo */
+  .header-divider {
+    height: 2px;
+    width: 100%;
+    max-width: 320px;
+    background: linear-gradient(90deg, var(--rojo) 0%, var(--cafe) 50%, transparent 100%);
+    border-radius: 2px;
+    opacity: 0.7;
   }
 
   /* ── Buscador ──────────────────────────────── */
@@ -167,28 +317,27 @@ const montacargas: Montacargas[] = await respuesta.json();
     transition: color 0.2s;
   }
 
-  .buscador-inner:focus-within .search-icon { color: var(--yellow); }
+  .buscador-inner:focus-within .search-icon { color: var(--rojo); }
 
   .buscador input {
     padding: 12px 44px;
     border-radius: 10px;
     border: 1.5px solid var(--border);
-    background: rgba(255,255,255,0.05);
-    color: var(--white);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--blanco);
     font-size: 0.92rem;
     font-family: inherit;
     transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
-    width: 100%; /* ← cámbialo a width: 100% */
-}
-  
+    width: 100%;
+  }
 
   .buscador input::placeholder { color: var(--muted); }
 
   .buscador input:focus {
     outline: none;
-    border-color: var(--yellow);
-    background: rgba(245,166,35,0.06);
-    box-shadow: 0 0 0 3px rgba(245,166,35,0.12);
+    border-color: var(--rojo);
+    background: rgba(139, 13, 30, 0.07);
+    box-shadow: 0 0 0 3px rgba(139, 13, 30, 0.18);
   }
 
   .clear-btn {
@@ -204,7 +353,7 @@ const montacargas: Montacargas[] = await respuesta.json();
     transition: color 0.2s;
   }
   .clear-btn svg { width: 16px; height: 16px; display: block; }
-  .clear-btn:hover { color: var(--white); }
+  .clear-btn:hover { color: var(--blanco); }
   .clear-btn.visible { display: flex; }
 
   /* ── Filtros ───────────────────────────────── */
@@ -223,7 +372,7 @@ const montacargas: Montacargas[] = await respuesta.json();
     padding: 8px 18px;
     border-radius: 100px;
     border: 1.5px solid var(--border);
-    background: transparent;
+    background: rgba(255,255,255,0.03);
     color: var(--muted);
     font-size: 0.88rem;
     font-weight: 600;
@@ -240,8 +389,18 @@ const montacargas: Montacargas[] = await respuesta.json();
     transition: opacity 0.2s;
   }
 
-  .filtro:hover { color: var(--white); border-color: rgba(240,244,255,0.2); }
-  .filtro.activo { background: var(--yellow-dim); border-color: var(--yellow); color: var(--yellow); }
+  .filtro:hover {
+    color: var(--blanco);
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .filtro.activo {
+    background: var(--rojo-dim);
+    border-color: var(--rojo);
+    color: #ff6b7a;
+  }
+
   .filtro.activo .filtro-dot { opacity: 1; }
 
   .resultado-count {
@@ -259,15 +418,20 @@ const montacargas: Montacargas[] = await respuesta.json();
 
   /* ── Card ──────────────────────────────────── */
   .catalogo-item {
-    background: var(--navy-card);
+    background: linear-gradient(145deg, #363636 0%, #2f2f2f 100%);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s cubic-bezier(.22,.68,0,1.2), box-shadow 0.3s ease, border-color 0.3s ease;
+    transition:
+      transform       0.3s cubic-bezier(.22,.68,0,1.2),
+      box-shadow      0.3s ease,
+      border-color    0.3s ease,
+      border-left-color 0.3s ease;
     animation: fadeUp 0.5s ease both;
     animation-delay: var(--delay, 0ms);
+    border-left: 3px solid transparent;
   }
 
   @keyframes fadeUp {
@@ -277,8 +441,13 @@ const montacargas: Montacargas[] = await respuesta.json();
 
   .catalogo-item:hover {
     transform: translateY(-6px);
-    border-color: rgba(245,166,35,0.3);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(245,166,35,0.1);
+    border-color: rgba(139, 13, 30, 0.4);
+    border-left-color: var(--rojo);
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.55),
+      0 0 0 0px transparent,
+      0 8px 20px rgba(139, 13, 30, 0.15),
+      inset 0 1px 0 rgba(255,255,255,0.05);
   }
 
   .catalogo-item.oculto { display: none; }
@@ -295,11 +464,24 @@ const montacargas: Montacargas[] = await respuesta.json();
     object-fit: cover;
     display: block;
     transition: transform 0.4s ease;
-    background: #1a2640;
+    background: var(--carbon);
   }
 
   .catalogo-item:hover .catalogo-img { transform: scale(1.05); }
 
+  /* Overlay degradado sobre la imagen */
+  .img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 40%,
+      rgba(37, 37, 37, 0.65) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Badges */
   .badge {
     position: absolute;
     top: 10px; right: 10px;
@@ -310,10 +492,11 @@ const montacargas: Montacargas[] = await respuesta.json();
     padding: 3px 10px;
     border-radius: 100px;
     backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.15);
   }
 
-  .badge--renta { background: rgba(245,166,35,0.9); color: #0b1120; }
-  .badge--venta { background: rgba(52,211,153,0.9); color: #0b1120; }
+  .badge--renta { background: rgba(139, 13, 30, 0.88); color: #ffffff; }
+  .badge--venta { background: rgba(111, 79, 55, 0.88); color: #ffffff; }
 
   /* Body */
   .card-body {
@@ -328,7 +511,7 @@ const montacargas: Montacargas[] = await respuesta.json();
     font-size: 1rem;
     font-weight: 700;
     margin: 0;
-    color: var(--white);
+    color: var(--blanco);
     line-height: 1.25;
   }
 
@@ -358,8 +541,8 @@ const montacargas: Montacargas[] = await respuesta.json();
     justify-content: center;
     gap: 4px;
     padding: 10px 14px;
-    background: var(--yellow);
-    color: var(--navy);
+    background: var(--rojo);
+    color: var(--blanco);
     border: none;
     border-radius: 8px;
     font-size: 0.83rem;
@@ -367,13 +550,16 @@ const montacargas: Montacargas[] = await respuesta.json();
     font-family: inherit;
     text-decoration: none;
     cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 2px 10px rgba(139, 13, 30, 0.35);
   }
   .btn-ver svg { width: 15px; height: 15px; flex-shrink: 0; }
-  .btn-ver:hover { background: #ffc04d; }
+  .btn-ver:hover {
+    background: var(--rojo-hover);
+    box-shadow: 0 4px 18px rgba(139, 13, 30, 0.5);
+  }
   .btn-ver:active { transform: scale(0.97); }
 
-  /* ── WhatsApp button — nuevo diseño ─────────── */
   .btn-whatsapp {
     display: inline-flex;
     align-items: center;
@@ -391,7 +577,7 @@ const montacargas: Montacargas[] = await respuesta.json();
     white-space: nowrap;
     cursor: pointer;
     transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    box-shadow: 0 2px 10px rgba(37,211,102,0.25);
+    box-shadow: 0 2px 10px rgba(37, 211, 102, 0.25);
   }
   .btn-whatsapp .wa-icon {
     width: 16px; height: 16px;
@@ -400,7 +586,7 @@ const montacargas: Montacargas[] = await respuesta.json();
   }
   .btn-whatsapp:hover {
     background: #1ebe5d;
-    box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.40);
     transform: translateY(-1px);
   }
   .btn-whatsapp:active { transform: scale(0.95); }
@@ -410,28 +596,32 @@ const montacargas: Montacargas[] = await respuesta.json();
     text-align: center;
     padding: 80px 20px;
     color: var(--muted);
+    position: relative;
+    z-index: 1;
   }
   .empty-state svg {
     width: 56px; height: 56px;
     margin: 0 auto 16px;
     display: block;
-    stroke: var(--muted);
+    stroke: var(--rojo);
+    opacity: 0.6;
   }
   .empty-state p {
     font-size: 1.1rem;
     font-weight: 600;
     margin: 0 0 6px;
-    color: rgba(240,244,255,0.7);
+    color: rgba(255, 255, 255, 0.75);
   }
   .empty-state span { font-size: 0.85rem; }
 
   /* ── Responsive ────────────────────────────── */
   @media (max-width: 640px) {
-    .catalogo-lista { padding: 32px 20px 60px; }
+    .catalogo-lista { padding: 0 20px 60px; }
     .catalogo-header { flex-direction: column; align-items: flex-start; }
     .buscador { flex: 1 1 100%; }
     .buscador input { width: 100%; }
     .catalogo-list { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .top-border-deco { margin-bottom: 32px; }
   }
 
   @media (max-width: 420px) {

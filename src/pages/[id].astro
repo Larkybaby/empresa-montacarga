@@ -14,13 +14,12 @@ export async function getStaticPaths() {
 }
 
 const { m } = Astro.props;
-// Mostrar siempre la imagen principal primero, luego cualquier galería extra.
 const galeria: string[] = [m.imagen, ...(m.imagenes ?? [])];
 const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
 ---
 
 <Layout>
-  <Header />
+  <!-- <Header />-->
   <canvas id="prod-canvas"></canvas>
 
   <div class="detalle-wrapper">
@@ -36,7 +35,6 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
       <!-- ═══ COLUMNA IZQUIERDA: Visor 360° ═══ -->
       <div class="galeria-col">
 
-        <!-- Miniaturas verticales con flechas -->
         {galeriaUnica.length > 1 && (
           <div class="miniaturas-wrap">
             <button class="miniaturas-arrow" id="arrow-up" aria-label="Subir">
@@ -44,7 +42,6 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
                 <path d="M2 7L5 3L8 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
-
             <div class="miniaturas" id="miniaturas-track">
               {galeriaUnica.map((src, i) => (
                 <button
@@ -57,7 +54,6 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
                 </button>
               ))}
             </div>
-
             <button class="miniaturas-arrow" id="arrow-down" aria-label="Bajar">
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                 <path d="M2 3L5 7L8 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -66,10 +62,7 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
           </div>
         )}
 
-        <!-- Visor 360° -->
         <div class="img-principal-wrap" id="spin-wrap">
-
-          <!-- Todas las imágenes apiladas; JS muestra solo la activa -->
           {galeriaUnica.map((src, i) => (
             <img
               class="spin-frame"
@@ -80,13 +73,11 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
             />
           ))}
 
-          <!-- Badge disponibilidad -->
           <div class="img-badge">
             <span class={`disponible-dot ${m.disponible ? 'verde' : 'rojo'}`}></span>
             {m.disponible ? 'Disponible' : 'No disponible'}
           </div>
 
-          <!-- Badge 360 -->
           <div class="badge-360">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
               <path d="M12 4C8 4 4.5 5.5 2.5 8L1 6v5h5l-2-2c1.5-2 4-3 8-3 4.4 0 8 2.2 8 5s-3.6 5-8 5c-2.5 0-4.7-.8-6.2-2.1L4.2 15.4C6.1 17 8.9 18 12 18c5.5 0 10-3.1 10-7s-4.5-7-10-7z" fill="currentColor"/>
@@ -94,12 +85,10 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
             360°
           </div>
 
-          <!-- Barra de progreso -->
           <div class="spin-progress-wrap">
             <div class="spin-progress-bar" id="spin-progress"></div>
           </div>
 
-          <!-- Botón pausa/play -->
           <button class="spin-toggle" id="spin-toggle" aria-label="Pausar rotación">
             <svg id="icon-pause" width="11" height="11" viewBox="0 0 12 12" fill="none">
               <rect x="2" y="1" width="3" height="10" rx="1" fill="currentColor"/>
@@ -150,24 +139,12 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
           <div class="accion-divider"></div>
 
           <ul class="ventajas">
-            <li>
-              <span class="check">✓</span>
-              Entrega rápida
-            </li>
-            <li>
-              <span class="check">✓</span>
-              Soporte técnico incluido
-            </li>
-            <li>
-              <span class="check">✓</span>
-              Garantía de servicio
-            </li>
+            <li><span class="check">✓</span>Entrega rápida</li>
+            <li><span class="check">✓</span>Soporte técnico incluido</li>
+            <li><span class="check">✓</span>Garantía de servicio</li>
           </ul>
 
-          <button
-            class="btn-comprar"
-            data-nombre={m.modelo}
-          >
+          <button class="btn-comprar" data-nombre={m.modelo}>
             <span>Encargar Ahora</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -181,24 +158,45 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
     </div>
   </div>
 
-  <Footer />
+  <!-- <Footer /> -->
 </Layout>
 
 <style>
-  /* ── Google Fonts ── */
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;900&display=swap');
 
-  /* ── Variables ── */
+  /* ── Paleta carbón cálido unificada ── */
   :root {
-    --navy:   #0a1628;
-    --navy2:  #0e1e38;
-    --yellow: #f5a623;
-    --yellow2:#d4871a;
-    --white:  #f0ece2;
-    --steel:  #8a99b3;
-    --green:  #4ade80;
-    --red:    #f87171;
-    --cream:  #f7f5ef;
+    --bg-base:        #141010;
+    --bg-section:     #1c1714;
+    --bg-card:        #2c2825;
+    --bg-card-inner:  #3a2e2a;
+    --bg-lifted:      #40312a;
+
+    --red:            #8B0D1E;
+    --red-soft:       #c8102e;
+    --red-glow:       rgba(139,13,30,0.18);
+
+    --white:          #f0ece8;
+    --white-dim:      rgba(240,230,220,0.75);
+    --muted:          #9a8e87;
+    --faint:          rgba(240,220,200,0.22);
+
+    --border:         rgba(139,13,30,0.2);
+    --border-hover:   rgba(139,13,30,0.5);
+    --border-subtle:  rgba(240,220,200,0.07);
+
+    --green:          #46b96b;
+
+    /* aliases para no romper código existente */
+    --brand-red:        #8B0D1E;
+    --brand-red-dark:   #5e0912;
+    --brand-red-soft:   #c8102e;
+    --soft-red:         #c8102e;
+    --little-red:       #c8102e;
+    --navy:             #141010;
+    --navy2:            #1c1714;
+    --steel:            #9a8e87;
+    --soft-black:       #141010;
   }
 
   /* ── Canvas fondo ── */
@@ -215,6 +213,7 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
     padding: 2rem 1.5rem 4rem;
     font-family: 'DM Sans', sans-serif;
     position: relative; z-index: 1;
+  margin-top: 7rem; /* o 3rem si lo quieres más separado */
   }
 
   /* ── Back button ── */
@@ -223,8 +222,8 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
     margin-bottom: 2rem;
     padding: 0.5rem 1.1rem;
     background: transparent;
-    color: var(--navy2);
-    border: 1.5px solid rgba(14,30,56,0.18);
+    color: var(--white);
+    border: 1.5px solid rgba(240,220,200,0.18);
     border-radius: 8px;
     font-size: 0.8rem; font-weight: 700;
     letter-spacing: 1.5px; text-transform: uppercase;
@@ -232,32 +231,34 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
     transition: all 0.2s;
   }
   .back-button:hover {
-    background: var(--navy2);
+    background: var(--red);
     color: var(--white);
-    border-color: var(--navy2);
+    border-color: var(--red);
   }
 
-  /* ══════════════════════════════════════
-     CARD PRINCIPAL (3 columnas)
-  ══════════════════════════════════════ */
+  /* ══ CARD PRINCIPAL (3 columnas) ══ */
   .detalle-card {
     display: grid;
-    grid-template-columns: 1.4fr 1.3fr 0.85fr;
+    /*grid-template-columns: 1.4fr 1.3fr 0.85fr;*/
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 24px 80px rgba(10,22,40,0.22);
+    border: 1px solid var(--border);
+    box-shadow:
+      0 24px 80px rgba(0,0,0,0.55),
+      0 0 0 1px rgba(139,13,30,0.12);
     animation: cardIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
+    grid-template-columns: 1.2fr 1.2fr 1fr;
+    width: 100%;
+    max-width: 1200px;
+}
   @keyframes cardIn {
     from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0);    }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ══════════════════════════════════════
-     COLUMNA IZQUIERDA: Galería
-  ══════════════════════════════════════ */
+  /* ══ COLUMNA IZQUIERDA: Galería ══ */
   .galeria-col {
-    background: #f0ede4;
+    background: var(--bg-card);
     display: flex;
     flex-direction: row;
     gap: 0.75rem;
@@ -265,230 +266,183 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
     min-width: 0;
     overflow: hidden;
     align-items: stretch;
+    border-right: 1px solid var(--border-subtle);
   }
 
   .img-principal-wrap {
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    background: white;
+    background: var(--bg-card-inner);
+    border: 1px solid var(--border);
     flex: 1;
     min-width: 0;
     min-height: 340px;
-    box-shadow: 0 4px 20px rgba(10,22,40,0.1);
   }
 
-  /* Mostrar primer frame mientras JS no ha corrido aún */
-  .spin-frame:first-child {
-    opacity: 1;
-  }
-  .spin-frame:first-child ~ .spin-frame {
-    opacity: 0;
-  }
-  /* Una vez que JS toma control, .activa maneja la visibilidad */
-  .spin-frame.activa {
-    opacity: 1 !important;
-  }
-  .spin-wrap-ready .spin-frame:first-child:not(.activa) {
-    opacity: 0;
-  }
+  .spin-frame:first-child { opacity: 1; }
+  .spin-frame:first-child ~ .spin-frame { opacity: 0; }
+  .spin-frame.activa { opacity: 1 !important; }
+  .spin-wrap-ready .spin-frame:first-child:not(.activa) { opacity: 0; }
 
-  .img-principal {
+  .spin-frame {
+    position: absolute; inset: 0;
     width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
+    object-fit: contain;
+    padding: 8px; box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.12s ease;
+    pointer-events: none;
+    user-select: none; -webkit-user-drag: none;
   }
-  .img-principal:hover { transform: scale(1.04); }
+  .spin-frame.activa { opacity: 1; }
 
   .img-badge {
     position: absolute; bottom: 0.6rem; left: 0.6rem;
     display: flex; align-items: center; gap: 0.4rem;
-    background: rgba(10,22,40,0.75);
+    background: rgba(20,16,12,0.82);
     backdrop-filter: blur(8px);
-    color: white;
+    color: var(--white);
     font-size: 0.72rem; font-weight: 700;
     letter-spacing: 1px; text-transform: uppercase;
     padding: 0.3rem 0.75rem;
     border-radius: 999px;
+    border: 1px solid var(--border-subtle);
   }
   .disponible-dot {
     width: 7px; height: 7px;
-    border-radius: 50%;
-    display: inline-block;
+    border-radius: 50%; display: inline-block;
   }
   .disponible-dot.verde { background: var(--green); box-shadow: 0 0 6px var(--green); }
-  .disponible-dot.rojo  { background: var(--red);   box-shadow: 0 0 6px var(--red);   }
-  /* ══════════════════════════════════════
-     VISOR 360°
-  ══════════════════════════════════════ */
-  .spin-frame {
-    position: absolute;
-    inset: 0;
-    width: 100%; height: 100%;
-    object-fit: contain;
-    padding: 8px;
-    box-sizing: border-box;
-    opacity: 0;
-    transition: opacity 0.12s ease;
-    pointer-events: none;
-    user-select: none;
-    -webkit-user-drag: none;
-  }
-  .spin-frame.activa { opacity: 1; }
+  .disponible-dot.rojo  { background: var(--red-soft); box-shadow: 0 0 6px var(--red-soft); }
 
   .badge-360 {
-    position: absolute;
-    top: 0.6rem; right: 0.6rem;
+    position: absolute; top: 0.6rem; right: 0.6rem;
     display: flex; align-items: center; gap: 0.35rem;
-    background: rgba(10,22,40,0.75);
+    background: rgba(20,16,12,0.82);
     backdrop-filter: blur(8px);
-    color: var(--yellow);
+    color: var(--red-soft);
     font-size: 0.68rem; font-weight: 800;
     letter-spacing: 1.5px;
     padding: 0.28rem 0.65rem;
     border-radius: 999px;
+    border: 1px solid var(--border);
   }
 
   .spin-progress-wrap {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
+    position: absolute; bottom: 0; left: 0; right: 0;
     height: 3px;
-    background: rgba(10,22,40,0.12);
-    border-radius: 0 0 12px 12px;
-    overflow: hidden;
+    background: rgba(240,220,200,0.07);
+    border-radius: 0 0 12px 12px; overflow: hidden;
   }
   .spin-progress-bar {
     height: 100%;
-    background: var(--yellow);
-    width: 0%;
-    transition: width 0.15s linear;
+    background: var(--red-soft);
+    width: 0%; transition: width 0.15s linear;
   }
 
   .spin-toggle {
-    position: absolute;
-    bottom: 0.7rem; right: 0.7rem;
+    position: absolute; bottom: 0.7rem; right: 0.7rem;
     width: 28px; height: 28px;
-    background: rgba(10,22,40,0.65);
+    background: rgba(20,16,12,0.72);
     backdrop-filter: blur(6px);
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid rgba(240,220,200,0.12);
     border-radius: 50%;
-    color: white;
+    color: var(--white);
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     transition: background 0.2s, transform 0.15s;
   }
   .spin-toggle:hover {
-    background: rgba(10,22,40,0.9);
+    background: var(--red);
     transform: scale(1.1);
   }
 
-
-  /* ══════════════════════════════════════
-     MINIATURAS — contenedor con flechas
-  ══════════════════════════════════════ */
+  /* ══ MINIATURAS ══ */
   .miniaturas-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    flex-shrink: 0;
-    width: 60px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 4px;
+    flex-shrink: 0; width: 60px;
   }
 
-  /* Flechas: ocultas por defecto, JS las activa si hay más de MAX */
   .miniaturas-arrow {
-    width: 60px;
-    height: 20px;
-    flex-shrink: 0;
-    background: rgba(10,22,40,0.07);
-    border: 1px solid rgba(10,22,40,0.1);
-    border-radius: 6px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--navy2);
-    transition: background 0.2s, border-color 0.2s;
-    /* ocultas hasta que JS las muestre */
-    visibility: hidden;
-    pointer-events: none;
+    width: 60px; height: 20px; flex-shrink: 0;
+    background: rgba(240,220,200,0.05);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    visibility: hidden; pointer-events: none;
   }
   .miniaturas-arrow.visible {
-    visibility: visible;
-    pointer-events: auto;
+    visibility: visible; pointer-events: auto;
   }
   .miniaturas-arrow:hover {
-    background: rgba(10,22,40,0.15);
-    border-color: rgba(10,22,40,0.2);
+    background: var(--red-glow);
+    border-color: var(--border-hover);
+    color: var(--white);
   }
 
-  /* El track de miniaturas */
   .miniaturas {
-    display: flex;
-    flex-direction: column;
+    display: flex; flex-direction: column;
     gap: 6px;
-
-    /*
-      Altura fija para exactamente 5 miniaturas:
-      5 × 60px + 4 × 6px (gaps) = 324px
-      Cambia este valor si quieres más o menos visibles.
-    */
-    max-height: 324px;
-    height: 324px;
-
-    overflow-y: auto;
-    overflow-x: hidden;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    max-height: 324px; height: 324px;
+    overflow-y: auto; overflow-x: hidden;
+    scrollbar-width: none; -ms-overflow-style: none;
     scroll-behavior: smooth;
   }
   .miniaturas::-webkit-scrollbar { display: none; }
 
   .miniatura {
-    width: 60px;
-    height: 60px;
-    flex-shrink: 0;          /* nunca se encoge */
-    border-radius: 8px;
-    overflow: hidden;
+    width: 60px; height: 60px; flex-shrink: 0;
+    border-radius: 8px; overflow: hidden;
     border: 2px solid transparent;
-    padding: 0;
-    cursor: pointer;
-    background: white;
+    padding: 0; cursor: pointer;
+    background: var(--bg-card-inner);
     box-sizing: border-box;
     transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   }
   .miniatura img {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: contain;
-    padding: 4px;
-    box-sizing: border-box;
-    display: block;
+    padding: 4px; box-sizing: border-box; display: block;
   }
-  .miniatura:hover  { transform: scale(1.05); border-color: rgba(245,166,35,0.5); }
-  .miniatura.activa { border-color: var(--yellow); box-shadow: 0 0 0 1px var(--yellow); }
+  .miniatura:hover {
+    transform: scale(1.05);
+    border-color: rgba(200,16,46,0.4);
+  }
+  .miniatura.activa {
+    border-color: var(--red-soft);
+    box-shadow: 0 0 0 1px var(--red-soft);
+  }
 
-  /* ══════════════════════════════════════
-     COLUMNA CENTRAL: Info
-  ══════════════════════════════════════ */
+  /* ══ COLUMNA CENTRAL: Info ══ */
   .info-col {
-    background: var(--navy);
+    background: linear-gradient(160deg, var(--bg-section) 0%, var(--bg-base) 100%);
     padding: 2rem 1.75rem;
     display: flex; flex-direction: column;
-    gap: 1.5rem;
-    justify-content: center;
+    gap: 1.5rem; justify-content: center;
     color: var(--white);
-    min-width: 0;
-    overflow: hidden;
+    min-width: 0; overflow: hidden;
+    border-right: 1px solid var(--border-subtle);
+    position: relative;
+  }
+  /* glow sutil detrás del contenido */
+  .info-col::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(139,13,30,0.06) 0%, transparent 65%);
+    pointer-events: none;
   }
 
-  .info-top { display: flex; flex-direction: column; gap: 0.6rem; }
+  .info-top { display: flex; flex-direction: column; gap: 0.6rem; position: relative; }
 
   .tipo-tag {
     font-size: 0.65rem; font-weight: 700;
     letter-spacing: 3px; text-transform: uppercase;
-    color: var(--yellow);
-    opacity: 0.85;
+    color: rgba(200,16,46,0.8);
   }
 
   .modelo-titulo {
@@ -501,8 +455,8 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
 
   .badge-para {
     display: inline-block;
-    background: linear-gradient(90deg, var(--yellow), var(--yellow2));
-    color: var(--navy);
+    background: linear-gradient(90deg, var(--red-soft), var(--red));
+    color: var(--white);
     font-size: 0.68rem; font-weight: 800;
     letter-spacing: 2.5px; text-transform: uppercase;
     padding: 0.28rem 0.9rem;
@@ -510,23 +464,23 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
     width: fit-content;
   }
 
-  /* Specs grid */
   .specs-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.6rem;
+    position: relative;
   }
   .spec-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(245,166,35,0.1);
+    background: rgba(240,220,200,0.04);
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 0.9rem 1rem;
     display: flex; flex-direction: column; gap: 0.25rem;
     transition: background 0.2s, border-color 0.2s;
   }
   .spec-card:hover {
-    background: rgba(245,166,35,0.06);
-    border-color: rgba(245,166,35,0.25);
+    background: rgba(139,13,30,0.1);
+    border-color: var(--border-hover);
   }
   .spec-card.full { grid-column: 1 / -1; }
 
@@ -534,7 +488,7 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
   .spec-label {
     font-size: 0.62rem; font-weight: 700;
     letter-spacing: 2px; text-transform: uppercase;
-    color: var(--steel);
+    color: var(--muted);
   }
   .spec-val {
     font-size: 0.92rem; font-weight: 700;
@@ -542,41 +496,53 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
   }
   .detalles-val {
     font-size: 0.83rem; font-weight: 500;
-    color: rgba(240,236,226,0.75);
+    color: var(--white-dim);
     line-height: 1.5;
   }
 
-  /* ══════════════════════════════════════
-     COLUMNA DERECHA: Acción
-  ══════════════════════════════════════ */
+  /* ══ COLUMNA DERECHA: Acción ══ */
   .accion-col {
-    background: var(--yellow);
+    background: var(--bg-card-inner);
     display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
   }
+  /* glow decorativo */
+  .accion-col::before {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 50%;
+    transform: translateX(-50%);
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,13,30,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
   .accion-inner {
     padding: 2rem 1.4rem;
     display: flex; flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
-    width: 100%;
+    gap: 1rem; width: 100%;
+    position: relative; z-index: 1;
   }
 
   .accion-titulo { display: flex; flex-direction: column; gap: 0.2rem; }
   .accion-sub {
     font-size: 0.65rem; font-weight: 700;
     letter-spacing: 2.5px; text-transform: uppercase;
-    color: rgba(10,22,40,0.5);
+    color: var(--muted);
     margin: 0;
   }
   .accion-h2 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.8rem; letter-spacing: 2px;
-    color: var(--navy); margin: 0; line-height: 1;
+    color: var(--white); margin: 0; line-height: 1;
   }
 
   .accion-divider {
     width: 100%; height: 1px;
-    background: rgba(10,22,40,0.12);
+    background: var(--border-subtle);
   }
 
   .ventajas {
@@ -586,13 +552,15 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
   .ventajas li {
     display: flex; align-items: center; gap: 0.5rem;
     font-size: 0.78rem; font-weight: 600;
-    color: var(--navy2);
+    color: var(--white-dim);
+    transition: color 0.2s;
   }
+  .ventajas li:hover { color: var(--white); }
   .check {
     display: inline-flex; align-items: center; justify-content: center;
     width: 18px; height: 18px;
-    background: var(--navy);
-    color: var(--yellow);
+    background: var(--red);
+    color: white;
     border-radius: 50%;
     font-size: 0.65rem; font-weight: 900;
     flex-shrink: 0;
@@ -601,7 +569,7 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
   .btn-comprar {
     width: 100%;
     padding: 0.85rem 1.2rem;
-    background: var(--navy);
+    background: var(--red);
     color: white;
     border: none; border-radius: 10px;
     font-family: 'DM Sans', sans-serif;
@@ -610,36 +578,33 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
     cursor: pointer;
     display: flex; align-items: center; justify-content: center; gap: 0.5rem;
     transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    box-shadow: 0 4px 16px rgba(10,22,40,0.2);
+    box-shadow: 0 4px 20px rgba(139,13,30,0.35);
   }
   .btn-comprar:hover {
-    background: #0e2040;
+    background: var(--red-soft);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(10,22,40,0.3);
+    box-shadow: 0 8px 32px rgba(139,13,30,0.5);
   }
   .btn-comprar:active { transform: translateY(0); }
 
   .accion-nota {
     font-size: 0.65rem; font-weight: 600;
-    color: rgba(10,22,40,0.5);
+    color: var(--muted);
     text-align: center;
     margin: 0; width: 100%;
     letter-spacing: 0.3px;
   }
 
-  /* ══════════════════════════════════════
-     RESPONSIVE
-  ══════════════════════════════════════ */
+  /* ══ RESPONSIVE ══ */
   @media (max-width: 900px) {
-    .detalle-card {
-      grid-template-columns: 1fr 1fr;
-    }
+    .detalle-card { grid-template-columns: 1fr 1fr; }
     .accion-col {
       grid-column: 1 / -1;
-      border-top: 2px solid rgba(10,22,40,0.08);
+      border-top: 1px solid var(--border-subtle);
     }
     .accion-inner { flex-direction: row; flex-wrap: wrap; align-items: center; }
-    .accion-titulo { flex: 1; }
+    .accion-titulo { flex: 1; text-align: center; }
+    .accion-h2 { text-align: center; }
     .ventajas { flex-direction: row; flex-wrap: wrap; gap: 0.75rem; }
     .btn-comprar { width: auto; min-width: 160px; }
   }
@@ -647,6 +612,7 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
   @media (max-width: 600px) {
     .detalle-card { grid-template-columns: 1fr; }
     .accion-inner { flex-direction: column; }
+    .accion-h2 { text-align: center; }
     .btn-comprar { width: 100%; }
   }
 </style>
@@ -668,54 +634,63 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
 
   function buildNodes() {
     nodes = Array.from({ length: 50 }, () => ({
-      x: rand(0, W), y: rand(0, H),
-      vx: rand(-0.18, 0.18), vy: rand(-0.18, 0.18),
-      r: rand(2, 4),
-      yellow: Math.random() < 0.12,
+      x:   rand(0, W), y:  rand(0, H),
+      vx:  rand(-0.18, 0.18), vy: rand(-0.18, 0.18),
+      r:   rand(2, 4),
+      red: Math.random() < 0.18,
     }));
   }
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#f7f5ef';
+
+    /* fondo carbón cálido */
+    ctx.fillStyle = '#1c1714';
     ctx.fillRect(0, 0, W, H);
 
+    /* líneas diagonales sutiles */
     offset = (offset + 0.3) % 64;
     ctx.save();
-    ctx.strokeStyle = 'rgba(14,30,56,0.04)';
+    ctx.strokeStyle = 'rgba(240,220,200,0.025)';
     ctx.lineWidth = 1;
     for (let x = -H + offset; x < W + H; x += 64) {
       ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x + H, H); ctx.stroke();
     }
     ctx.restore();
 
+    /* conexiones entre nodos */
     const MAX = 140;
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
         const a = nodes[i], b = nodes[j];
         const dx = a.x - b.x, dy = a.y - b.y;
-        const d = Math.sqrt(dx*dx + dy*dy);
+        const d = Math.sqrt(dx * dx + dy * dy);
         if (d > MAX) continue;
         ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-        ctx.strokeStyle = (a.yellow || b.yellow)
-          ? `rgba(245,166,35,${(1 - d/MAX) * 0.35})`
-          : `rgba(14,30,56,${(1 - d/MAX) * 0.1})`;
+        ctx.strokeStyle = (a.red || b.red)
+          ? `rgba(139,13,30,${(1 - d / MAX) * 0.4})`
+          : `rgba(240,220,200,${(1 - d / MAX) * 0.055})`;
         ctx.lineWidth = 0.8; ctx.stroke();
       }
     }
 
+    /* nodos */
     nodes.forEach(n => {
       n.x += n.vx; n.y += n.vy;
       if (n.x < 0) n.x = W; if (n.x > W) n.x = 0;
       if (n.y < 0) n.y = H; if (n.y > H) n.y = 0;
+
+      /* halo */
       const glow = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 6);
-      glow.addColorStop(0, n.yellow ? 'rgba(245,166,35,0.3)' : 'rgba(14,30,56,0.12)');
+      glow.addColorStop(0, n.red ? 'rgba(139,13,30,0.28)' : 'rgba(240,220,200,0.07)');
       glow.addColorStop(1, 'transparent');
       ctx.beginPath(); ctx.arc(n.x, n.y, n.r * 6, 0, Math.PI * 2);
       ctx.fillStyle = glow; ctx.fill();
+
+      /* punto */
       ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = n.yellow ? '#f5a623' : '#1b3f78';
-      ctx.globalAlpha = 0.7; ctx.fill(); ctx.globalAlpha = 1;
+      ctx.fillStyle = n.red ? '#8B0D1E' : 'rgba(240,220,200,0.55)';
+      ctx.globalAlpha = 0.75; ctx.fill(); ctx.globalAlpha = 1;
     });
 
     requestAnimationFrame(draw);
@@ -728,29 +703,24 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
 
 /* ── Galería / Visor 360° ── */
 (function () {
-  // Umbral: con >= SPIN_THRESHOLD imágenes se activa modo 360°
-  const SPIN_THRESHOLD = 8;
-
-  // Velocidades
-  const INTERVALO_SPIN    = 1000;   // ms por frame en modo 360°
-  const INTERVALO_GALERIA = 3000;  // ms por imagen en modo galería
-
+  const SPIN_THRESHOLD  = 8;
+  const INTERVALO_SPIN    = 1000;
+  const INTERVALO_GALERIA = 3000;
   const THUMB_SIZE  = 60;
   const THUMB_GAP   = 6;
   const MAX_VISIBLE = 5;
 
-  const frames     = Array.from(document.querySelectorAll('.spin-frame'));
+  const frames    = Array.from(document.querySelectorAll('.spin-frame'));
   const miniaturas = Array.from(document.querySelectorAll('.miniatura'));
-  const progress   = document.getElementById('spin-progress');
-  const toggleBtn  = document.getElementById('spin-toggle');
-  const iconPause  = document.getElementById('icon-pause');
-  const iconPlay   = document.getElementById('icon-play');
-  const badge360   = document.querySelector('.badge-360');
-  const track      = document.getElementById('miniaturas-track');
-  const total      = frames.length;
+  const progress  = document.getElementById('spin-progress');
+  const toggleBtn = document.getElementById('spin-toggle');
+  const iconPause = document.getElementById('icon-pause');
+  const iconPlay  = document.getElementById('icon-play');
+  const badge360  = document.querySelector('.badge-360');
+  const track     = document.getElementById('miniaturas-track');
+  const total     = frames.length;
 
   if (total < 2) {
-    // Solo 1 imagen: asegurarse que se muestre
     if (frames[0]) frames[0].classList.add('activa');
     return;
   }
@@ -758,31 +728,22 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
   const modoSpin = total >= SPIN_THRESHOLD;
   const INTERVALO = modoSpin ? INTERVALO_SPIN : INTERVALO_GALERIA;
 
-  // Ocultar badge 360° si no aplica el modo spin
   if (!modoSpin && badge360) badge360.style.display = 'none';
 
-  let indice    = 0;
-  let timer     = null;
-  let corriendo = true;
+  let indice = 0, timer = null, corriendo = true;
 
   function mostrarFrame(i) {
     indice = ((i % total) + total) % total;
-
     frames.forEach(f => f.classList.remove('activa'));
     frames[indice].classList.add('activa');
-
     miniaturas.forEach(b => b.classList.remove('activa'));
     if (miniaturas[indice]) miniaturas[indice].classList.add('activa');
-
     if (track && miniaturas[indice]) {
       const scrollTarget = indice * (THUMB_SIZE + THUMB_GAP);
       const centrado = scrollTarget - Math.floor(MAX_VISIBLE / 2) * (THUMB_SIZE + THUMB_GAP);
       track.scrollTo({ top: Math.max(0, centrado), behavior: 'smooth' });
     }
-
-    if (progress) {
-      progress.style.width = (((indice + 1) / total) * 100) + '%';
-    }
+    if (progress) progress.style.width = (((indice + 1) / total) * 100) + '%';
   }
 
   function iniciar() {
@@ -794,17 +755,13 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
   }
 
   function pausar() {
-    clearInterval(timer);
-    corriendo = false;
+    clearInterval(timer); corriendo = false;
     if (iconPause) iconPause.style.display = 'none';
     if (iconPlay)  iconPlay.style.display  = '';
   }
 
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => corriendo ? pausar() : iniciar());
-  }
+  if (toggleBtn) toggleBtn.addEventListener('click', () => corriendo ? pausar() : iniciar());
 
-  // En modo galería: pausar al hover sobre la galería
   if (!modoSpin) {
     const galeria = document.querySelector('.galeria-col');
     if (galeria) {
@@ -817,14 +774,10 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
     btn.addEventListener('click', () => {
       mostrarFrame(i);
       if (corriendo) { clearInterval(timer); iniciar(); }
-      else mostrarFrame(i);
     });
   });
 
-  // FIX timing: esperar a que el DOM esté completamente pintado
-  // usando requestAnimationFrame + pequeño delay para Astro SSR
   function arrancar() {
-    // Marcar el contenedor como controlado por JS
     const wrap = document.getElementById('spin-wrap');
     if (wrap) wrap.classList.add('spin-wrap-ready');
     mostrarFrame(0);
@@ -843,20 +796,15 @@ const galeriaUnica: string[] = Array.from(new Set(galeria)).filter(Boolean);
   const THUMB_SIZE  = 60;
   const THUMB_GAP   = 6;
   const MAX_VISIBLE = 5;
-
   const track  = document.getElementById('miniaturas-track');
   const arrowU = document.getElementById('arrow-up');
   const arrowD = document.getElementById('arrow-down');
-
   if (!track || !arrowU || !arrowD) return;
-
   const total = track.querySelectorAll('.miniatura').length;
-
   if (total > MAX_VISIBLE) {
     arrowU.classList.add('visible');
     arrowD.classList.add('visible');
   }
-
   const step = THUMB_SIZE + THUMB_GAP;
   arrowU.addEventListener('click', () => track.scrollBy({ top: -step, behavior: 'smooth' }));
   arrowD.addEventListener('click', () => track.scrollBy({ top:  step, behavior: 'smooth' }));

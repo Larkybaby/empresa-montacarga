@@ -6,13 +6,12 @@ import Footer from '../components/Footer.astro';
 //import Carrito from '../components/Carrito.astro'
 import MontacargasCarrucel from '../components/MontacargasCarrucel.astro';
 import CatalogoList from '../components/CatalogoList.astro';
-const respuesta = await fetch('http://localhost:4321/api/montacargas');
+const respuesta = await fetch(new URL('/api/montacargas', Astro.url));
 const montacargas: Montacargas[] = await respuesta.json();
 
 
 ---
 <Layout>
-	<Header />
 	<section class="catalogo-hero">
   <div class="catalogo-hero__noise"></div>
   <div class="catalogo-hero__inner">
@@ -24,17 +23,49 @@ const montacargas: Montacargas[] = await respuesta.json();
 </section>
 	<MontacargasCarrucel />
 	<CatalogoList />
-	<Footer />
 </Layout>
-
+<!--<style>
+   :root {
+    --navy:        #0e1e38;
+    --navy-mid:    #1b2f52;
+    --yellow:      #df5c5c;
+    --yellow-glow: rgba(245,166,35,0.35);
+    --white:       #ffffff;
+    --off-white:   #f6f5f0;
+    --muted:       #8a97ab;
+    --border:      #dde3ec;
+    --red: #8B0D1E;
+    --red-mid: #722a33;
+    --golden: #a55252;
+    --gold-muted: #C2A15D;
+    --soft-black: #474040;
+    --accent: #C2A15D;     /* dorado apagado */
 <style>
+   :root {
+    --navy:        #0e1e38;
+    --navy-mid:    #1b2f52;
+    --yellow:      #df5c5c;
+    --yellow-glow: rgba(245,166,35,0.35);
+    --white:       #ffffff;
+    --off-white:   #f6f5f0;
+    --muted:       #8a97ab;
+    --border:      #dde3ec;
+    --red: #8B0D1E;
+    --red-mid: #722a33;
+    --golden: #a55252;
+    --gold-muted: #C2A15D;
+    --soft-black: #474040;
+    --accent: #C2A15D;     /* dorado apagado */
+--dark: #1A1A1A;       /* casi negro */
+--dark-2: #2A2A2A;     /* gris profundo */
+  }
 	.catalogo-hero {
   position: relative;
   padding: 3rem 2.5rem;
-  background: linear-gradient(175deg, var(--navy) 0%, var(--navy-mid) 100%);
+  background: linear-gradient(175deg, var(--dark) 0%, var(--dark-2) 100%);
   overflow: hidden;
   isolation: isolate;
-  border-bottom: 3px solid var(--yellow);
+  border-bottom: 3px solid var(--red);
 }
 
 /* Grain sutil */
@@ -60,7 +91,7 @@ const montacargas: Montacargas[] = await respuesta.json();
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--yellow);
+  color: var(--golden);
   opacity: 0.8;
   margin: 0;
 }
@@ -86,5 +117,87 @@ const montacargas: Montacargas[] = await respuesta.json();
 }
 .corner--tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
 .corner--br { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
-</style><!--tlabaja tiene que tlabaja,tlabaja
+</style>--><!--tlabaja tiene que tlabaja,tlabaja
 			calajo 🗣 -->
+
+<style>
+  :root {
+    --navy:        #0e1e38;
+    --navy-mid:    #1b2f52;
+    --white:       #ffffff;
+    --off-white:   #f6f5f0;
+    --muted:       #8a97ab;
+    --border:      #dde3ec;
+
+    /* Rojos consistentes con el catálogo */
+    --red:         #8B0D1E;
+    --red-mid:     #722a33;
+    --red-hover:   #a81025;
+    --red-glow:    rgba(139, 13, 30, 0.4);
+    --red-dim:     rgba(139, 13, 30, 0.2);
+
+    --soft-black:  #474040;
+    --dark:        #1A1A1A;
+    --dark-2:      #2A2A2A;
+  }
+
+  .catalogo-hero {
+    position: relative;
+    padding: 3rem 2.5rem;
+    background: linear-gradient(175deg, var(--dark) 0%, var(--dark-2) 100%);
+    overflow: hidden;
+    isolation: isolate;
+    border-bottom: 3px solid var(--red);
+    box-shadow: 0 4px 20px rgba(139, 13, 30, 0.15); /* sutil halo rojo */
+  }
+
+  /* Grain sutil */
+  .catalogo-hero__noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  .catalogo-hero__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .catalogo-hero__eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #f0a0a8; /* rojo claro apagado, en lugar del dorado */
+    opacity: 0.9;
+    margin: 0;
+  }
+
+  .catalogo-hero__title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    line-height: 1;
+  }
+
+  /* Esquinitas industriales, ahora en rojo */
+  .corner {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: var(--red-glow);
+    border-style: solid;
+  }
+  .corner--tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
+  .corner--br { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
+</style>
