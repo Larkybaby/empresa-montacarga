@@ -1,0 +1,131 @@
+---
+// src/components/WelcomeScreen.astro
+---
+
+<div id="welcome-screen">
+  <div class="welcome-content">
+    <div class="logo-mark"><img src="/Imagenes/logo-trans.png" alt="Logo Empresa"><br>
+    <span><h1>SABOKAR</h1></span><br>
+    </div>
+    <h1 class="welcome-title">
+      <span>Bienvenido</span>
+    </h1>
+    <p class="welcome-sub">Cargando experiencia...</p>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #welcome-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #570404;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  #welcome-screen.hide {
+    opacity: 0;
+    transform: scale(1.05);
+    pointer-events: none;
+  }
+
+  .welcome-content {
+    text-align: center;
+    color: #fff;
+  }
+
+  .logo-mark {
+    font-size: 3rem;
+    animation: pulse 1.5s ease infinite;
+    margin-bottom: 1rem;
+  }
+
+  .welcome-title span {
+    display: inline-block;
+    font-size: clamp(2rem, 8vw, 5rem);
+    font-family: 'Georgia', serif;
+    letter-spacing: -0.02em;
+    animation: slideUp 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  .welcome-sub {
+    margin-top: 0.5rem;
+    color: #888;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    animation: slideUp 0.8s 0.2s ease forwards;
+    opacity: 0;
+  }
+
+  .progress-bar {
+    margin-top: 2rem;
+    width: 200px;
+    height: 2px;
+    background: #222;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-inline: auto;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: #fff;
+    animation: fillBar 1.8s ease forwards;
+    width: 0%;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(0.9); }
+  }
+
+  @keyframes fillBar {
+    to { width: 100%; }
+  }
+</style>
+
+<script>
+
+    /*window.addEventListener('load', () => {
+    const screen = document.getElementById('welcome-screen');
+    if (!screen) return;
+
+    if (sessionStorage.getItem('visited')) {
+        screen.remove(); // ya visitó, quitar inmediatamente
+        return;
+    }
+
+    sessionStorage.setItem('visited', 'true');
+
+    setTimeout(() => {
+        screen.classList.add('hide');
+        screen.addEventListener('transitionend', () => screen.remove(), { once: true });
+    }, 2000);
+    });*/
+  // Espera a que la barra termine (~1.8s) y luego oculta
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const screen = document.getElementById('welcome-screen');
+      if (screen) {
+        screen.classList.add('hide');
+        // Elimina del DOM tras la transición
+        screen.addEventListener('transitionend', () => screen.remove(), { once: true });
+      }
+    }, 2000); // ajusta el tiempo como quieras
+  });
+
+
+</script>
