@@ -3,14 +3,17 @@
 ---
 
 <div id="welcome-screen">
+  <canvas id="ws-particles"></canvas>
   <div class="welcome-content">
-    <div class="logo-mark"><img src="/Imagenes/logo-trans.png" alt="Logo Empresa"><br>
-    <span><h1>SABOKAR</h1></span><br>
+    <div class="logo-wrap">
+      <img src="/Imagenes/logo-trans.png" alt="Logo Sabokar" />
     </div>
-    <h1 class="welcome-title">
-      <span>Bienvenido</span>
+    <h1 class="welcome-title" aria-label="SABOKAR">
+      {"SABOKAR".split("").map((l, i) => (
+        <span class="letter" style={`animation-delay: ${0.3 + i * 0.07}s`}>{l}</span>
+      ))}
     </h1>
-    <p class="welcome-sub">Cargando experiencia...</p>
+    <p class="welcome-sub">Bienvenido</p>
     <div class="progress-bar">
       <div class="progress-fill"></div>
     </div>
@@ -31,65 +34,101 @@
 
   #welcome-screen.hide {
     opacity: 0;
-    transform: scale(1.05);
+    transform: scale(1.04);
     pointer-events: none;
   }
 
+  #ws-particles {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   .welcome-content {
+    position: relative;
+    z-index: 2;
     text-align: center;
     color: #fff;
   }
 
-  .logo-mark {
-    font-size: 3rem;
-    animation: pulse 1.5s ease infinite;
-    margin-bottom: 1rem;
+  .logo-wrap {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 1.25rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s ease infinite;
   }
 
-  .welcome-title span {
+  .logo-wrap img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+
+  .welcome-title {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    margin: 0 0 0.5rem;
+  }
+
+  .letter {
     display: inline-block;
-    font-size: clamp(2rem, 8vw, 5rem);
+    font-size: clamp(2.5rem, 9vw, 5rem);
     font-family: 'Georgia', serif;
-    letter-spacing: -0.02em;
-    animation: slideUp 0.8s ease forwards;
+    font-weight: 700;
+    letter-spacing: 0.08em;
     opacity: 0;
+    transform: translateY(18px);
+    animation: slideUp 0.5s ease forwards;
+    color: #fff;
   }
 
   .welcome-sub {
-    margin-top: 0.5rem;
-    color: #888;
-    font-size: 0.9rem;
-    letter-spacing: 0.1em;
+    font-family: sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
     text-transform: uppercase;
-    animation: slideUp 0.8s 0.2s ease forwards;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
     opacity: 0;
+    animation: fadeIn 0.6s 1.2s ease forwards;
   }
 
   .progress-bar {
-    margin-top: 2rem;
-    width: 200px;
+    margin: 2rem auto 0;
+    width: 160px;
     height: 2px;
-    background: #222;
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 2px;
     overflow: hidden;
-    margin-inline: auto;
   }
 
+  /* ⬇ Cambia la duración aquí para controlar cuánto dura la barra */
   .progress-fill {
     height: 100%;
-    background: #fff;
-    animation: fillBar 1.8s ease forwards;
     width: 0%;
+    background: #fff;
+    border-radius: 2px;
+    animation: fillBar 2s ease forwards;
   }
 
   @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
   }
 
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
-    50%       { opacity: 0.5; transform: scale(0.9); }
+    50%       { opacity: 0.6; transform: scale(0.92); }
   }
 
   @keyframes fillBar {
@@ -98,34 +137,63 @@
 </style>
 
 <script>
+  // --- Partículas de fondo ---
+  const canvas = document.getElementById('ws-particles') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d')!;
 
-    /*window.addEventListener('load', () => {
-    const screen = document.getElementById('welcome-screen');
-    if (!screen) return;
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
 
-    if (sessionStorage.getItem('visited')) {
-        screen.remove(); // ya visitó, quitar inmediatamente
-        return;
+  const particles = Array.from({ length: 50 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.5 + 0.3,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: -(Math.random() * 0.4 + 0.1),
+    a: Math.random() * 0.35 + 0.1,
+  }));
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (const p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${p.a})`;
+      ctx.fill();
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.y < -5) { p.y = canvas.height + 5; p.x = Math.random() * canvas.width; }
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
     }
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
 
-    sessionStorage.setItem('visited', 'true');
+  // --- Cierre de la pantalla ---
+  const MIN_DURATION = 2000; // ← cambia aquí la duración mínima en ms
+  const start = Date.now();
 
-    setTimeout(() => {
-        screen.classList.add('hide');
-        screen.addEventListener('transitionend', () => screen.remove(), { once: true });
-    }, 2000);
-    });*/
-  // Espera a que la barra termine (~1.8s) y luego oculta
   window.addEventListener('load', () => {
+    const elapsed = Date.now() - start;
+    const remaining = Math.max(0, MIN_DURATION - elapsed);
+
     setTimeout(() => {
       const screen = document.getElementById('welcome-screen');
       if (screen) {
         screen.classList.add('hide');
-        // Elimina del DOM tras la transición
         screen.addEventListener('transitionend', () => screen.remove(), { once: true });
       }
-    }, 2000); // ajusta el tiempo como quieras
+    }, remaining);
   });
 
-
+  // Descomenta esto para no mostrar la pantalla en visitas repetidas:
+  // if (sessionStorage.getItem('visited')) {
+  //   document.getElementById('welcome-screen')?.remove();
+  // } else {
+  //   sessionStorage.setItem('visited', 'true');
+  // }
 </script>

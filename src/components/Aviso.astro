@@ -1,901 +1,1304 @@
 ---
-const empresa   = "Sabokar";
-const correo    = "sabokarrh@gmail.com";
-const telefono  = "+52 47 41 26 24 88";
-const direccion = "Rancho los Sauces, SN, Cam a Comanja KM 6, La Sauceda CP 47504 El Tepetate, Jalisco, México";
+const empresa = "Sabokar";
+const correo = "sabokarrh@gmail.com";
+const telefono = "+52 47 41 26 24 88";
+const direccion =
+  "Rancho los Sauces, SN, Cam a Comanja KM 6, La Sauceda CP 47504 El Tepetate, Jalisco, México";
+const actualizacion = "28 de abril de 2026";
 
 const secciones = [
-  { numero: "01", titulo: "Identidad del Responsable" },
-  { numero: "02", titulo: "Datos Recopilados" },
-  { numero: "03", titulo: "Finalidades del Tratamiento" },
-  { numero: "04", titulo: "Tecnologías de Rastreo" },
-  { numero: "05", titulo: "Transferencia de Datos" },
-  { numero: "06", titulo: "Derechos ARCO" },
-  { numero: "07", titulo: "Medidas de Seguridad" },
-  { numero: "08", titulo: "Cambios al Aviso" },
-  { numero: "09", titulo: "Contacto" },
+  { numero: "01", titulo: "Identidad del Responsable", tag: "RESP" },
+  { numero: "02", titulo: "Datos Recopilados", tag: "DATOS" },
+  { numero: "03", titulo: "Finalidades del Tratamiento", tag: "USO" },
+  { numero: "04", titulo: "Tecnologías de Rastreo", tag: "COOKIES" },
+  { numero: "05", titulo: "Transferencia de Datos", tag: "TRANSF" },
+  { numero: "06", titulo: "Derechos ARCO", tag: "ARCO" },
+  { numero: "07", titulo: "Medidas de Seguridad", tag: "SEG" },
+  { numero: "08", titulo: "Cambios al Aviso", tag: "CAMBIOS" },
+  { numero: "09", titulo: "Contacto", tag: "CONTACTO" },
 ];
 ---
 
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aviso de Privacidad — {empresa}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aviso de Privacidad — {empresa}</title>
+    <meta
+      name="description"
+      content={`Aviso de Privacidad de ${empresa} conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.`}
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="privacy-shell">
+      <div class="privacy-progress" aria-hidden="true">
+        <span id="readingProgress"></span>
+      </div>
 
-  <style>
-    :root {
-      --bg: #06080f;
-      --g1: #3b82f6;
-      --g2: #06b6d4;
-      --g3: #8b5cf6;
-      --g4: #ec4899;
-      --surface: rgba(255,255,255,0.04);
-      --surface-2: rgba(255,255,255,0.07);
-      --border: rgba(255,255,255,0.08);
-      --border-hi: rgba(255,255,255,0.18);
-      --text: #c2cbdc;
-      --text-muted: #505868;
-      --text-strong: #eef2ff;
-      --ff-display: 'Fraunces', serif;
-      --ff-body: 'Outfit', sans-serif;
-      --r-lg: 20px;
-      --r-md: 12px;
-      --r-sm: 8px;
-      --ease: 0.22s ease;
-    }
+      <header class="hero">
+        <div class="hero__grid" aria-hidden="true"></div>
+        <div class="hero__glow hero__glow--one" aria-hidden="true"></div>
+        <div class="hero__glow hero__glow--two" aria-hidden="true"></div>
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        <div class="hero__inner">
+          <div class="hero__eyebrow">
+            <span class="hero__eyebrow-chip">Privacidad</span>
+            <span class="hero__eyebrow-meta">LFPDPPP</span>
+            <span class="hero__eyebrow-meta">Actualizado: {actualizacion}</span>
+          </div>
 
-    html {
-      background: var(--bg)!important;
-      color: var(--text);
-      font-family: var(--ff-body);
-      font-size: 16px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-      scroll-behavior: smooth;
-    }
+          <div class="hero__content">
+            <div class="hero__copy">
+              <p class="hero__pre">Protección de datos personales</p>
+              <h1 class="hero__title">
+                Aviso de
+                <span class="hero__title-accent">Privacidad</span>
+              </h1>
+              <p class="hero__intro">
+                En cumplimiento con la Ley Federal de Protección de Datos Personales en
+                Posesión de los Particulares, te informamos de forma clara cómo recopilamos,
+                utilizamos, resguardamos y tratamos tus datos personales.
+              </p>
+            </div>
 
-    /* ← FIX CLAVE: overflow-x: clip en body, no hidden en html */
-    body {
-      position: relative;
-      min-height: 100vh;
-      overflow-x: clip;
-  background: var(--bg) !important;
-    }
+            <div class="hero__panel">
+              <div class="hero__panel-item">
+                <span class="hero__panel-label">Empresa</span>
+                <strong>{empresa}</strong>
+              </div>
+              <div class="hero__panel-item">
+                <span class="hero__panel-label">Secciones</span>
+                <strong>{secciones.length}</strong>
+              </div>
+              <div class="hero__panel-item">
+                <span class="hero__panel-label">Jurisdicción</span>
+                <strong>Jalisco</strong>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(ellipse 80% 55% at 5%  -5%,  rgba(59,130,246,.18) 0%, transparent 55%),
-        radial-gradient(ellipse 55% 45% at 95%  15%,  rgba(139,92,246,.13) 0%, transparent 55%),
-        radial-gradient(ellipse 45% 40% at 50%  85%,  rgba(6,182,212,.10)  0%, transparent 55%),
-        radial-gradient(ellipse 40% 55% at 85%  95%,  rgba(236,72,153,.07) 0%, transparent 55%);
-    }
+        <div class="hero__watermark" aria-hidden="true">AV</div>
+      </header>
 
-    body > * { position: relative; z-index: 1; }
+      <div class="layout">
+        <div class="toc-wrapper">
+          <aside class="toc">
+            <div class="toc__header">
+              <p class="toc__label">Contenido</p>
+              <button class="toc__toggle" id="tocToggle" aria-expanded="false" aria-controls="tocNav">
+                <span class="toc__toggle-text">Índice de contenido</span>
+                <span class="toc__toggle-icon" id="tocIcon">▾</span>
+              </button>
+            </div>
 
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(var(--g1), var(--g3)); border-radius: 99px; }
+            <nav class="toc__nav" id="tocNav" aria-label="Índice del aviso de privacidad">
+              {secciones.map((s) => (
+                <a class="toc__link" href={`#seccion-${s.numero}`}>
+                  <span class="toc__num">{s.numero}</span>
+                  <span class="toc__body">
+                    <span class="toc__titulo">{s.titulo}</span>
+                    <span class="toc__tag">{s.tag}</span>
+                  </span>
+                </a>
+              ))}
+            </nav>
+          </aside>
+        </div>
 
-    /* ── HERO ── */
-    .hero {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 6rem 2rem 5rem;
-    }
+        <main class="content">
+          <section class="summary-card" aria-label="Resumen del aviso">
+            <div class="summary-card__item">
+              <span class="summary-card__label">Documento</span>
+              <strong>Aviso de Privacidad</strong>
+            </div>
+            <div class="summary-card__item">
+              <span class="summary-card__label">Responsable</span>
+              <strong>{empresa}</strong>
+            </div>
+            <div class="summary-card__item">
+              <span class="summary-card__label">Versión</span>
+              <strong>1.0</strong>
+            </div>
+          </section>
 
-    .hero__eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text);
-      background: var(--surface);
-      border: 1px solid var(--border-hi);
-      border-radius: 99px;
-      padding: 0.35rem 1rem 0.35rem 0.45rem;
-      margin-bottom: 2rem;
-      animation: fadeUp 0.6s ease both 0.05s;
-    }
+          <section id="seccion-01" class="section">
+            <div class="section__header">
+              <span class="section__num">01</span>
+              <h2 class="section__title">Identidad y Domicilio del Responsable</h2>
+              <span class="section__tag">RESP</span>
+            </div>
+            <div class="section__body">
+              <p>
+                <strong>{empresa}</strong>, con domicilio en <strong>{direccion}</strong>, es el
+                responsable del tratamiento de los datos personales que recabe a través de su sitio
+                web y demás medios de contacto.
+              </p>
+              <p>
+                La empresa se compromete a proteger la privacidad de los datos y utilizarlos
+                únicamente para los fines descritos en este aviso, en apego a la legislación mexicana.
+              </p>
 
-    .hero__eyebrow-icon {
-      width: 26px; height: 26px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--g1), var(--g3));
-      display: grid;
-      place-items: center;
-      font-size: 0.7rem;
-      flex-shrink: 0;
-    }
+              <div class="contact-grid">
+                <div class="contact-card">
+                  <span class="contact-card__icon">01</span>
+                  <span class="contact-card__label">Correo electrónico</span>
+                  <a href={`mailto:${correo}`} class="contact-card__value">{correo}</a>
+                </div>
+                <div class="contact-card">
+                  <span class="contact-card__icon">02</span>
+                  <span class="contact-card__label">Teléfono</span>
+                  <span class="contact-card__value">{telefono}</span>
+                </div>
+              </div>
+            </div>
+          </section>
 
-    .hero__title {
-      font-family: var(--ff-display);
-      font-size: clamp(3rem, 7.5vw, 5.8rem);
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      color: var(--text-strong);
-      margin-bottom: 1.2rem;
-      animation: fadeUp 0.6s ease both 0.12s;
-    }
+          <section id="seccion-02" class="section">
+            <div class="section__header">
+              <span class="section__num">02</span>
+              <h2 class="section__title">Datos Personales que se Recopilan</h2>
+              <span class="section__tag">DATOS</span>
+            </div>
+            <div class="section__body">
+              <p>
+                Los datos que <strong>{empresa}</strong> puede recopilar a través del sitio,
+                formularios de contacto, solicitudes de cotización o comunicación directa incluyen:
+              </p>
+              <ul>
+                <li>Nombre completo.</li>
+                <li>Nombre de la empresa u organización.</li>
+                <li>Dirección de correo electrónico.</li>
+                <li>Número de teléfono o celular.</li>
+                <li>Dirección o ubicación del proyecto.</li>
+                <li>Información relacionada con la solicitud de servicios o productos.</li>
+              </ul>
+              <div class="callout callout--info">
+                Los datos son proporcionados directamente por el usuario. <strong>{empresa}</strong>
+                no recopila datos personales sensibles de manera intencional a través del sitio web.
+              </div>
+            </div>
+          </section>
 
-    .hero__title-grad {
-      display: block;
-      background: linear-gradient(120deg, var(--g1) 0%, var(--g2) 35%, var(--g3) 65%, var(--g4) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+          <section id="seccion-03" class="section">
+            <div class="section__header">
+              <span class="section__num">03</span>
+              <h2 class="section__title">Finalidades del Tratamiento</h2>
+              <span class="section__tag">USO</span>
+            </div>
+            <div class="section__body">
+              <p>Los datos personales recopilados serán utilizados para las siguientes finalidades:</p>
 
-    .hero__tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-      animation: fadeUp 0.6s ease both 0.18s;
-    }
+              <div class="finalidades-grid">
+                <div class="finalidad-card finalidad-card--primary">
+                  <div class="finalidad-card__title">
+                    <span class="finalidad-card__pill"></span>
+                    Primarias
+                  </div>
+                  <ul>
+                    <li>Atender solicitudes de información y contacto.</li>
+                    <li>Elaborar cotizaciones de montacargas, renta y servicios técnicos.</li>
+                    <li>Brindar asesoría comercial y técnica especializada.</li>
+                    <li>Dar seguimiento a solicitudes y contrataciones.</li>
+                    <li>Mantener comunicación con clientes y prospectos.</li>
+                  </ul>
+                </div>
 
-    .hero__tag {
-      font-size: 0.73rem;
-      font-weight: 400;
-      color: var(--text-muted);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 99px;
-      padding: 0.22rem 0.8rem;
-    }
+                <div class="finalidad-card finalidad-card--secondary">
+                  <div class="finalidad-card__title">
+                    <span class="finalidad-card__pill"></span>
+                    Secundarias
+                  </div>
+                  <ul>
+                    <li>Envío de información promocional sobre productos o servicios.</li>
+                    <li>Realización de encuestas de satisfacción.</li>
+                    <li>Análisis interno para mejorar la calidad del servicio.</li>
+                  </ul>
+                </div>
+              </div>
 
-    .hero__intro {
-      max-width: 540px;
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--text);
-      line-height: 1.85;
-      padding-left: 1.4rem;
-      position: relative;
-      animation: fadeUp 0.6s ease both 0.24s;
-    }
+              <div class="callout callout--soft">
+                El usuario puede solicitar en cualquier momento que sus datos no sean utilizados
+                para finalidades secundarias, sin afectar la prestación de los servicios principales.
+              </div>
+            </div>
+          </section>
 
-    .hero__intro::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 4px; bottom: 4px;
-      width: 3px;
-      border-radius: 99px;
-      background: linear-gradient(to bottom, var(--g1), var(--g3));
-    }
+          <section id="seccion-04" class="section">
+            <div class="section__header">
+              <span class="section__num">04</span>
+              <h2 class="section__title">Uso de Tecnologías de Rastreo</h2>
+              <span class="section__tag">COOKIES</span>
+            </div>
+            <div class="section__body">
+              <p>
+                El sitio web puede utilizar <em>cookies</em> u otras herramientas de análisis para
+                mejorar la experiencia de navegación del usuario.
+              </p>
+              <p>Estas tecnologías pueden recopilar:</p>
+              <ul>
+                <li>Dirección IP del dispositivo de acceso.</li>
+                <li>Tipo de navegador y sistema operativo.</li>
+                <li>Páginas visitadas y tiempo de navegación dentro del sitio.</li>
+                <li>Referencia de origen del acceso al sitio.</li>
+              </ul>
+              <div class="callout callout--note">
+                Esta información se utiliza exclusivamente con fines estadísticos y de mejora del
+                sitio. No se vincula a información personal identificable sin consentimiento del usuario.
+              </div>
+            </div>
+          </section>
 
-    /* ── LAYOUT ── */
+          <section id="seccion-05" class="section">
+            <div class="section__header">
+              <span class="section__num">05</span>
+              <h2 class="section__title">Transferencia de Datos Personales</h2>
+              <span class="section__tag">TRANSF</span>
+            </div>
+            <div class="section__body">
+              <p>
+                <strong>{empresa}</strong> no vende, alquila ni comparte los datos personales con
+                terceros sin consentimiento previo, salvo en los siguientes casos:
+              </p>
+              <ul>
+                <li>Cuando lo requieran autoridades competentes conforme a la ley.</li>
+                <li>Cuando sea necesario para cumplir obligaciones legales o regulatorias.</li>
+                <li>Cuando sea indispensable para prestar correctamente los servicios solicitados.</li>
+              </ul>
+              <div class="callout callout--warning">
+                Ante cualquier transferencia que requiera consentimiento expreso, se informará
+                previamente al titular y se solicitará su autorización.
+              </div>
+            </div>
+          </section>
+
+          <section id="seccion-06" class="section">
+            <div class="section__header">
+              <span class="section__num">06</span>
+              <h2 class="section__title">Derechos ARCO</h2>
+              <span class="section__tag">ARCO</span>
+            </div>
+            <div class="section__body">
+              <p>
+                Conforme a la LFPDPPP, el titular de los datos personales puede ejercer en cualquier
+                momento los siguientes derechos:
+              </p>
+
+              <div class="arco-grid">
+                <div class="arco-card">
+                  <div class="arco-card__letter">A</div>
+                  <div class="arco-card__name">Acceso</div>
+                  <p class="arco-card__desc">Conocer qué datos posee la empresa y para qué fines.</p>
+                </div>
+                <div class="arco-card">
+                  <div class="arco-card__letter">R</div>
+                  <div class="arco-card__name">Rectificación</div>
+                  <p class="arco-card__desc">Corregir datos incorrectos, inexactos o incompletos.</p>
+                </div>
+                <div class="arco-card">
+                  <div class="arco-card__letter">C</div>
+                  <div class="arco-card__name">Cancelación</div>
+                  <p class="arco-card__desc">Solicitar la eliminación de sus datos del registro.</p>
+                </div>
+                <div class="arco-card">
+                  <div class="arco-card__letter">O</div>
+                  <div class="arco-card__name">Oposición</div>
+                  <p class="arco-card__desc">Oponerse al uso de sus datos para fines específicos.</p>
+                </div>
+              </div>
+
+              <p>Envía tu solicitud a <strong>{correo}</strong> incluyendo:</p>
+              <ul>
+                <li>Nombre completo del titular de los datos.</li>
+                <li>Descripción clara y precisa de la solicitud.</li>
+                <li>Documento oficial que acredite la identidad del solicitante.</li>
+              </ul>
+              <div class="callout callout--soft">
+                La empresa responderá en un plazo no mayor a <strong>20 días hábiles</strong> a partir
+                de la recepción, conforme a lo establecido en la LFPDPPP.
+              </div>
+            </div>
+          </section>
+
+          <section id="seccion-07" class="section">
+            <div class="section__header">
+              <span class="section__num">07</span>
+              <h2 class="section__title">Medidas de Seguridad</h2>
+              <span class="section__tag">SEG</span>
+            </div>
+            <div class="section__body">
+              <p>
+                <strong>{empresa}</strong> implementa medidas de seguridad administrativas, técnicas
+                y físicas para proteger los datos personales contra daño, pérdida, alteración o acceso
+                no autorizado.
+              </p>
+              <div class="callout callout--note">
+                Aunque se aplican medidas razonables, ningún sistema es completamente infalible. La empresa
+                se compromete a notificar al titular ante cualquier vulneración que afecte significativamente
+                sus derechos.
+              </div>
+            </div>
+          </section>
+
+          <section id="seccion-08" class="section">
+            <div class="section__header">
+              <span class="section__num">08</span>
+              <h2 class="section__title">Cambios al Aviso de Privacidad</h2>
+              <span class="section__tag">CAMBIOS</span>
+            </div>
+            <div class="section__body">
+              <p>
+                <strong>{empresa}</strong> se reserva el derecho de modificar o actualizar el presente
+                Aviso en cualquier momento, conforme a cambios en la legislación o en las prácticas internas.
+              </p>
+              <p>
+                Las modificaciones serán publicadas en este sitio con la fecha de actualización. El uso continuado
+                del sitio implica la aceptación del aviso vigente.
+              </p>
+              <div class="callout callout--info">
+                Se recomienda revisar periódicamente este aviso para mantenerse informado sobre cómo se protegen
+                y utilizan sus datos personales.
+              </div>
+            </div>
+          </section>
+
+          <section id="seccion-09" class="section">
+            <div class="section__header">
+              <span class="section__num">09</span>
+              <h2 class="section__title">Contacto</h2>
+              <span class="section__tag">CONTACTO</span>
+            </div>
+            <div class="section__body">
+              <p>
+                Para cualquier duda, aclaración o solicitud relacionada con este Aviso de Privacidad
+                o el tratamiento de sus datos personales, contáctenos:
+              </p>
+              <div class="contact-grid contact-grid--three">
+                <div class="contact-card">
+                  <span class="contact-card__icon">01</span>
+                  <span class="contact-card__label">Correo electrónico</span>
+                  <a href={`mailto:${correo}`} class="contact-card__value">{correo}</a>
+                </div>
+                <div class="contact-card">
+                  <span class="contact-card__icon">02</span>
+                  <span class="contact-card__label">Teléfono</span>
+                  <span class="contact-card__value">{telefono}</span>
+                </div>
+                <div class="contact-card">
+                  <span class="contact-card__icon">03</span>
+                  <span class="contact-card__label">Dirección</span>
+                  <span class="contact-card__value">{direccion}</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script is:inline>
+      const toggle = document.getElementById('tocToggle');
+      const nav = document.getElementById('tocNav');
+      const icon = document.getElementById('tocIcon');
+      const links = Array.from(document.querySelectorAll('.toc__link'));
+      const sections = document.querySelectorAll('.section');
+      const progress = document.getElementById('readingProgress');
+
+      const closeMobileToc = () => {
+        if (!nav || !icon || !toggle) return;
+        nav.classList.remove('open');
+        icon.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      };
+
+      const setActiveLink = (id) => {
+        links.forEach((link) => link.classList.remove('active'));
+        const active = document.querySelector(`.toc__link[href="#${id}"]`);
+        if (active) active.classList.add('active');
+      };
+
+      if (toggle && nav && icon) {
+        toggle.addEventListener('click', () => {
+          const isOpen = nav.classList.toggle('open');
+          icon.classList.toggle('open', isOpen);
+          toggle.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+
+      links.forEach((link) => {
+        link.addEventListener('click', (event) => {
+          const href = link.getAttribute('href');
+          if (!href || !href.startsWith('#')) return;
+
+          const target = document.querySelector(href);
+          if (!target) return;
+
+          if (window.innerWidth < 960) {
+            event.preventDefault();
+            closeMobileToc();
+            window.setTimeout(() => {
+              const top = target.getBoundingClientRect().top + window.scrollY - 24;
+              window.scrollTo({ top, behavior: 'smooth' });
+              history.replaceState(null, '', href);
+              setActiveLink(target.id);
+            }, 220);
+            return;
+          }
+
+          setActiveLink(target.id);
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0) {
+            setActiveLink(entry.target.id);
+          }
+        });
+      }, {
+        rootMargin: '-18% 0px -58% 0px',
+        threshold: 0.12,
+      });
+
+      sections.forEach((section) => observer.observe(section));
+
+      const updateProgress = () => {
+        if (!progress) return;
+        const scrollTop = window.scrollY;
+        const height = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = height > 0 ? Math.min(scrollTop / height, 1) : 0;
+        progress.style.width = `${ratio * 100}%`;
+      };
+
+      updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress, { passive: true });
+    </script>
+  </body>
+</html>
+
+<style>
+  :root {
+    --red: #b31224;
+    --red-deep: #7d0f1b;
+    --brown: #6f4f37;
+    --charcoal: #141112;
+    --charcoal-2: #201a1b;
+    --panel: rgba(43, 35, 36, 0.88);
+    --panel-2: rgba(55, 45, 46, 0.9);
+    --white: #ffffff;
+    --text: #d7d0ca;
+    --text-soft: #a89d95;
+    --heading: #f7f3ef;
+    --line: rgba(255, 255, 255, 0.09);
+    --line-strong: rgba(255, 255, 255, 0.16);
+    --red-soft: rgba(179, 18, 36, 0.12);
+    --brown-soft: rgba(111, 79, 55, 0.12);
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
+    --ff-display: 'Fraunces', serif;
+    --ff-body: 'Outfit', sans-serif;
+    --r-lg: 24px;
+    --r-md: 16px;
+    --r-sm: 12px;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    background: var(--charcoal);
+    color: var(--text);
+    font-family: var(--ff-body);
+    font-size: 16px;
+    line-height: 1.7;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-height: 100vh;
+    overflow-x: clip;
+  }
+
+  .privacy-shell {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top, rgba(179, 18, 36, 0.18), transparent 24%),
+      radial-gradient(circle at bottom right, rgba(111, 79, 55, 0.12), transparent 18%),
+      linear-gradient(180deg, #171213 0%, #141112 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .privacy-shell::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(
+        60deg,
+        rgba(179, 18, 36, 0.08) 0px,
+        rgba(179, 18, 36, 0.08) 2px,
+        transparent 2px,
+        transparent 24px
+      );
+    opacity: 0.24;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.45));
+  }
+
+  .privacy-shell::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 38px 38px;
+    opacity: 0.12;
+  }
+
+  .privacy-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 50;
+    background: rgba(20, 17, 18, 0.72);
+    backdrop-filter: blur(8px);
+  }
+
+  .privacy-progress span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--red), #b14554);
+    transition: width 0.08s linear;
+  }
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(4rem, 7vw, 6rem) 1.5rem 3.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(135deg, rgba(31, 25, 26, 0.92), rgba(20, 17, 18, 0.88)),
+      radial-gradient(circle at top left, rgba(179, 18, 36, 0.14), transparent 40%);
+  }
+
+  .hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent 100%);
+    pointer-events: none;
+  }
+
+  .hero__glow {
+    position: absolute;
+    width: 28rem;
+    height: 28rem;
+    border-radius: 50%;
+    filter: blur(72px);
+    pointer-events: none;
+    opacity: 0.3;
+  }
+
+  .hero__glow--one {
+    top: -10rem;
+    left: -8rem;
+    background: rgba(139, 13, 30, 0.16);
+  }
+
+  .hero__glow--two {
+    right: -10rem;
+    bottom: -14rem;
+    background: rgba(111, 79, 55, 0.18);
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 2;
+    width: min(100%, 1160px);
+    margin: 0 auto;
+  }
+
+  .hero__eyebrow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1.6rem;
+  }
+
+  .hero__eyebrow-chip,
+  .hero__eyebrow-meta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0.38rem 0.72rem;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero__eyebrow-chip {
+    background: var(--red);
+    color: var(--white);
+    box-shadow: 0 14px 24px rgba(139, 13, 30, 0.18);
+  }
+
+  .hero__eyebrow-meta {
+    color: var(--text-soft);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .hero__content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 2rem;
+    align-items: end;
+  }
+
+  .hero__pre {
+    margin-bottom: 0.8rem;
+    color: #d5b39a;
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .hero__title {
+    color: var(--heading);
+    font-family: var(--ff-display);
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
+
+  .hero__title-accent {
+    display: block;
+    color: var(--red);
+  }
+
+  .hero__intro {
+    width: min(100%, 610px);
+    margin-top: 1rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--red);
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  .hero__panel {
+    display: grid;
+    gap: 0.9rem;
+    padding: 1.15rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+  }
+
+  .hero__panel-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.22rem;
+  }
+
+  .hero__panel-label {
+    color: var(--text-soft);
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero__panel-item strong {
+    color: var(--heading);
+    font-size: 0.98rem;
+    font-weight: 600;
+  }
+
+  .hero__watermark {
+    position: absolute;
+    right: 0.5rem;
+    bottom: -1rem;
+    color: transparent;
+    font-family: var(--ff-display);
+    font-size: clamp(7rem, 18vw, 16rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    -webkit-text-stroke: 1px rgba(139, 13, 30, 0.08);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 2rem;
+    width: min(100%, 1160px);
+    margin: 0 auto;
+    padding: 2rem 1.5rem 5rem;
+  }
+
+  .toc-wrapper {
+    position: sticky;
+    top: 1.5rem;
+    align-self: start;
+  }
+
+  .toc {
+    border-radius: var(--r-lg);
+    background: rgba(38, 31, 32, 0.84);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+  }
+
+  .toc__header {
+    padding: 1rem 1rem 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(179, 18, 36, 0.14), rgba(255, 255, 255, 0.02));
+  }
+
+  .toc__label {
+    color: var(--red);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .toc__toggle {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0.82rem 0.95rem;
+    cursor: pointer;
+  }
+
+  .toc__toggle-text {
+    color: var(--heading);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .toc__toggle-icon {
+    color: var(--red);
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+    line-height: 1;
+  }
+
+  .toc__toggle-icon.open {
+    transform: rotate(180deg);
+  }
+
+  .toc__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding: 0.85rem 0.7rem;
+  }
+
+  .toc__link {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    padding: 0.8rem 0.9rem;
+    border-radius: 14px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .toc__link:hover,
+  .toc__link.active {
+    background: var(--red-soft);
+    border-color: rgba(139, 13, 30, 0.12);
+    transform: translateX(2px);
+  }
+
+  .toc__num {
+    min-width: 2rem;
+    color: var(--red);
+    font-size: 0.65rem;
+    line-height: 1.6;
+  }
+
+  .toc__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .toc__titulo {
+    color: var(--heading);
+    font-size: 0.9rem;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+
+  .toc__tag {
+    color: var(--text-soft);
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .content {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .summary-card {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    padding: 1rem 1.15rem;
+    border-radius: 20px;
+    background: rgba(38, 31, 32, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow);
+  }
+
+  .summary-card__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .summary-card__label {
+    color: var(--text-soft);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .summary-card strong {
+    color: var(--heading);
+    font-size: 0.95rem;
+  }
+
+  .section {
+    scroll-margin-top: 5rem;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(43, 35, 36, 0.88);
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .section:hover {
+    transform: translateY(-1px);
+    border-color: rgba(139, 13, 30, 0.14);
+  }
+
+  .section::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--red), rgba(139, 13, 30, 0.12));
+  }
+
+  .section__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  }
+
+  .section__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.2rem;
+    min-height: 2.2rem;
+    padding: 0 0.65rem;
+    border-radius: 999px;
+    background: var(--red-soft);
+    color: var(--red);
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+  }
+
+  .section__title {
+    flex: 1;
+    color: var(--heading);
+    font-family: var(--ff-display);
+    font-size: 1.34rem;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  .section__tag {
+    color: #e0c3b0;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.34rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(111, 79, 55, 0.2);
+  }
+
+  .section__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.35rem 1.2rem 1.45rem;
+  }
+
+  .section__body p {
+    color: var(--text);
+    font-size: 0.98rem;
+    line-height: 1.85;
+  }
+
+  .section__body strong {
+    color: var(--heading);
+    font-weight: 600;
+  }
+
+  .section__body em {
+    font-style: italic;
+  }
+
+  .section__body ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding-left: 1rem;
+    margin-left: 0.15rem;
+    border-left: 2px solid rgba(255, 255, 255, 0.08);
+    list-style: none;
+  }
+
+  .section__body li {
+    position: relative;
+    padding-left: 0.82rem;
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+  .section__body li::before {
+    content: '';
+    position: absolute;
+    top: 0.76rem;
+    left: 0;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: var(--red);
+  }
+
+  .callout {
+    padding: 1rem 1.05rem;
+    border-radius: 14px;
+    font-size: 0.92rem;
+    line-height: 1.75;
+  }
+
+  .callout--info {
+    color: #e0c3b0;
+    background: rgba(111, 79, 55, 0.16);
+    border: 1px solid rgba(111, 79, 55, 0.24);
+  }
+
+  .callout--soft {
+    color: #f0c6cc;
+    background: rgba(179, 18, 36, 0.14);
+    border: 1px solid rgba(179, 18, 36, 0.22);
+  }
+
+  .callout--note {
+    color: #d7d0ca;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .callout--warning {
+    color: #ffd2d8;
+    background: rgba(179, 18, 36, 0.16);
+    border: 1px solid rgba(179, 18, 36, 0.26);
+  }
+
+  .finalidades-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .finalidad-card {
+    border-radius: 18px;
+    padding: 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .finalidad-card--primary {
+    border-color: rgba(179, 18, 36, 0.2);
+    background: rgba(179, 18, 36, 0.08);
+  }
+
+  .finalidad-card--secondary {
+    border-color: rgba(111, 79, 55, 0.2);
+    background: rgba(111, 79, 55, 0.08);
+  }
+
+  .finalidad-card__title {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.85rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .finalidad-card__pill {
+    width: 18px;
+    height: 5px;
+    border-radius: 999px;
+    flex-shrink: 0;
+    background: linear-gradient(90deg, var(--red), var(--brown));
+  }
+
+  .arco-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+  }
+
+  .arco-card {
+    border-radius: 18px;
+    padding: 1.15rem 1rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.05);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .arco-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(139, 13, 30, 0.14);
+  }
+
+  .arco-card__letter {
+    margin-bottom: 0.35rem;
+    color: var(--red);
+    font-family: var(--ff-display);
+    font-size: 2.2rem;
+    line-height: 1;
+  }
+
+  .arco-card__name {
+    margin-bottom: 0.35rem;
+    color: var(--heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .arco-card__desc {
+    color: var(--text-soft);
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .contact-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-height: 150px;
+    padding: 1.1rem;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.05);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(139, 13, 30, 0.14);
+  }
+
+  .contact-card__icon {
+    color: rgba(139, 13, 30, 0.45);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+  }
+
+  .contact-card__label {
+    color: var(--text-soft);
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .contact-card__value {
+    color: var(--heading);
+    font-size: 0.98rem;
+    font-weight: 600;
+    line-height: 1.45;
+    text-decoration: none;
+    word-break: break-word;
+  }
+
+  a.contact-card__value:hover {
+    color: var(--red);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 960px) {
+    .hero__content,
     .layout {
-      display: grid;
-      grid-template-columns: 255px 1fr;
-      gap: 2rem;
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 2rem 7rem;
-      align-items: start;
+      grid-template-columns: 1fr;
     }
 
-    /* ── TOC WRAPPER ── */
+    .layout {
+      gap: 1.25rem;
+      padding: 1.5rem 1.5rem 4rem;
+    }
+
     .toc-wrapper {
-      position: sticky;
-      top: 2rem;
-      align-self: start;
-      height: fit-content;
-    }
-
-    /* ── TOC ── */
-    .toc {
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-
-    .toc__header {
-      padding: 1.2rem 1.4rem 1rem;
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(135deg, rgba(59,130,246,.1), rgba(139,92,246,.08));
+      position: static;
     }
 
     .toc__label {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, var(--g1), var(--g2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      display: none;
     }
 
     .toc__toggle {
-      display: none;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-    }
-
-    .toc__toggle-text {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, var(--g1), var(--g2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .toc__toggle-icon {
-      color: var(--g2);
-      font-size: 1.1rem;
-      transition: transform 0.3s ease;
-      line-height: 1;
-    }
-
-    .toc__toggle-icon.open { transform: rotate(180deg); }
-
-    .toc__nav { padding: 0.8rem 0.6rem; }
-
-    .toc__link {
       display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      font-size: 0.79rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 0.45rem 0.7rem;
-      border-radius: var(--r-sm);
-      transition: color var(--ease), background var(--ease);
-      line-height: 1.4;
     }
 
-    .toc__link:hover { color: var(--text-strong); background: var(--surface-2); }
-
-    .toc__num {
-      font-size: 0.6rem;
-      font-weight: 600;
-      background: linear-gradient(135deg, var(--g1), var(--g3));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      min-width: 1.6rem;
-      flex-shrink: 0;
-    }
-
-    /* ── CONTENT ── */
-    .content { min-width: 0; }
-
-    /* ── SECTION ── */
-    .section {
-      margin-bottom: 1.4rem;
-      scroll-margin-top: 5rem;
-      border-radius: var(--r-lg);
+    .toc__nav {
+      max-height: 0;
       overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      backdrop-filter: blur(8px);
-      transition: border-color var(--ease), box-shadow var(--ease);
-      animation: fadeUp 0.5s ease both;
+      padding: 0 0.7rem;
+      transition: max-height 0.35s ease, padding 0.2s ease;
     }
 
-    .section:hover {
-      border-color: var(--border-hi);
-      box-shadow: 0 8px 40px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.03);
+    .toc__nav.open {
+      max-height: 760px;
+      padding: 0.85rem 0.7rem;
     }
 
-    .section:nth-child(1) { animation-delay:.04s }
-    .section:nth-child(2) { animation-delay:.08s }
-    .section:nth-child(3) { animation-delay:.12s }
-    .section:nth-child(4) { animation-delay:.16s }
-    .section:nth-child(5) { animation-delay:.20s }
-    .section:nth-child(6) { animation-delay:.23s }
-    .section:nth-child(7) { animation-delay:.26s }
-    .section:nth-child(8) { animation-delay:.29s }
-    .section:nth-child(9) { animation-delay:.32s }
+    .finalidades-grid,
+    .contact-grid,
+    .contact-grid--three {
+      grid-template-columns: 1fr;
+    }
+
+    .arco-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      padding: 3.4rem 1rem 2.5rem;
+    }
+
+    .hero__watermark {
+      display: none;
+    }
+
+    .layout {
+      padding: 1.2rem 1rem 3rem;
+    }
+
+    .section {
+      scroll-margin-top: 6rem;
+    }
 
     .section__header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.3rem 1.8rem;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section__header::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-    }
-
-    .section:nth-child(odd)  .section__header::before { background: linear-gradient(to bottom, var(--g1), var(--g2)); }
-    .section:nth-child(even) .section__header::before { background: linear-gradient(to bottom, var(--g3), var(--g4)); }
-
-    .section__num {
-      font-size: 0.63rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      padding: 0.2rem 0.6rem;
-      border-radius: 99px;
-      border: 1px solid var(--border-hi);
-      background: var(--surface-2);
-      color: var(--text-muted);
-      flex-shrink: 0;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      padding: 0.95rem 1rem;
     }
 
     .section__title {
-      font-family: var(--ff-display);
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-strong);
-      letter-spacing: -0.01em;
+      font-size: 1.06rem;
+    }
+
+    .section__tag {
+      display: none;
     }
 
     .section__body {
-      padding: 1.6rem 1.8rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.1rem;
-    }
-    .toc__link.active {
-      color: var(--text-strong);
-      background: var(--surface-2);
-      border-left: 2px solid var(--g1);
-      box-shadow: 0 0 0 1px rgba(59,130,246,.12), 0 0 18px rgba(59,130,246,.08);
+      padding: 1.15rem 1rem 1.25rem;
     }
 
-    .section__body p { font-size: .93rem; font-weight: 300; color: var(--text); line-height: 1.85; }
-    .section__body strong { color: var(--text-strong); font-weight: 500; }
-    .section__body em { font-style: italic; color: var(--text); }
-
-    .section__body ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
-
-    .section__body ul li {
-      font-size: .9rem; font-weight: 300; color: var(--text);
-      padding-left: 1.4rem; position: relative; line-height: 1.7;
+    .section__body p,
+    .section__body li {
+      font-size: 0.93rem;
     }
 
-    .section__body ul li::before {
-      content: '';
-      position: absolute;
-      left: .1rem; top: .65em;
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--g1), var(--g2));
+    .arco-grid {
+      grid-template-columns: 1fr 1fr;
     }
-
-    /* ── CALLOUTS ── */
-    .callout {
-      border-radius: var(--r-md);
-      padding: 1rem 1.3rem;
-      font-size: .88rem;
-      font-weight: 300;
-      line-height: 1.75;
-      border: 1px solid transparent;
-    }
-
-    .callout--blue   { background: rgba(59,130,246,.08);  border-color: rgba(59,130,246,.2);  color: #93c5fd; }
-    .callout--violet { background: rgba(139,92,246,.08);  border-color: rgba(139,92,246,.2);  color: #c4b5fd; }
-    .callout--cyan   { background: rgba(6,182,212,.08);   border-color: rgba(6,182,212,.2);   color: #67e8f9; }
-    .callout--pink   { background: rgba(236,72,153,.08);  border-color: rgba(236,72,153,.2);  color: #f9a8d4; }
-
-    /* ── FINALIDADES ── */
-    .finalidades-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-    .finalidad-card {
-      border-radius: var(--r-md);
-      border: 1px solid var(--border);
-      padding: 1.2rem;
-      background: var(--surface-2);
-    }
-
-    .finalidad-card--primary   { border-color: rgba(59,130,246,.25); background: rgba(59,130,246,.06); }
-    .finalidad-card--secondary { border-color: rgba(139,92,246,.2);  background: rgba(139,92,246,.05); }
-
-    .finalidad-card__title {
-      font-size: .66rem; font-weight: 600; letter-spacing: .14em;
-      text-transform: uppercase; margin-bottom: .9rem;
-      display: flex; align-items: center; gap: .5rem;
-    }
-
-    .finalidad-card--primary  .finalidad-card__title { color: #93c5fd; }
-    .finalidad-card--secondary .finalidad-card__title { color: #c4b5fd; }
-
-    .finalidad-card__pill { width: 18px; height: 5px; border-radius: 99px; flex-shrink: 0; }
-    .finalidad-card--primary  .finalidad-card__pill { background: linear-gradient(90deg, var(--g1), var(--g2)); }
-    .finalidad-card--secondary .finalidad-card__pill { background: linear-gradient(90deg, var(--g3), var(--g4)); }
-
-    .finalidad-card ul { padding-left: 0 !important; }
-
-    /* ── ARCO ── */
-    .arco-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; }
-
-    .arco-card {
-      border-radius: var(--r-md);
-      padding: 1.2rem 1rem;
-      border: 1px solid var(--border);
-      background: var(--surface-2);
-      text-align: center;
-      transition: transform var(--ease), border-color var(--ease);
-    }
-
-    .arco-card:hover { transform: translateY(-3px); border-color: var(--border-hi); }
-
-    .arco-card:nth-child(1) { border-top: 2px solid var(--g1); }
-    .arco-card:nth-child(2) { border-top: 2px solid var(--g2); }
-    .arco-card:nth-child(3) { border-top: 2px solid var(--g3); }
-    .arco-card:nth-child(4) { border-top: 2px solid var(--g4); }
-
-    .arco-card__letter {
-      font-family: var(--ff-display);
-      font-size: 2.2rem; font-weight: 900; line-height: 1; margin-bottom: .4rem;
-    }
-
-    .arco-card:nth-child(1) .arco-card__letter { color: var(--g1); }
-    .arco-card:nth-child(2) .arco-card__letter { color: var(--g2); }
-    .arco-card:nth-child(3) .arco-card__letter { color: var(--g3); }
-    .arco-card:nth-child(4) .arco-card__letter { color: var(--g4); }
-
-    .arco-card__name { font-size: .72rem; font-weight: 600; color: var(--text-strong); margin-bottom: .35rem; }
-    .arco-card__desc { font-size: .76rem; font-weight: 300; color: var(--text-muted); line-height: 1.5; }
-
-    /* ── CONTACT ── */
-    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: .9rem; }
 
     .contact-card {
-      border-radius: var(--r-md);
-      padding: 1.2rem;
-      border: 1px solid var(--border);
-      background: var(--surface-2);
-      display: flex; flex-direction: column; gap: .4rem;
-      transition: transform var(--ease), border-color var(--ease);
+      min-height: auto;
     }
+  }
 
-    .contact-card:hover { transform: translateY(-2px); border-color: var(--border-hi); }
-
-    .contact-card__icon {
-      font-size: 1.1rem; line-height: 1;
-      background: linear-gradient(135deg, var(--g1), var(--g3));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+  @media (max-width: 380px) {
+    .arco-grid {
+      grid-template-columns: 1fr;
     }
+  }
 
-    .contact-card__label {
-      font-size: .64rem; font-weight: 600; letter-spacing: .14em;
-      text-transform: uppercase; color: var(--text-muted);
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
     }
-
-    .contact-card__value {
-      font-size: .84rem; color: var(--text-strong);
-      text-decoration: none; word-break: break-word; line-height: 1.4;
-    }
-
-    a.contact-card__value:hover {
-      background: linear-gradient(90deg, var(--g1), var(--g2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* ── FOOTER ── */
-    .footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: .76rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── RESPONSIVE: TABLET ── */
-    @media (max-width: 960px) {
-      .layout {
-        grid-template-columns: 1fr;
-        padding: 0 1.5rem 5rem;
-      }
-
-      .section { scroll-margin-top: 23rem; }
-
-      .toc-wrapper {
-        position: static;
-        order: -1;
-        height: auto;
-      }
-
-      .toc { position: static; }
-
-      .toc__label  { display: none; }
-      .toc__toggle { display: flex; }
-
-      .toc__nav {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height .35s ease;
-        padding: 0 .6rem;
-      }
-
-      .toc__nav.open {
-        max-height: 600px;
-        padding: .8rem .6rem;
-      }
-
-      .arco-grid       { grid-template-columns: repeat(2, 1fr); }
-      .finalidades-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ── RESPONSIVE: MOBILE ── */
-    @media (max-width: 600px) {
-      .hero { padding: 3.5rem 1.2rem 3rem; }
-      .hero__title { font-size: clamp(2.3rem, 11vw, 3.2rem); }
-
-      .layout { padding: 0 1.2rem 4rem; gap: 1.2rem; }
-
-      .section__header { padding: 1rem 1.3rem; }
-      .section__body   { padding: 1.2rem 1.3rem; }
-      .section__title  { font-size: .95rem; }
-
-      .section__body p,
-      .section__body ul li { font-size: .88rem; }
-
-      .contact-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 380px) {
-      .hero   { padding: 2.5rem 1rem; }
-      .layout { padding: 0 1rem 3rem; }
-      .section__body { padding: 1rem; }
-      .arco-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; }
-    }
-  </style>
-</head>
-<body>
-
-  <header class="hero">
-    <div class="hero__eyebrow">
-      <span class="hero__eyebrow-icon">🔒</span>
-      Documento Legal · LFPDPPP
-    </div>
-    <h1 class="hero__title">
-      Aviso de
-      <em class="hero__title-grad">Privacidad</em>
-    </h1>
-    <div class="hero__tags">
-      <span class="hero__tag">Actualizado: 17/03/2026</span>
-      <span class="hero__tag">Versión 1.0</span>
-    </div>
-    <p class="hero__intro">
-      En cumplimiento con la Ley Federal de Protección de Datos Personales en
-      Posesión de los Particulares, informamos cómo recopilamos, utilizamos y
-      protegemos tus datos personales.
-    </p>
-  </header>
-
-  <div class="layout">
-
-    <!-- TOC -->
-    <div class="toc-wrapper">
-      <aside class="toc">
-        <div class="toc__header">
-          <p class="toc__label">Contenido</p>
-          <button class="toc__toggle" id="tocToggle" aria-expanded="false" aria-controls="tocNav">
-            <span class="toc__toggle-text">Índice de contenido</span>
-            <span class="toc__toggle-icon" id="tocIcon">▾</span>
-          </button>
-        </div>
-        <nav class="toc__nav" id="tocNav">
-          {secciones.map((s) => (
-            <a class="toc__link" href={`#seccion-${s.numero}`}>
-              <span class="toc__num">{s.numero}</span>
-              <span>{s.titulo}</span>
-            </a>
-          ))}
-        </nav>
-      </aside>
-    </div>
-
-    <!-- MAIN -->
-    <main class="content">
-
-      <section id="seccion-01" class="section">
-        <div class="section__header">
-          <span class="section__num">01</span>
-          <h2 class="section__title">Identidad y Domicilio del Responsable</h2>
-        </div>
-        <div class="section__body">
-          <p><strong>{empresa}</strong>, con domicilio en <strong>{direccion}</strong>, es el responsable del tratamiento de los datos personales que recabe a través de su sitio web y demás medios de contacto.</p>
-          <p>La empresa se compromete a proteger la privacidad de los datos y utilizarlos únicamente para los fines descritos en este aviso, en apego a la legislación mexicana.</p>
-          <div class="contact-grid">
-            <div class="contact-card">
-              <span class="contact-card__icon">✉</span>
-              <span class="contact-card__label">Correo electrónico</span>
-              <a href={`mailto:${correo}`} class="contact-card__value">{correo}</a>
-            </div>
-            <div class="contact-card">
-              <span class="contact-card__icon">☎</span>
-              <span class="contact-card__label">Teléfono</span>
-              <span class="contact-card__value">{telefono}</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="seccion-02" class="section">
-        <div class="section__header">
-          <span class="section__num">02</span>
-          <h2 class="section__title">Datos Personales que se Recopilan</h2>
-        </div>
-        <div class="section__body">
-          <p>Los datos que <strong>{empresa}</strong> puede recopilar a través del sitio, formularios de contacto, solicitudes de cotización o comunicación directa incluyen:</p>
-          <ul>
-            <li>Nombre completo.</li>
-            <li>Nombre de la empresa u organización.</li>
-            <li>Dirección de correo electrónico.</li>
-            <li>Número de teléfono o celular.</li>
-            <li>Dirección o ubicación del proyecto.</li>
-            <li>Información relacionada con la solicitud de servicios o productos.</li>
-          </ul>
-          <div class="callout callout--blue">
-            Los datos son proporcionados directamente por el usuario. <strong>{empresa}</strong> no recopila datos personales sensibles de manera intencional a través del sitio web.
-          </div>
-        </div>
-      </section>
-
-      <section id="seccion-03" class="section">
-        <div class="section__header">
-          <span class="section__num">03</span>
-          <h2 class="section__title">Finalidades del Tratamiento</h2>
-        </div>
-        <div class="section__body">
-          <p>Los datos personales recopilados serán utilizados para las siguientes finalidades:</p>
-          <div class="finalidades-grid">
-            <div class="finalidad-card finalidad-card--primary">
-              <div class="finalidad-card__title">
-                <span class="finalidad-card__pill"></span>
-                Primarias
-              </div>
-              <ul>
-                <li>Atender solicitudes de información y contacto.</li>
-                <li>Elaborar cotizaciones de montacargas, renta y servicios técnicos.</li>
-                <li>Brindar asesoría comercial y técnica especializada.</li>
-                <li>Dar seguimiento a solicitudes y contrataciones.</li>
-                <li>Mantener comunicación con clientes y prospectos.</li>
-              </ul>
-            </div>
-            <div class="finalidad-card finalidad-card--secondary">
-              <div class="finalidad-card__title">
-                <span class="finalidad-card__pill"></span>
-                Secundarias
-              </div>
-              <ul>
-                <li>Envío de información promocional sobre productos o servicios.</li>
-                <li>Realización de encuestas de satisfacción.</li>
-                <li>Análisis interno para mejorar la calidad del servicio.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="callout callout--cyan">
-            El usuario puede solicitar en cualquier momento que sus datos no sean utilizados para finalidades secundarias, sin afectar la prestación de los servicios principales.
-          </div>
-        </div>
-      </section>
-
-      <section id="seccion-04" class="section">
-        <div class="section__header">
-          <span class="section__num">04</span>
-          <h2 class="section__title">Uso de Tecnologías de Rastreo</h2>
-        </div>
-        <div class="section__body">
-          <p>El sitio web puede utilizar <em>cookies</em> u otras herramientas de análisis para mejorar la experiencia de navegación del usuario.</p>
-          <p>Estas tecnologías pueden recopilar:</p>
-          <ul>
-            <li>Dirección IP del dispositivo de acceso.</li>
-            <li>Tipo de navegador y sistema operativo.</li>
-            <li>Páginas visitadas y tiempo de navegación dentro del sitio.</li>
-            <li>Referencia de origen del acceso al sitio.</li>
-          </ul>
-          <div class="callout callout--violet">
-            Esta información se utiliza exclusivamente con fines estadísticos y de mejora del sitio. No se vincula a información personal identificable sin consentimiento del usuario.
-          </div>
-        </div>
-      </section>
-
-      <section id="seccion-05" class="section">
-        <div class="section__header">
-          <span class="section__num">05</span>
-          <h2 class="section__title">Transferencia de Datos Personales</h2>
-        </div>
-        <div class="section__body">
-          <p><strong>{empresa}</strong> no vende, alquila ni comparte los datos personales con terceros sin consentimiento previo, salvo en los siguientes casos:</p>
-          <ul>
-            <li>Cuando lo requieran autoridades competentes conforme a la ley.</li>
-            <li>Cuando sea necesario para cumplir obligaciones legales o regulatorias.</li>
-            <li>Cuando sea indispensable para prestar correctamente los servicios solicitados.</li>
-          </ul>
-          <div class="callout callout--pink">
-            Ante cualquier transferencia que requiera consentimiento expreso, se informará previamente al titular y se solicitará su autorización.
-          </div>
-        </div>
-      </section>
-
-      <section id="seccion-06" class="section">
-        <div class="section__header">
-          <span class="section__num">06</span>
-          <h2 class="section__title">Derechos ARCO</h2>
-        </div>
-        <div class="section__body">
-          <p>Conforme a la LFPDPPP, el titular de los datos personales puede ejercer en cualquier momento los siguientes derechos:</p>
-          <div class="arco-grid">
-            <div class="arco-card">
-              <div class="arco-card__letter">A</div>
-              <div class="arco-card__name">Acceso</div>
-              <p class="arco-card__desc">Conocer qué datos posee la empresa y para qué fines.</p>
-            </div>
-            <div class="arco-card">
-              <div class="arco-card__letter">R</div>
-              <div class="arco-card__name">Rectificación</div>
-              <p class="arco-card__desc">Corregir datos incorrectos, inexactos o incompletos.</p>
-            </div>
-            <div class="arco-card">
-              <div class="arco-card__letter">C</div>
-              <div class="arco-card__name">Cancelación</div>
-              <p class="arco-card__desc">Solicitar la eliminación de sus datos del registro.</p>
-            </div>
-            <div class="arco-card">
-              <div class="arco-card__letter">O</div>
-              <div class="arco-card__name">Oposición</div>
-              <p class="arco-card__desc">Oponerse al uso de sus datos para fines específicos.</p>
-            </div>
-          </div>
-          <p>Envía tu solicitud a <strong>{correo}</strong> incluyendo:</p>
-          <ul>
-            <li>Nombre completo del titular de los datos.</li>
-            <li>Descripción clara y precisa de la solicitud.</li>
-            <li>Documento oficial que acredite la identidad del solicitante.</li>
-          </ul>
-          <div class="callout callout--cyan">
-            La empresa responderá en un plazo no mayor a <strong>20 días hábiles</strong> a partir de la recepción, conforme a lo establecido en la LFPDPPP.
-          </div>
-        </div>
-      </section>
-
-      <section id="seccion-07" class="section">
-        <div class="section__header">
-          <span class="section__num">07</span>
-          <h2 class="section__title">Medidas de Seguridad</h2>
-        </div>
-        <div class="section__body">
-          <p><strong>{empresa}</strong> implementa medidas de seguridad administrativas, técnicas y físicas para proteger los datos personales contra daño, pérdida, alteración o acceso no autorizado.</p>
-          <div class="callout callout--violet">
-            Aunque se aplican medidas razonables, ningún sistema es completamente infalible. La empresa se compromete a notificar al titular ante cualquier vulneración que afecte significativamente sus derechos.
-          </div>
-        </div>
-      </section>
-
-      <section id="seccion-08" class="section">
-        <div class="section__header">
-          <span class="section__num">08</span>
-          <h2 class="section__title">Cambios al Aviso de Privacidad</h2>
-        </div>
-        <div class="section__body">
-          <p><strong>{empresa}</strong> se reserva el derecho de modificar o actualizar el presente Aviso en cualquier momento, conforme a cambios en la legislación o en las prácticas internas.</p>
-          <p>Las modificaciones serán publicadas en este sitio con la fecha de actualización. El uso continuado del sitio implica la aceptación del aviso vigente.</p>
-          <div class="callout callout--blue">
-            Se recomienda revisar periódicamente este aviso para mantenerse informado sobre cómo se protegen y utilizan sus datos personales.
-          </div>
-        </div>
-      </section>
-
-      <section id="seccion-09" class="section">
-        <div class="section__header">
-          <span class="section__num">09</span>
-          <h2 class="section__title">Contacto</h2>
-        </div>
-        <div class="section__body">
-          <p>Para cualquier duda, aclaración o solicitud relacionada con este Aviso de Privacidad o el tratamiento de sus datos personales, contáctenos:</p>
-          <div class="contact-grid">
-            <div class="contact-card">
-              <span class="contact-card__icon">✉</span>
-              <span class="contact-card__label">Correo electrónico</span>
-              <a href={`mailto:${correo}`} class="contact-card__value">{correo}</a>
-            </div>
-            <div class="contact-card">
-              <span class="contact-card__icon">☎</span>
-              <span class="contact-card__label">Teléfono</span>
-              <span class="contact-card__value">{telefono}</span>
-            </div>
-            <div class="contact-card">
-              <span class="contact-card__icon">⌖</span>
-              <span class="contact-card__label">Dirección</span>
-              <span class="contact-card__value">{direccion}</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-  </div>
-
-  <script>
-    const toggle = document.getElementById('tocToggle');
-    const nav    = document.getElementById('tocNav');
-    const icon   = document.getElementById('tocIcon');
-    const links = Array.from(document.querySelectorAll('.toc__link'));
-    const sections = document.querySelectorAll('.section');
-
-    if (toggle && nav && icon) {
-      toggle.addEventListener('click', () => {
-        const isOpen = nav.classList.toggle('open');
-        icon.classList.toggle('open', isOpen);
-        toggle.setAttribute('aria-expanded', String(isOpen));
-      });
-
-      links.forEach(link => {
-        link.addEventListener('click', () => {
-          const href = link.getAttribute('href');
-          if (href) setActiveLink(href.replace('#', ''));
-          if (window.innerWidth < 960) {
-            nav.classList.remove('open');
-            icon.classList.remove('open');
-            toggle.setAttribute('aria-expanded', 'false');
-          }
-        });
-      });
-    }
-
-    // Active section highlight
-
-    const setActiveLink = (id: string) => {
-      links.forEach(link => link.classList.remove('active'));
-      const active = document.querySelector(`.toc__link[href="#${id}"]`);
-      if (active) active.classList.add('active');
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0) {
-          setActiveLink(entry.target.id);
-        }
-      });
-    }, {
-      rootMargin: '-35% 0px -35% 0px',
-      threshold: 0.1,
-    });
-
-    sections.forEach(section => observer.observe(section));
-  </script>
-
-</body>
-</html>
+  }
+</style>

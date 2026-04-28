@@ -2,459 +2,542 @@
 const empresa = "Sabokar";
 const correo = "sabokarrh@gmail.com";
 const telefono = "+52 47 41 26 24 88";
-const direccion = "Av. Reforma 123, Ciudad de México, C.P. 06600";
+const direccion = "Rancho los Sauces, SN, Cam a Comanja KM 6, La Sauceda CP 47504 El Tepetate, Jalisco, México";
+const actualizacion = "27 de abril de 2026";
 
 const secciones = [
-  { numero: "01", titulo: "Información General" },
-  { numero: "02", titulo: "Uso del Sitio Web" },
-  { numero: "03", titulo: "Propiedad Intelectual" },
-  { numero: "04", titulo: "Información de Productos y Servicios" },
-  { numero: "05", titulo: "Cotizaciones y Contratación" },
-  { numero: "06", titulo: "Limitación de Responsabilidad" },
-  { numero: "07", titulo: "Enlaces a Sitios de Terceros" },
-  { numero: "08", titulo: "Protección de Datos Personales" },
-  { numero: "09", titulo: "Modificaciones a los Términos" },
-  { numero: "10", titulo: "Legislación Aplicable" },
-  { numero: "11", titulo: "Contacto" },
+  { numero: "01", titulo: "Información General", tag: "GENERAL" },
+  { numero: "02", titulo: "Uso del Sitio Web", tag: "USO" },
+  { numero: "03", titulo: "Propiedad Intelectual", tag: "IP" },
+  { numero: "04", titulo: "Información de Productos y Servicios", tag: "PROD" },
+  { numero: "05", titulo: "Cotizaciones y Contratación", tag: "CONT" },
+  { numero: "06", titulo: "Limitación de Responsabilidad", tag: "RESP" },
+  { numero: "07", titulo: "Enlaces a Sitios de Terceros", tag: "EXT" },
+  { numero: "08", titulo: "Protección de Datos Personales", tag: "DATOS" },
+  { numero: "09", titulo: "Modificaciones a los Términos", tag: "MOD" },
+  { numero: "10", titulo: "Legislación Aplicable", tag: "LEY" },
+  { numero: "11", titulo: "Contacto", tag: "CONT" },
 ];
 ---
 
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Términos y Condiciones — {empresa}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-</head>
-<body>
-
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero__grid-overlay"></div>
-    <div class="hero__stripe"></div>
-
-    <div class="hero__inner">
-      <div class="hero__meta-row">
-        <span class="hero__tag">DOC-LEGAL</span>
-        <span class="hero__dot"></span>
-        <span class="hero__version">v1.0 · 2026</span>
-        <span class="hero__dot"></span>
-        <span class="hero__version">MX</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Términos y Condiciones — {empresa}</title>
+    <meta
+      name="description"
+      content={`Términos y Condiciones de ${empresa} para el uso del sitio web, productos y servicios.`}
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="top-progress" aria-hidden="true">
+        <span id="readingProgress"></span>
       </div>
 
-      <div class="hero__title-block">
-        <span class="hero__pre">Términos y</span>
-        <h1 class="hero__title">CONDICIONES</h1>
-      </div>
+      <header class="hero">
+        <div class="hero__mesh" aria-hidden="true"></div>
+        <div class="hero__glow hero__glow--left" aria-hidden="true"></div>
+        <div class="hero__glow hero__glow--right" aria-hidden="true"></div>
 
-      <p class="hero__intro">
-        El acceso y uso de este sitio web implica la aceptación plena de los presentes
-        Términos y Condiciones. Por favor, léelos detenidamente antes de continuar.
-      </p>
+        <div class="hero__inner">
+          <div class="hero__eyebrow">
+            <span class="hero__chip">DOC-LEGAL</span>
+            <span class="hero__meta">México</span>
+            <span class="hero__meta">Actualizado: {actualizacion}</span>
+          </div>
 
-      <div class="hero__rule">
-        <span class="hero__rule-line"></span>
-        <span class="hero__rule-label">11 secciones · Última actualización 2026</span>
+          <div class="hero__content">
+            <div class="hero__copy">
+              <p class="hero__pre">Marco legal del sitio web</p>
+              <h1 class="hero__title">Términos y Condiciones</h1>
+              <p class="hero__intro">
+                El acceso y uso de este sitio web implica la aceptación plena de los presentes
+                términos. Te recomendamos revisarlos con atención antes de navegar, solicitar
+                una cotización o utilizar cualquiera de nuestros servicios.
+              </p>
+            </div>
+
+            <div class="hero__panel">
+              <div class="hero__panel-item">
+                <span class="hero__panel-label">Empresa</span>
+                <strong>{empresa}</strong>
+              </div>
+              <div class="hero__panel-item">
+                <span class="hero__panel-label">Secciones</span>
+                <strong>{secciones.length}</strong>
+              </div>
+              <div class="hero__panel-item">
+                <span class="hero__panel-label">Jurisdicción</span>
+                <strong>Jalisco</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__watermark" aria-hidden="true">T&C</div>
+      </header>
+
+      <div class="layout">
+        <div class="toc-wrapper">
+          <aside class="toc">
+            <div class="toc__head">
+              <p class="toc__label">Índice</p>
+              <button class="toc__toggle" id="tocToggle" aria-expanded="false" aria-controls="tocNav">
+                <span>Ver secciones</span>
+                <svg class="toc__toggle-icon" id="tocIcon" viewBox="0 0 16 16" fill="none">
+                  <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </button>
+            </div>
+
+            <nav class="toc__nav" id="tocNav" aria-label="Índice de contenido">
+              {secciones.map((s) => (
+                <a class="toc__link" href={`#seccion-${s.numero}`}>
+                  <span class="toc__num">{s.numero}</span>
+                  <span class="toc__body">
+                    <span class="toc__titulo">{s.titulo}</span>
+                    <span class="toc__tag">{s.tag}</span>
+                  </span>
+                </a>
+              ))}
+            </nav>
+          </aside>
+        </div>
+
+        <main class="content">
+          <section class="summary-card" aria-label="Resumen del documento">
+            <div class="summary-card__item">
+              <span class="summary-card__label">Documento</span>
+              <strong>Términos y Condiciones</strong>
+            </div>
+            <div class="summary-card__item">
+              <span class="summary-card__label">Titular</span>
+              <strong>{empresa}</strong>
+            </div>
+            <div class="summary-card__item">
+              <span class="summary-card__label">Versión</span>
+              <strong>1.0</strong>
+            </div>
+          </section>
+
+          <section id="seccion-01" class="section">
+            <div class="section__header">
+              <span class="section__num">01</span>
+              <h2 class="section__title">Información General</h2>
+              <span class="section__tag">GENERAL</span>
+            </div>
+            <div class="section__body">
+              <p>
+                Este sitio web tiene como finalidad proporcionar información sobre los productos
+                y servicios de <strong>{empresa}</strong>, empresa especializada en la venta,
+                renta, mantenimiento, reparación y asesoría técnica de montacargas, equipos de
+                elevación y manejo de carga industrial.
+              </p>
+              <p>La información disponible en el sitio incluye:</p>
+              <ul>
+                <li>Descripción y especificaciones técnicas de equipos industriales y montacargas.</li>
+                <li>Catálogo de accesorios y refacciones.</li>
+                <li>Servicios de mantenimiento preventivo y correctivo.</li>
+                <li>Formularios para solicitudes de cotización y contacto comercial.</li>
+              </ul>
+              <div class="callout callout--info">
+                Toda la información publicada tiene fines informativos y puede ser modificada,
+                actualizada o eliminada sin previo aviso. <strong>{empresa}</strong> se reserva
+                el derecho de realizar mejoras en sus productos y servicios en cualquier momento.
+              </div>
+            </div>
+          </section>
+
+          <section id="seccion-02" class="section">
+            <div class="section__header">
+              <span class="section__num">02</span>
+              <h2 class="section__title">Uso del Sitio Web</h2>
+              <span class="section__tag">USO</span>
+            </div>
+            <div class="section__body">
+              <p>
+                El usuario se compromete a utilizar este sitio de manera responsable, ética y
+                conforme a la legislación vigente en México. El acceso debe limitarse a fines
+                informativos o comerciales legítimos.
+              </p>
+              <p>Queda expresamente prohibido:</p>
+              <ul>
+                <li>Utilizar el sitio para actividades ilícitas, fraudulentas o que vulneren derechos de terceros.</li>
+                <li>Intentar acceder de forma no autorizada a servidores, bases de datos o sistemas internos.</li>
+                <li>Introducir virus, malware u otros programas dañinos que afecten el funcionamiento del sitio.</li>
+                <li>Realizar acciones que sobrecarguen o interfieran con la operación normal del sitio.</li>
+                <li>Reproducir o explotar comercialmente el contenido sin autorización escrita previa.</li>
+              </ul>
+              <div class="callout callout--warning">
+                El incumplimiento de estas condiciones podrá resultar en la restricción o bloqueo
+                permanente del acceso al sitio, sin perjuicio de las acciones legales que correspondan.
+              </div>
+            </div>
+          </section>
+
+          <section id="seccion-03" class="section">
+            <div class="section__header">
+              <span class="section__num">03</span>
+              <h2 class="section__title">Propiedad Intelectual</h2>
+              <span class="section__tag">IP</span>
+            </div>
+            <div class="section__body">
+              <p>
+                Todo el contenido de este sitio web, incluyendo textos, logotipos, fotografías,
+                gráficos, diseño, iconos, videos, software y bases de datos, es propiedad de
+                <strong>{empresa}</strong> o de sus respectivos titulares, y está protegido por
+                las leyes de propiedad intelectual aplicables en México y tratados internacionales.
+              </p>
+              <p>El acceso al sitio no otorga ningún derecho sobre dichos contenidos. Está estrictamente prohibido:</p>
+              <ul>
+                <li>Reproducir, copiar o distribuir el contenido sin autorización expresa y por escrito.</li>
+                <li>Modificar, adaptar o crear obras derivadas de cualquier elemento del sitio.</li>
+                <li>Utilizar marcas, logotipos o nombres comerciales de la empresa sin permiso previo.</li>
+              </ul>
+              <p>
+                Cualquier uso indebido de la propiedad intelectual podrá dar lugar a las acciones
+                civiles y penales correspondientes conforme a la Ley Federal del Derecho de Autor
+                y la Ley de la Propiedad Industrial.
+              </p>
+            </div>
+          </section>
+
+          <section id="seccion-04" class="section">
+            <div class="section__header">
+              <span class="section__num">04</span>
+              <h2 class="section__title">Información de Productos y Servicios</h2>
+              <span class="section__tag">PROD</span>
+            </div>
+            <div class="section__body">
+              <p>
+                <strong>{empresa}</strong> realiza esfuerzos razonables para mantener la información
+                del sitio actualizada y precisa. Sin embargo, debido a la naturaleza técnica y
+                cambiante de los equipos industriales, algunos datos pueden estar sujetos a
+                modificaciones por parte de fabricantes o proveedores sin previo aviso.
+              </p>
+              <p>Es importante considerar que:</p>
+              <ul>
+                <li>Las especificaciones técnicas pueden variar sin previo aviso.</li>
+                <li>Las imágenes mostradas son de carácter ilustrativo y pueden no corresponder exactamente al equipo disponible.</li>
+                <li>La disponibilidad de equipos está sujeta al inventario vigente.</li>
+                <li>Los precios publicados son referenciales y pueden modificarse.</li>
+              </ul>
+              <div class="callout callout--info">
+                La información publicada en este sitio no constituye una oferta contractual
+                definitiva. Para confirmar disponibilidad, precios y especificaciones, te
+                recomendamos solicitar una cotización formal.
+              </div>
+            </div>
+          </section>
+
+          <section id="seccion-05" class="section">
+            <div class="section__header">
+              <span class="section__num">05</span>
+              <h2 class="section__title">Cotizaciones y Contratación</h2>
+              <span class="section__tag">CONT</span>
+            </div>
+            <div class="section__body">
+              <p>
+                Las solicitudes de cotización realizadas a través del sitio web, formularios de
+                contacto o correo electrónico tienen carácter informativo y no representan una
+                obligación contractual para ninguna de las partes.
+              </p>
+              <p>
+                Una vez recibida la solicitud, <strong>{empresa}</strong> emitirá una cotización
+                oficial considerando factores como:
+              </p>
+              <ul>
+                <li>Tipo, modelo y capacidad del equipo solicitado.</li>
+                <li>Ubicación del cliente o del proyecto.</li>
+                <li>Duración y condiciones del servicio o renta.</li>
+                <li>Disponibilidad de equipos en inventario.</li>
+                <li>Requerimientos técnicos específicos del cliente.</li>
+              </ul>
+              <p>
+                La contratación de servicios o adquisición de equipos se formalizará
+                <strong> únicamente </strong>mediante contratos o documentos comerciales firmados
+                entre ambas partes. Ninguna comunicación electrónica previa tendrá carácter vinculante.
+              </p>
+            </div>
+          </section>
+
+          <section id="seccion-06" class="section">
+            <div class="section__header">
+              <span class="section__num">06</span>
+              <h2 class="section__title">Limitación de Responsabilidad</h2>
+              <span class="section__tag">RESP</span>
+            </div>
+            <div class="section__body">
+              <p>
+                El uso de este sitio web se realiza bajo la exclusiva responsabilidad del usuario.
+                <strong>{empresa}</strong> no será responsable por daños directos, indirectos,
+                incidentales o consecuentes derivados del uso o la imposibilidad de uso del sitio.
+              </p>
+              <p>Esto incluye, sin limitarse a:</p>
+              <ul>
+                <li>Interrupciones temporales o permanentes en el funcionamiento del sitio.</li>
+                <li>Errores o inexactitudes en la información publicada.</li>
+                <li>Pérdida de datos o fallos técnicos imprevistos.</li>
+                <li>Daños ocasionados por virus, malware o acceso no autorizado de terceros.</li>
+              </ul>
+              <p>
+                Si bien se implementan medidas razonables de seguridad y mantenimiento, no se
+                garantiza que el acceso al sitio sea continuo, ininterrumpido o libre de errores.
+              </p>
+            </div>
+          </section>
+
+          <section id="seccion-07" class="section">
+            <div class="section__header">
+              <span class="section__num">07</span>
+              <h2 class="section__title">Enlaces a Sitios de Terceros</h2>
+              <span class="section__tag">EXT</span>
+            </div>
+            <div class="section__body">
+              <p>
+                Este sitio puede incluir enlaces a sitios web externos con el propósito de
+                proporcionar información adicional o facilitar el acceso a servicios complementarios.
+              </p>
+              <p>
+                <strong>{empresa}</strong> no tiene control sobre el contenido, políticas de
+                privacidad ni prácticas de dichos sitios externos, y no asume ninguna responsabilidad
+                por los mismos.
+              </p>
+              <div class="callout callout--warning">
+                Al acceder a enlaces externos, el usuario lo hace bajo su propia responsabilidad.
+                Se recomienda revisar los términos y políticas de privacidad de cada sitio antes
+                de utilizarlo o proporcionar información personal.
+              </div>
+            </div>
+          </section>
+
+          <section id="seccion-08" class="section">
+            <div class="section__header">
+              <span class="section__num">08</span>
+              <h2 class="section__title">Protección de Datos Personales</h2>
+              <span class="section__tag">DATOS</span>
+            </div>
+            <div class="section__body">
+              <p>
+                La recopilación y tratamiento de datos personales proporcionados a través de formularios
+                de contacto, solicitudes de cotización u otros medios del sitio, se realizará conforme al
+                Aviso de Privacidad de <strong>{empresa}</strong> y en cumplimiento de la Ley Federal de
+                Protección de Datos Personales en Posesión de los Particulares.
+              </p>
+              <p>La empresa se compromete a:</p>
+              <ul>
+                <li>Proteger la confidencialidad de los datos personales recabados.</li>
+                <li>Utilizar la información exclusivamente para fines comerciales relacionados con los servicios ofrecidos.</li>
+                <li>Implementar medidas técnicas y organizativas razonables para proteger los datos contra accesos no autorizados, pérdida o alteración.</li>
+                <li>No transferir datos personales a terceros sin el consentimiento previo del titular, salvo obligación legal.</li>
+              </ul>
+              <p>
+                El usuario podrá ejercer en cualquier momento sus derechos ARCO mediante comunicación dirigida
+                a <strong>{correo}</strong>, conforme a la legislación aplicable.
+              </p>
+            </div>
+          </section>
+
+          <section id="seccion-09" class="section">
+            <div class="section__header">
+              <span class="section__num">09</span>
+              <h2 class="section__title">Modificaciones a los Términos</h2>
+              <span class="section__tag">MOD</span>
+            </div>
+            <div class="section__body">
+              <p>
+                <strong>{empresa}</strong> se reserva el derecho de modificar, actualizar o ampliar los
+                presentes Términos y Condiciones en cualquier momento y sin previo aviso, de acuerdo con
+                cambios en la legislación aplicable, actualizaciones del servicio o mejoras en la plataforma.
+              </p>
+              <p>
+                Las modificaciones entrarán en vigor en el momento de su publicación en el sitio web. El uso
+                continuado del sitio tras la publicación de cambios implica la aceptación de los nuevos términos.
+                Se recomienda revisar periódicamente esta sección para mantenerse informado.
+              </p>
+            </div>
+          </section>
+
+          <section id="seccion-10" class="section">
+            <div class="section__header">
+              <span class="section__num">10</span>
+              <h2 class="section__title">Legislación Aplicable</h2>
+              <span class="section__tag">LEY</span>
+            </div>
+            <div class="section__body">
+              <p>
+                Los presentes Términos y Condiciones se rigen e interpretan conforme a las leyes vigentes de
+                los <strong>Estados Unidos Mexicanos</strong>. Para la resolución de cualquier controversia
+                derivada del uso de este sitio web, las partes se someten expresamente a la jurisdicción de los
+                tribunales competentes de la Ciudad de México, renunciando a cualquier otro fuero que pudiera
+                corresponderles por razón de domicilio presente o futuro.
+              </p>
+            </div>
+          </section>
+
+          <section id="seccion-11" class="section">
+            <div class="section__header">
+              <span class="section__num">11</span>
+              <h2 class="section__title">Contacto</h2>
+              <span class="section__tag">CONT</span>
+            </div>
+            <div class="section__body">
+              <p>
+                Para cualquier duda, aclaración o comentario relacionado con estos Términos y Condiciones,
+                puedes comunicarte con nosotros a través de los siguientes medios:
+              </p>
+
+              <div class="contact-grid">
+                <div class="contact-card">
+                  <span class="contact-card__num">01</span>
+                  <span class="contact-card__label">Correo electrónico</span>
+                  <a href={`mailto:${correo}`} class="contact-card__value">{correo}</a>
+                </div>
+                <div class="contact-card">
+                  <span class="contact-card__num">02</span>
+                  <span class="contact-card__label">Teléfono</span>
+                  <span class="contact-card__value">{telefono}</span>
+                </div>
+                <div class="contact-card">
+                  <span class="contact-card__num">03</span>
+                  <span class="contact-card__label">Dirección</span>
+                  <span class="contact-card__value">{direccion}</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <footer class="footer">
+            <span>{empresa}</span>
+            <span class="footer__sep">/</span>
+            <span>Términos y Condiciones</span>
+            <span class="footer__sep">/</span>
+            <span>{actualizacion}</span>
+          </footer>
+        </main>
       </div>
     </div>
 
-    <div class="hero__bg-num" aria-hidden="true">T&amp;C</div>
-  </header>
+    <script is:inline>
+      const toggle = document.getElementById('tocToggle');
+      const nav = document.getElementById('tocNav');
+      const icon = document.getElementById('tocIcon');
+      const sections = document.querySelectorAll('.section');
+      const links = document.querySelectorAll('.toc__link');
+      const progress = document.getElementById('readingProgress');
 
-  <div class="layout">
+      const closeMobileToc = () => {
+        if (!nav || !icon || !toggle) return;
+        nav.classList.remove('open');
+        icon.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      };
 
-    <!-- TOC -->
-    <div class="toc-wrapper">
-      <aside class="toc">
-        <p class="toc__label">// ÍNDICE</p>
-        <button class="toc__toggle" id="tocToggle" aria-expanded="false" aria-controls="tocNav">
-          <span>Índice de contenido</span>
-          <svg class="toc__toggle-icon" id="tocIcon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <nav class="toc__nav" id="tocNav">
-          {secciones.map((s) => (
-            <a class="toc__link" href={`#seccion-${s.numero}`}>
-              <span class="toc__num">{s.numero}</span>
-              <span class="toc__titulo">{s.titulo}</span>
-              <span class="toc__arrow">→</span>
-            </a>
-          ))}
-        </nav>
-      </aside>
-    </div>
+      if (toggle && nav && icon) {
+        toggle.addEventListener('click', () => {
+          const isOpen = nav.classList.toggle('open');
+          icon.classList.toggle('open', isOpen);
+          toggle.setAttribute('aria-expanded', String(isOpen));
+        });
 
-    <!-- MAIN -->
-    <main class="content">
+        nav.querySelectorAll('.toc__link').forEach((link) => {
+          link.addEventListener('click', () => {
+            if (window.innerWidth < 960) {
+              closeMobileToc();
+            }
+          });
+        });
+      }
 
-      <section id="seccion-01" class="section">
-        <div class="section__header">
-          <span class="section__num">01</span>
-          <h2 class="section__title">Información General</h2>
-          <span class="section__tag">GENERAL</span>
-        </div>
-        <div class="section__body">
-          <p>
-            Este sitio web tiene como finalidad proporcionar información sobre los productos
-            y servicios de <strong>{empresa}</strong>, empresa especializada en la venta,
-            renta, mantenimiento, reparación y asesoría técnica de montacargas, equipos de
-            elevación y manejo de carga industrial.
-          </p>
-          <p>La información disponible en el sitio incluye:</p>
-          <ul>
-            <li>Descripción y especificaciones técnicas de equipos industriales y montacargas.</li>
-            <li>Catálogo de accesorios y refacciones.</li>
-            <li>Servicios de mantenimiento preventivo y correctivo.</li>
-            <li>Formularios para solicitudes de cotización y contacto comercial.</li>
-          </ul>
-          <div class="callout callout--info">
-            Toda la información publicada tiene fines informativos y puede ser modificada,
-            actualizada o eliminada sin previo aviso. <strong>{empresa}</strong> se reserva
-            el derecho de realizar mejoras en sus productos y servicios en cualquier momento.
-          </div>
-        </div>
-      </section>
+      links.forEach((link) => {
+        link.addEventListener('click', (event) => {
+          if (window.innerWidth >= 960) return;
 
-      <section id="seccion-02" class="section">
-        <div class="section__header">
-          <span class="section__num">02</span>
-          <h2 class="section__title">Uso del Sitio Web</h2>
-          <span class="section__tag">USO</span>
-        </div>
-        <div class="section__body">
-          <p>
-            El usuario se compromete a utilizar este sitio de manera responsable, ética y
-            conforme a la legislación vigente en México. El acceso debe limitarse a fines
-            informativos o comerciales legítimos.
-          </p>
-          <p>Queda expresamente prohibido:</p>
-          <ul>
-            <li>Utilizar el sitio para actividades ilícitas, fraudulentas o que vulneren derechos de terceros.</li>
-            <li>Intentar acceder de forma no autorizada a servidores, bases de datos o sistemas internos.</li>
-            <li>Introducir virus, malware u otros programas dañinos que afecten el funcionamiento del sitio.</li>
-            <li>Realizar acciones que sobrecarguen o interfieran con la operación normal del sitio.</li>
-            <li>Reproducir o explotar comercialmente el contenido sin autorización escrita previa.</li>
-          </ul>
-          <div class="callout callout--warning">
-            El incumplimiento de estas condiciones podrá resultar en la restricción o bloqueo
-            permanente del acceso al sitio, sin perjuicio de las acciones legales que correspondan.
-          </div>
-        </div>
-      </section>
+          const href = link.getAttribute('href');
+          if (!href || !href.startsWith('#')) return;
 
-      <section id="seccion-03" class="section">
-        <div class="section__header">
-          <span class="section__num">03</span>
-          <h2 class="section__title">Propiedad Intelectual</h2>
-          <span class="section__tag">IP</span>
-        </div>
-        <div class="section__body">
-          <p>
-            Todo el contenido de este sitio web —incluyendo textos, logotipos, fotografías,
-            gráficos, diseño, iconos, videos, software y bases de datos— es propiedad de
-            <strong>{empresa}</strong> o de sus respectivos titulares, y está protegido por
-            las leyes de propiedad intelectual aplicables en México y tratados internacionales.
-          </p>
-          <p>El acceso al sitio no otorga ningún derecho sobre dichos contenidos. Está estrictamente prohibido:</p>
-          <ul>
-            <li>Reproducir, copiar o distribuir el contenido sin autorización expresa y por escrito.</li>
-            <li>Modificar, adaptar o crear obras derivadas de cualquier elemento del sitio.</li>
-            <li>Utilizar marcas, logotipos o nombres comerciales de la empresa sin permiso previo.</li>
-          </ul>
-          <p>
-            Cualquier uso indebido de la propiedad intelectual podrá dar lugar a las acciones
-            civiles y penales correspondientes conforme a la Ley Federal del Derecho de Autor
-            y la Ley de la Propiedad Industrial.
-          </p>
-        </div>
-      </section>
+          const target = document.querySelector(href);
+          if (!target) return;
 
-      <section id="seccion-04" class="section">
-        <div class="section__header">
-          <span class="section__num">04</span>
-          <h2 class="section__title">Información de Productos y Servicios</h2>
-          <span class="section__tag">PROD</span>
-        </div>
-        <div class="section__body">
-          <p>
-            <strong>{empresa}</strong> realiza esfuerzos razonables para mantener la
-            información del sitio actualizada y precisa. Sin embargo, debido a la naturaleza
-            técnica y cambiante de los equipos industriales, algunos datos pueden estar sujetos
-            a modificaciones por parte de fabricantes o proveedores sin previo aviso.
-          </p>
-          <p>Es importante considerar que:</p>
-          <ul>
-            <li>Las especificaciones técnicas pueden variar sin previo aviso.</li>
-            <li>Las imágenes mostradas son de carácter ilustrativo y pueden no corresponder exactamente al equipo disponible.</li>
-            <li>La disponibilidad de equipos está sujeta al inventario vigente.</li>
-            <li>Los precios publicados son referenciales y pueden modificarse.</li>
-          </ul>
-          <div class="callout callout--info">
-            La información publicada en este sitio no constituye una oferta contractual
-            definitiva. Para confirmar disponibilidad, precios y especificaciones, te
-            recomendamos solicitar una cotización formal.
-          </div>
-        </div>
-      </section>
+          event.preventDefault();
+          closeMobileToc();
 
-      <section id="seccion-05" class="section">
-        <div class="section__header">
-          <span class="section__num">05</span>
-          <h2 class="section__title">Cotizaciones y Contratación</h2>
-          <span class="section__tag">CONT</span>
-        </div>
-        <div class="section__body">
-          <p>
-            Las solicitudes de cotización realizadas a través del sitio web, formularios de
-            contacto o correo electrónico tienen carácter informativo y no representan una
-            obligación contractual para ninguna de las partes.
-          </p>
-          <p>
-            Una vez recibida la solicitud, <strong>{empresa}</strong> emitirá una cotización
-            oficial considerando factores como:
-          </p>
-          <ul>
-            <li>Tipo, modelo y capacidad del equipo solicitado.</li>
-            <li>Ubicación del cliente o del proyecto.</li>
-            <li>Duración y condiciones del servicio o renta.</li>
-            <li>Disponibilidad de equipos en inventario.</li>
-            <li>Requerimientos técnicos específicos del cliente.</li>
-          </ul>
-          <p>
-            La contratación de servicios o adquisición de equipos se formalizará
-            <strong>únicamente</strong> mediante contratos o documentos comerciales firmados
-            entre ambas partes. Ninguna comunicación electrónica previa tendrá carácter vinculante.
-          </p>
-        </div>
-      </section>
-
-      <section id="seccion-06" class="section">
-        <div class="section__header">
-          <span class="section__num">06</span>
-          <h2 class="section__title">Limitación de Responsabilidad</h2>
-          <span class="section__tag">RESP</span>
-        </div>
-        <div class="section__body">
-          <p>
-            El uso de este sitio web se realiza bajo la exclusiva responsabilidad del usuario.
-            <strong>{empresa}</strong> no será responsable por daños directos, indirectos,
-            incidentales o consecuentes derivados del uso o la imposibilidad de uso del sitio.
-          </p>
-          <p>Esto incluye, sin limitarse a:</p>
-          <ul>
-            <li>Interrupciones temporales o permanentes en el funcionamiento del sitio.</li>
-            <li>Errores o inexactitudes en la información publicada.</li>
-            <li>Pérdida de datos o fallos técnicos imprevistos.</li>
-            <li>Daños ocasionados por virus, malware o acceso no autorizado de terceros.</li>
-          </ul>
-          <p>
-            Si bien se implementan medidas razonables de seguridad y mantenimiento, no se
-            garantiza que el acceso al sitio sea continuo, ininterrumpido o libre de errores.
-          </p>
-        </div>
-      </section>
-
-      <section id="seccion-07" class="section">
-        <div class="section__header">
-          <span class="section__num">07</span>
-          <h2 class="section__title">Enlaces a Sitios de Terceros</h2>
-          <span class="section__tag">EXT</span>
-        </div>
-        <div class="section__body">
-          <p>
-            Este sitio puede incluir enlaces a sitios web externos con el propósito de
-            proporcionar información adicional o facilitar el acceso a servicios complementarios.
-          </p>
-          <p>
-            <strong>{empresa}</strong> no tiene control sobre el contenido, políticas de
-            privacidad ni prácticas de dichos sitios externos, y no asume ninguna
-            responsabilidad por los mismos.
-          </p>
-          <div class="callout callout--warning">
-            Al acceder a enlaces externos, el usuario lo hace bajo su propia responsabilidad.
-            Se recomienda revisar los términos y políticas de privacidad de cada sitio antes
-            de utilizarlo o proporcionar información personal.
-          </div>
-        </div>
-      </section>
-
-      <section id="seccion-08" class="section">
-        <div class="section__header">
-          <span class="section__num">08</span>
-          <h2 class="section__title">Protección de Datos Personales</h2>
-          <span class="section__tag">DATOS</span>
-        </div>
-        <div class="section__body">
-          <p>
-            La recopilación y tratamiento de datos personales proporcionados a través de
-            formularios de contacto, solicitudes de cotización u otros medios del sitio,
-            se realizará conforme al Aviso de Privacidad de <strong>{empresa}</strong> y
-            en cumplimiento de la Ley Federal de Protección de Datos Personales en Posesión
-            de los Particulares (LFPDPPP).
-          </p>
-          <p>La empresa se compromete a:</p>
-          <ul>
-            <li>Proteger la confidencialidad de los datos personales recabados.</li>
-            <li>Utilizar la información exclusivamente para fines comerciales relacionados con los servicios ofrecidos.</li>
-            <li>Implementar medidas técnicas y organizativas razonables para proteger los datos contra accesos no autorizados, pérdida o alteración.</li>
-            <li>No transferir datos personales a terceros sin el consentimiento previo del titular, salvo obligación legal.</li>
-          </ul>
-          <p>
-            El usuario podrá ejercer en cualquier momento sus derechos ARCO (Acceso,
-            Rectificación, Cancelación u Oposición) conforme a la legislación aplicable,
-            mediante comunicación dirigida a <strong>{correo}</strong>.
-          </p>
-        </div>
-      </section>
-
-      <section id="seccion-09" class="section">
-        <div class="section__header">
-          <span class="section__num">09</span>
-          <h2 class="section__title">Modificaciones a los Términos</h2>
-          <span class="section__tag">MOD</span>
-        </div>
-        <div class="section__body">
-          <p>
-            <strong>{empresa}</strong> se reserva el derecho de modificar, actualizar o
-            ampliar los presentes Términos y Condiciones en cualquier momento y sin previo
-            aviso, de acuerdo con cambios en la legislación aplicable, actualizaciones del
-            servicio o mejoras en la plataforma.
-          </p>
-          <p>
-            Las modificaciones entrarán en vigor en el momento de su publicación en el sitio
-            web. El uso continuado del sitio tras la publicación de cambios implica la
-            aceptación de los nuevos términos. Se recomienda revisar periódicamente esta
-            sección para mantenerse informado.
-          </p>
-        </div>
-      </section>
-
-      <section id="seccion-10" class="section">
-        <div class="section__header">
-          <span class="section__num">10</span>
-          <h2 class="section__title">Legislación Aplicable</h2>
-          <span class="section__tag">LEY</span>
-        </div>
-        <div class="section__body">
-          <p>
-            Los presentes Términos y Condiciones se rigen e interpretan conforme a las leyes
-            vigentes de los <strong>Estados Unidos Mexicanos</strong>. Para la resolución de
-            cualquier controversia derivada del uso de este sitio web, las partes se someten
-            expresamente a la jurisdicción de los tribunales competentes de la Ciudad de México,
-            renunciando a cualquier otro fuero que pudiera corresponderles por razón de domicilio
-            presente o futuro.
-          </p>
-        </div>
-      </section>
-
-      <section id="seccion-11" class="section">
-        <div class="section__header">
-          <span class="section__num">11</span>
-          <h2 class="section__title">Contacto</h2>
-          <span class="section__tag">CONT</span>
-        </div>
-        <div class="section__body">
-          <p>
-            Para cualquier duda, aclaración o comentario relacionado con estos Términos y
-            Condiciones, puedes comunicarte con nosotros a través de los siguientes medios:
-          </p>
-          <div class="contact-grid">
-            <div class="contact-card">
-              <span class="contact-card__num">01</span>
-              <span class="contact-card__label">Correo electrónico</span>
-              <a href={`mailto:${correo}`} class="contact-card__value">{correo}</a>
-            </div>
-            <div class="contact-card">
-              <span class="contact-card__num">02</span>
-              <span class="contact-card__label">Teléfono</span>
-              <span class="contact-card__value">{telefono}</span>
-            </div>
-            <div class="contact-card">
-              <span class="contact-card__num">03</span>
-              <span class="contact-card__label">Dirección</span>
-              <span class="contact-card__value">{direccion}</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-  </div>
-
-  <script>
-    const toggle = document.getElementById('tocToggle');
-    const nav    = document.getElementById('tocNav');
-    const icon   = document.getElementById('tocIcon');
-
-    if (toggle && nav && icon) {
-      toggle.addEventListener('click', () => {
-        const isOpen = nav.classList.toggle('open');
-        icon.classList.toggle('open', isOpen);
-        toggle.setAttribute('aria-expanded', String(isOpen));
-      });
-
-      nav.querySelectorAll('.toc__link').forEach(link => {
-        link.addEventListener('click', () => {
-          if (window.innerWidth < 900) {
-            nav.classList.remove('open');
-            icon.classList.remove('open');
-            toggle.setAttribute('aria-expanded', 'false');
-          }
+          window.setTimeout(() => {
+            const top = target.getBoundingClientRect().top + window.scrollY - 24;
+            window.scrollTo({ top, behavior: 'smooth' });
+            history.replaceState(null, '', href);
+          }, 220);
         });
       });
-    }
 
-    const sections = document.querySelectorAll('.section');
-    const links    = document.querySelectorAll('.toc__link');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            links.forEach((link) => link.classList.remove('active'));
+            const active = document.querySelector(`.toc__link[href="#${entry.target.id}"]`);
+            if (active) active.classList.add('active');
+          }
+        });
+      }, { threshold: 0.28, rootMargin: '-12% 0px -55% 0px' });
 
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          links.forEach(l => l.classList.remove('active'));
-          const active = document.querySelector(`.toc__link[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { threshold: 0.3 });
+      sections.forEach((section) => obs.observe(section));
 
-    sections.forEach(s => obs.observe(s));
-  </script>
+      const updateProgress = () => {
+        if (!progress) return;
+        const scrollTop = window.scrollY;
+        const height = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = height > 0 ? Math.min(scrollTop / height, 1) : 0;
+        progress.style.width = `${ratio * 100}%`;
+      };
 
-</body>
+      updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress, { passive: true });
+    </script>
+  </body>
 </html>
 
 <style>
   :root {
-    --bg:         #0b0c0f;
-    --surface:    #111318;
-    --surface2:   #16181f;
-    --border:     #1e2028;
-    --border2:    #2a2d38;
-    --yellow:     #ff0800;
-    --yellow-dim: rgba(245, 35, 35, 0.1);
-    --yellow-mid: rgba(245, 35, 35, 0.25);
-    --red:        #e05252;
-    --red-dim:    rgba(224, 82, 82, 0.08);
-    --blue:       #4a9eff;
-    --blue-dim:   rgba(74, 158, 255, 0.08);
-    --text:       #b8bcc8;
-    --text-dim:   #565b6e;
-    --text-hi:    #eceef4;
+    --red: #8b0d1e;
+    --brown: #6f4f37;
+    --charcoal: #454545;
+    --white: #ffffff;
+    --paper: #f3f0eb;
+    --paper-2: #e6dfd5;
+    --line: rgba(69, 69, 69, 0.12);
+    --line-strong: rgba(69, 69, 69, 0.22);
+    --text: #4c4a47;
+    --text-soft: #7b756f;
+    --heading: #2e2c2a;
+    --red-soft: rgba(139, 13, 30, 0.08);
+    --brown-soft: rgba(111, 79, 55, 0.09);
+    --shadow: 0 18px 48px rgba(48, 36, 28, 0.08);
     --ff-display: 'Barlow Condensed', sans-serif;
-    --ff-body:    'Barlow', sans-serif;
-    --ff-mono:    'JetBrains Mono', monospace;
+    --ff-body: 'Barlow', sans-serif;
+    --ff-mono: 'JetBrains Mono', monospace;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-  /* ← FIX CLAVE: sin overflow en html, clip en body */
   html {
     scroll-behavior: smooth;
-    
+    background: var(--paper);
     color: var(--text);
     font-family: var(--ff-body);
     font-size: 16px;
@@ -463,529 +546,592 @@ const secciones = [
 
   body {
     overflow-x: clip;
-    background: var(--bg)!important;
   }
 
-  /* ── HERO ── */
+  .page-shell {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top, rgba(111, 79, 55, 0.05), transparent 28%),
+      linear-gradient(180deg, #f7f4ef 0%, #eee7de 100%);
+  }
+
+  .top-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(8px);
+  }
+
+  .top-progress span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--red), #b54855);
+    transition: width 0.08s linear;
+  }
+
   .hero {
     position: relative;
-    padding: 6rem 3rem 4rem;
     overflow: hidden;
-    border-bottom: 1px solid var(--border2);
+    padding: clamp(4rem, 7vw, 6rem) 1.5rem 3.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.42);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.64)),
+      linear-gradient(140deg, rgba(139, 13, 30, 0.08), rgba(111, 79, 55, 0.08));
   }
 
-  .hero__grid-overlay {
+  .hero__mesh {
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 48px 48px;
-    opacity: 0.4;
+      linear-gradient(rgba(111, 79, 55, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(111, 79, 55, 0.08) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 95%);
     pointer-events: none;
   }
 
-  .hero__stripe {
+  .hero__glow {
     position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: repeating-linear-gradient(
-      90deg,
-      var(--yellow) 0px,
-      var(--yellow) 24px,
-      transparent 24px,
-      transparent 48px
-    );
+    width: 28rem;
+    height: 28rem;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .hero__glow--left {
+    top: -10rem;
+    left: -8rem;
+    background: rgba(139, 13, 30, 0.16);
+  }
+
+  .hero__glow--right {
+    right: -10rem;
+    bottom: -15rem;
+    background: rgba(111, 79, 55, 0.18);
   }
 
   .hero__inner {
     position: relative;
     z-index: 2;
-    max-width: 1160px;
+    width: min(100%, 1160px);
     margin: 0 auto;
   }
 
-  .hero__meta-row {
+  .hero__eyebrow {
     display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
     align-items: center;
-    gap: 0.7rem;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.6rem;
   }
 
-  .hero__tag {
+  .hero__chip,
+  .hero__meta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0.4rem 0.7rem;
+    border-radius: 999px;
     font-family: var(--ff-mono);
-    font-size: 0.65rem;
-    font-weight: 500;
-    color: var(--yellow);
-    background: var(--yellow-dim);
-    border: 1px solid var(--yellow-mid);
-    padding: 0.2rem 0.6rem;
+    font-size: 0.68rem;
     letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
-  .hero__dot {
-    width: 3px; height: 3px;
-    border-radius: 50%;
-    background: var(--text-dim);
+  .hero__chip {
+    background: var(--red);
+    color: var(--white);
+    box-shadow: 0 14px 24px rgba(139, 13, 30, 0.18);
   }
 
-  .hero__version {
-    font-family: var(--ff-mono);
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    letter-spacing: 0.05em;
+  .hero__meta {
+    color: var(--text-soft);
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(69, 69, 69, 0.08);
   }
 
-  .hero__title-block {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.5rem;
-    line-height: 1;
+  .hero__content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 2rem;
+    align-items: end;
   }
 
   .hero__pre {
-    font-family: var(--ff-display);
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    font-weight: 400;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+    color: var(--brown);
+    font-family: var(--ff-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
   }
 
   .hero__title {
+    color: var(--heading);
     font-family: var(--ff-display);
-    font-size: clamp(4rem, 12vw, 9rem);
-    font-weight: 900;
-    color: var(--text-hi);
-    letter-spacing: -0.01em;
+    font-size: clamp(3.2rem, 8vw, 6.8rem);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
     text-transform: uppercase;
-    line-height: 0.9;
-    -webkit-text-stroke: 1px rgba(245, 166, 35, 0.2);
   }
 
   .hero__intro {
-    max-width: 520px;
-    font-size: 0.95rem;
-    font-weight: 300;
-    color: var(--text);
-    line-height: 1.8;
-    border-left: 2px solid var(--yellow);
+    width: min(100%, 620px);
+    margin-top: 1rem;
     padding-left: 1rem;
-    margin-bottom: 2rem;
+    border-left: 3px solid var(--red);
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.85;
   }
 
-  .hero__rule {
+  .hero__panel {
+    display: grid;
+    gap: 0.9rem;
+    padding: 1.15rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.68);
+    border: 1px solid rgba(69, 69, 69, 0.09);
+    box-shadow: var(--shadow);
+  }
+
+  .hero__panel-item {
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 0.2rem;
   }
 
-  .hero__rule-line {
-    display: block;
-    width: 40px;
-    height: 1px;
-    background: var(--yellow);
-  }
-
-  .hero__rule-label {
+  .hero__panel-label {
+    color: var(--text-soft);
     font-family: var(--ff-mono);
-    font-size: 0.62rem;
-    color: var(--text-dim);
+    font-size: 0.64rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
-  .hero__bg-num {
+  .hero__panel-item strong {
+    color: var(--heading);
+    font-size: 0.98rem;
+    font-weight: 600;
+  }
+
+  .hero__watermark {
     position: absolute;
-    right: -2rem;
-    bottom: -1.5rem;
-    font-family: var(--ff-display);
-    font-size: clamp(8rem, 20vw, 18rem);
-    font-weight: 900;
+    right: 0.5rem;
+    bottom: -1rem;
     color: transparent;
-    -webkit-text-stroke: 1px rgba(245, 166, 35, 0.06);
+    font-family: var(--ff-display);
+    font-size: clamp(7rem, 18vw, 16rem);
+    line-height: 1;
     letter-spacing: -0.05em;
+    -webkit-text-stroke: 1px rgba(139, 13, 30, 0.08);
     pointer-events: none;
     user-select: none;
-    z-index: 1;
-    line-height: 1;
   }
 
-  /* ── LAYOUT ── */
   .layout {
     display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 0;
-    max-width: 1160px;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 2rem;
+    width: min(100%, 1160px);
     margin: 0 auto;
-    padding: 0 3rem 5rem;
+    padding: 2rem 1.5rem 5rem;
   }
 
-  /* ── TOC WRAPPER ── */
   .toc-wrapper {
     position: sticky;
-    top: 2rem;
+    top: 1.5rem;
     align-self: start;
-    height: fit-content;
   }
 
-  /* ── TOC ── */
   .toc {
-    padding: 2rem 1.5rem 2rem 0;
-    border-right: 1px solid var(--border);
-    margin-right: 2.5rem;
+    padding: 1.1rem;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(69, 69, 69, 0.08);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+  }
+
+  .toc__head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
   }
 
   .toc__label {
+    color: var(--red);
     font-family: var(--ff-mono);
-    font-size: 0.6rem;
-    font-weight: 500;
-    color: var(--yellow);
-    letter-spacing: 0.15em;
-    margin-bottom: 1.2rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
   }
 
   .toc__toggle {
     display: none;
     align-items: center;
     justify-content: space-between;
-    cursor: pointer;
     width: 100%;
-    background: none;
-    border: none;
-    color: var(--text-dim);
+    padding: 0.8rem 0.95rem;
+    border: 1px solid rgba(69, 69, 69, 0.1);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--heading);
     font-family: var(--ff-mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 0.6rem 0;
+    cursor: pointer;
   }
 
   .toc__toggle-icon {
     width: 16px;
     height: 16px;
-    color: var(--yellow);
-    transition: transform 0.3s ease;
+    color: var(--red);
+    transition: transform 0.25s ease;
     flex-shrink: 0;
   }
 
-  .toc__toggle-icon.open { transform: rotate(180deg); }
+  .toc__toggle-icon.open {
+    transform: rotate(180deg);
+  }
+
+  .toc__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
 
   .toc__link {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.45rem 0.6rem;
-    margin-bottom: 0.1rem;
+    gap: 0.75rem;
+    align-items: flex-start;
+    padding: 0.8rem 0.9rem;
+    border-radius: 14px;
     text-decoration: none;
-    border-left: 2px solid transparent;
-    transition: border-color 0.2s, background 0.2s, color 0.2s;
-    border-radius: 0 4px 4px 0;
+    transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    border: 1px solid transparent;
   }
 
   .toc__link:hover,
   .toc__link.active {
-    border-left-color: var(--yellow);
-    background: var(--yellow-dim);
+    background: var(--red-soft);
+    border-color: rgba(139, 13, 30, 0.12);
+    transform: translateX(2px);
   }
 
-  .toc__link:hover .toc__titulo,
-  .toc__link.active .toc__titulo { color: var(--text-hi); }
-
-  .toc__link:hover .toc__arrow,
-  .toc__link.active .toc__arrow { opacity: 1; color: var(--yellow); }
-
   .toc__num {
+    min-width: 2rem;
+    color: var(--red);
     font-family: var(--ff-mono);
-    font-size: 0.58rem;
-    color: var(--yellow);
-    opacity: 0.5;
-    min-width: 1.6rem;
-    flex-shrink: 0;
+    font-size: 0.65rem;
+    line-height: 1.6;
+  }
+
+  .toc__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
   }
 
   .toc__titulo {
-    font-family: var(--ff-body);
-    font-size: 0.77rem;
-    font-weight: 400;
-    color: var(--text-dim);
+    color: var(--heading);
+    font-size: 0.9rem;
     line-height: 1.3;
-    flex: 1;
-    transition: color 0.2s;
+    font-weight: 500;
   }
 
-  .toc__arrow {
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    opacity: 0;
-    transition: opacity 0.2s;
-    flex-shrink: 0;
+  .toc__tag {
+    color: var(--text-soft);
+    font-family: var(--ff-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
-  /* ── CONTENT ── */
   .content {
     min-width: 0;
-    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
-  /* ── SECTIONS ── */
+  .summary-card {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    padding: 1rem 1.15rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(69, 69, 69, 0.08);
+    box-shadow: var(--shadow);
+  }
+
+  .summary-card__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .summary-card__label {
+    color: var(--text-soft);
+    font-family: var(--ff-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .summary-card strong {
+    color: var(--heading);
+    font-size: 0.95rem;
+  }
+
   .section {
-    scroll-margin-top: 5rem;
-    margin-bottom: 2px;
-    border: 1px solid var(--border);
-    overflow: hidden;
-    transition: border-color 0.25s;
     position: relative;
+    scroll-margin-top: 5rem;
+    overflow: hidden;
+    border-radius: 22px;
+    border: 1px solid rgba(69, 69, 69, 0.08);
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .section:hover {
+    transform: translateY(-1px);
+    border-color: rgba(139, 13, 30, 0.14);
   }
 
   .section::before {
     content: '';
     position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 2px;
-    background: var(--yellow);
-    opacity: 0;
-    transition: opacity 0.25s;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--red), rgba(139, 13, 30, 0.12));
   }
-
-  .section:hover { border-color: var(--border2); }
-  .section:hover::before { opacity: 1; }
 
   .section__header {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1rem 1.5rem;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    cursor: default;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid rgba(69, 69, 69, 0.08);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.45));
   }
 
   .section__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.2rem;
+    min-height: 2.2rem;
+    padding: 0 0.65rem;
+    border-radius: 999px;
+    background: var(--red-soft);
+    color: var(--red);
     font-family: var(--ff-mono);
-    font-size: 0.62rem;
-    font-weight: 500;
-    color: var(--yellow);
-    background: var(--yellow-dim);
-    border: 1px solid rgba(245, 166, 35, 0.15);
-    padding: 0.2rem 0.5rem;
+    font-size: 0.66rem;
     letter-spacing: 0.08em;
-    flex-shrink: 0;
   }
 
   .section__title {
-    font-family: var(--ff-display);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text-hi);
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
     flex: 1;
+    color: var(--heading);
+    font-family: var(--ff-display);
+    font-size: 1.38rem;
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
   }
 
   .section__tag {
+    color: var(--brown);
     font-family: var(--ff-mono);
-    font-size: 0.55rem;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
-    border: 1px solid var(--border2);
-    padding: 0.15rem 0.5rem;
-    border-radius: 2px;
-    flex-shrink: 0;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.55rem;
+    border-radius: 999px;
+    background: var(--brown-soft);
   }
 
   .section__body {
-    padding: 1.8rem 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background: var(--bg);
+    padding: 1.4rem 1.2rem 1.5rem;
   }
 
   .section__body p {
-    font-size: 0.9rem;
-    font-weight: 300;
     color: var(--text);
-    line-height: 1.8;
+    font-size: 0.98rem;
+    line-height: 1.85;
   }
 
   .section__body strong {
-    color: var(--text-hi);
-    font-weight: 500;
+    color: var(--heading);
+    font-weight: 600;
   }
 
   .section__body ul {
-    list-style: none;
-    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-    border-left: 1px solid var(--border2);
-    padding-left: 1.2rem;
-    margin-left: 0.2rem;
+    gap: 0.55rem;
+    padding-left: 1rem;
+    margin-left: 0.15rem;
+    border-left: 2px solid rgba(111, 79, 55, 0.14);
+    list-style: none;
   }
 
-  .section__body ul li {
-    font-size: 0.88rem;
-    font-weight: 300;
-    color: var(--text);
-    line-height: 1.7;
+  .section__body li {
+    position: relative;
     padding-left: 0.8rem;
-    position: relative;
-  }
-
-  .section__body ul li::before {
-    content: '—';
-    position: absolute;
-    left: -0.6rem;
-    color: var(--yellow);
-    font-size: 0.7rem;
-    line-height: 1.9;
-    opacity: 0.6;
-  }
-
-  /* ── CALLOUTS ── */
-  .callout {
-    padding: 1rem 1.2rem;
-    font-size: 0.85rem;
-    font-weight: 300;
+    color: var(--text);
+    font-size: 0.95rem;
     line-height: 1.75;
-    position: relative;
+  }
+
+  .section__body li::before {
+    content: '';
+    position: absolute;
+    top: 0.76rem;
+    left: 0;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: var(--red);
+  }
+
+  .callout {
+    padding: 1rem 1.05rem;
+    border-radius: 14px;
+    font-size: 0.92rem;
+    line-height: 1.75;
   }
 
   .callout--info {
-    background: var(--blue-dim);
-    border-left: 2px solid var(--blue);
-    color: #90bde8;
+    color: #6c584d;
+    background: rgba(111, 79, 55, 0.08);
+    border: 1px solid rgba(111, 79, 55, 0.14);
   }
 
   .callout--warning {
-    background: var(--red-dim);
-    border-left: 2px solid var(--red);
-    color: #e89090;
+    color: #7d2633;
+    background: rgba(139, 13, 30, 0.07);
+    border: 1px solid rgba(139, 13, 30, 0.14);
   }
 
-  /* ── CONTACT GRID ── */
   .contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 2px;
-    margin-top: 0.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 0.35rem;
   }
 
   .contact-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 1.2rem;
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.2s, background 0.2s;
+    gap: 0.4rem;
+    min-height: 160px;
+    padding: 1.15rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(69, 69, 69, 0.08);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
   .contact-card:hover {
-    border-color: var(--yellow-mid);
-    background: var(--surface2);
+    transform: translateY(-2px);
+    border-color: rgba(139, 13, 30, 0.16);
+    box-shadow: 0 16px 30px rgba(111, 79, 55, 0.08);
   }
-
-  .contact-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, var(--yellow), transparent);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  .contact-card:hover::after { opacity: 1; }
 
   .contact-card__num {
+    color: rgba(139, 13, 30, 0.45);
     font-family: var(--ff-mono);
-    font-size: 0.55rem;
-    color: var(--yellow);
-    opacity: 0.5;
+    font-size: 0.62rem;
     letter-spacing: 0.1em;
   }
 
   .contact-card__label {
+    color: var(--text-soft);
     font-family: var(--ff-mono);
-    font-size: 0.6rem;
-    font-weight: 500;
+    font-size: 0.64rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-dim);
   }
 
   .contact-card__value {
-    font-size: 0.85rem;
-    color: var(--text-hi);
-    word-break: break-word;
+    color: var(--heading);
+    font-size: 0.98rem;
+    font-weight: 600;
+    line-height: 1.45;
     text-decoration: none;
-    font-weight: 400;
-    line-height: 1.4;
+    word-break: break-word;
   }
 
   a.contact-card__value:hover {
-    color: var(--yellow);
+    color: var(--red);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
 
-  /* ── FOOTER ── */
   .footer {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    padding: 1.5rem 2rem;
-    border-top: 1px solid var(--border);
+    gap: 0.55rem;
+    margin-top: 0.5rem;
+    padding: 1rem 0 0.25rem;
+    color: var(--text-soft);
     font-family: var(--ff-mono);
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    letter-spacing: 0.06em;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
-  .footer__brand { color: var(--yellow); }
-  .footer__sep   { color: var(--border2); }
-  .footer__code  { opacity: 0.4; }
+  .footer__sep {
+    color: rgba(69, 69, 69, 0.35);
+  }
 
-  /* ── RESPONSIVE: TABLET ── */
-  @media (max-width: 900px) {
-    .hero { padding: 4rem 1.5rem 3rem; }
-
+  @media (max-width: 960px) {
+    .hero__content,
     .layout {
       grid-template-columns: 1fr;
-      padding: 0 1.5rem 4rem;
     }
 
-    .section { scroll-margin-top: 28.5rem; }
+    .layout {
+      gap: 1.25rem;
+    }
 
     .toc-wrapper {
       position: static;
-      order: -1;
-      margin-top: 1.5rem;
-      height: auto;
     }
 
     .toc {
-      border-right: none;
-      border: 1px solid var(--border);
-      margin-right: 0;
-      padding: 1.5rem;
+      padding: 1rem;
     }
 
-    .toc__label  { display: none; }
-    .toc__toggle { display: flex; }
+    .toc__toggle {
+      display: flex;
+    }
 
     .toc__nav {
-      overflow: hidden;
       max-height: 0;
-      transition: max-height 0.35s ease, margin-top 0.2s ease;
+      overflow: hidden;
       margin-top: 0;
+      transition: max-height 0.3s ease, margin-top 0.2s ease;
     }
 
     .toc__nav.open {
@@ -994,27 +1140,62 @@ const secciones = [
     }
   }
 
-  /* ── RESPONSIVE: MOBILE ── */
-  @media (max-width: 600px) {
-    .hero { padding: 3rem 1.2rem 2.5rem; }
-    .hero__bg-num { display: none; }
+  @media (min-width: 961px) {
+    .toc__nav {
+      margin-top: 0.3rem;
+    }
+  }
 
-    .layout { padding: 0 1rem 3rem; }
-
-    .section__header {
-      padding: 0.85rem 1rem;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+  @media (max-width: 720px) {
+    .summary-card,
+    .contact-grid {
+      grid-template-columns: 1fr;
     }
 
-    .section__tag   { display: none; }
-    .section__title { font-size: 1rem; }
-
-    .section__body { padding: 1.2rem 1rem; }
-
+    .hero__intro,
     .section__body p,
-    .section__body ul li { font-size: 0.84rem; }
+    .section__body li {
+      font-size: 0.94rem;
+    }
+  }
 
-    .contact-grid { grid-template-columns: 1fr; }
+  @media (max-width: 600px) {
+    .hero {
+      padding: 3.4rem 1rem 2.5rem;
+    }
+
+    .hero__watermark {
+      display: none;
+    }
+
+    .layout {
+      padding: 1.2rem 1rem 3rem;
+    }
+
+    .section {
+      scroll-margin-top: 6rem;
+    }
+
+    .section__header {
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      padding: 0.95rem 1rem;
+    }
+
+    .section__title {
+      font-size: 1.08rem;
+    }
+
+    .section__tag {
+      display: none;
+    }
+
+    .section__body {
+      padding: 1.15rem 1rem 1.25rem;
+    }
+
+    .contact-card {
+      min-height: auto;
+    }
   }
 </style>
